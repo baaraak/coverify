@@ -1,0 +1,51 @@
+{
+  "name": "coverify",
+  "description": "Create your custom cover for your Spotify playlists, choose from images, colors, and fonts that express your favorite songs.",
+  "url": "https://coverify.netlify.com/",
+  "author": "Danilo Woznica <danilowoz@gmail.com>",
+  "version": "0.1.0",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "framer-motion": "^1.10.0",
+    "gatsby": "^2.20.2",
+    "gatsby-plugin-manifest": "^2.3.1",
+    "gatsby-plugin-react-helmet": "^3.2.0",
+    "gatsby-plugin-styled-components": "^3.2.0",
+    "html2canvas": "^1.0.0-rc.5",
+    "react": "^16.13.1",
+    "react-content-loader": "^5.0.2",
+    "react-dom": "^16.13.1",
+    "react-ga": "^2.7.0",
+    "react-helmet": "^5.2.1",
+    "react-redux": "^7.2.0",
+    "react-scripts": "3.4.1",
+    "react-snuggle": "^1.1.0",
+    "react-spotify-login": "^0.9.1",
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
+    "styled-components": "^5.0.1",
+    "typescript": "^3.8.3",
+    "use-debounce": "^3.4.0",
+    "wipe.css": "^1.3.0"
+  },
+  "scripts": {
+    "dev": "gatsby develop",
+    "start": "npm run dev",
+    "start:lambda": "netlify-lambda serve src/functions",
+    "build": "gatsby build",
+    "build:lambda": "netlify-lambda build src/functions",
+    "serve": "gatsby serve"
+  },
+  "devDependencies": {
+    "@significa/eslint-config": "^0.0.15",
+    "@significa/prettier-config": "^0.0.15",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^10.0.1",
+    "@testing-library/user-event": "^10.0.0",
+    "dotenv": "^8.2.0",
+    "gh-pages": "^2.2.0",
+    "http-proxy-middleware": "^1.0.3",
+    "netlify-lambda": "^1.6.3",
+    "npm-run-all": "^4.1.5"
+  }
+}
