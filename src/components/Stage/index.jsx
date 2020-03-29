@@ -114,7 +114,7 @@ const Stage = () => {
       })
 
       const imgData = canvas
-        .toDataURL('image/jpeg')
+        .toDataURL('image/jpeg', 0.8)
         .replace(/^data:image\/jpeg;base64,/, '')
 
       await postCover(token, stage.playlistId, imgData, dispatch)
@@ -165,7 +165,7 @@ const Stage = () => {
 
           <Handlers>
             <Button onClick={takePrint}>
-              Update cover
+              Update on Spotify
               <LoadingHandle
                 initial={{ width: 0, opacity: 0 }}
                 animate={{ width: loading ? 16 : 0, opacity: loading ? 1 : 0 }}
