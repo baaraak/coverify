@@ -70,14 +70,17 @@ export const getDataFromSplash = async (query, dispatch) => {
   }
 
   dispatch({ type: 'SET_LOADING', payload: true, meta: { key: 'gallery' } })
+  try {
+    const data = await axios.get(`.netlify/functions/images`, {
+      params: { query },
+    })
 
-  const data = await axios.get(`.netlify/functions/images`, {
-    params: { query },
-  })
-
-  dispatch({
-    type: 'FETCH_IMAGES',
-    payload: data.data,
-    meta: { query },
-  })
+    dispatch({
+      type: 'FETCH_IMAGES',
+      payload: data.data,
+      meta: { query },
+    })
+  } catch {
+    dispatch({ type: 'SET_LOADING', payload: false, meta: { key: 'gallery' } })
+  }
 }

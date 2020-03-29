@@ -5,7 +5,6 @@ import Helmet from 'react-helmet'
 import { initialState } from '../store'
 import { ImageHandle, Content, TextareaTop, TextareaCenter } from './style'
 import { INITIAL, ANIMATE, createTransition } from '../initialTransition'
-import { colorsScheme } from '../content'
 
 // eslint-disable-next-line react/display-name
 const Cover = forwardRef(({ variationSize, variationScale }, ref) => {
