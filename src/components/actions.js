@@ -40,7 +40,7 @@ export const postCover = async (
     )
 
     dispatch({ type: 'SET_LOADING', payload: false, meta: { key: 'stage' } })
-    alert.success('The playlist cover has been updated!')
+    alert.success('The playlist cover has been updated successfully!')
   } catch (err) {
     dispatch({ type: 'SET_LOADING', payload: false, meta: { key: 'stage' } })
     alert.error(err.message)
