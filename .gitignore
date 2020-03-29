@@ -8,7 +8,7 @@
 
 .cache
 public
-functions
+/functions
 
 # testing
 /coverage

@@ -27,9 +27,7 @@ const Backgrounds = () => {
       payload: image.urls.full,
     })
 
-    await axios.get(`.netlify/functions/download`, {
-      params: { id: image.id },
-    })
+    await axios.get(`.netlify/functions/download`, { params: { id: image.id } })
   }
 
   const randomWord = () => {
