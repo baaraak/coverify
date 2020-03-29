@@ -18,7 +18,13 @@ export const getUser = async (token, dispatch) => {
   }
 }
 
-export const postCover = async (token, playlistId, imgData, dispatch) => {
+export const postCover = async (
+  token,
+  playlistId,
+  imgData,
+  dispatch,
+  alert
+) => {
   try {
     dispatch({ type: 'SET_LOADING', payload: true, meta: { key: 'stage' } })
 
@@ -34,8 +40,10 @@ export const postCover = async (token, playlistId, imgData, dispatch) => {
     )
 
     dispatch({ type: 'SET_LOADING', payload: false, meta: { key: 'stage' } })
+    alert.success('The playlist cover has been updated!')
   } catch (err) {
-    throw Error(err)
+    dispatch({ type: 'SET_LOADING', payload: false, meta: { key: 'stage' } })
+    alert.error(err.message)
   }
 }
 
@@ -48,7 +56,7 @@ export const handleSelectPlaylist = (value, dispatch) => {
   })
 }
 
-export const getPlaylist = async (token, dispatch) => {
+export const getPlaylist = async (token, dispatch, alert) => {
   try {
     const results = await axios.get('https://api.spotify.com/v1/me/playlists', {
       headers: { Authorization: `Bearer ${token}` },
@@ -60,11 +68,12 @@ export const getPlaylist = async (token, dispatch) => {
       payload: results.data.items,
     })
   } catch (err) {
+    alert.error('Oops! Something went wrong!')
     dispatch({ type: 'LOG_OUT' })
   }
 }
 
-export const getDataFromSplash = async (query, dispatch) => {
+export const getDataFromSplash = async (query, dispatch, alert) => {
   if (!query) {
     return
   }
@@ -81,6 +90,7 @@ export const getDataFromSplash = async (query, dispatch) => {
       meta: { query },
     })
   } catch {
+    alert.error('Oops! Something went to load the backgrounds!')
     dispatch({ type: 'SET_LOADING', payload: false, meta: { key: 'gallery' } })
   }
 }

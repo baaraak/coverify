@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { motion } from 'framer-motion'
 import { useDebounce } from 'use-debounce'
 import axios from 'axios'
+import { useAlert } from 'react-alert'
 
 import Snuggle from '../_third-library/react-snuggle'
 import { Image, Search, Copyright } from './style'
@@ -13,6 +14,7 @@ import EmptyState from './EmptyState'
 
 const Backgrounds = () => {
   const dispatch = useDispatch()
+  const alert = useAlert()
   const [search, setSearch] = useState()
   const images = useSelector(state => state.images)
   const loading = useSelector(state => state.loadings.gallery)
@@ -42,7 +44,7 @@ const Backgrounds = () => {
 
   useEffect(() => {
     if (!images[searchDebounce]) {
-      getDataFromSplash(searchDebounce, dispatch)
+      getDataFromSplash(searchDebounce, dispatch, alert)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, searchDebounce])

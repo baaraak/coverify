@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { motion } from 'framer-motion'
 import Snuggle from 'react-snuggle'
+import { useAlert } from 'react-alert'
 
 import { getPlaylist } from '../actions'
 import penSrc from '../../assets/pen.svg'
@@ -11,6 +12,7 @@ import { handleSelectPlaylist } from '../actions'
 import EmptyState from './EmptyState'
 
 const Playlists = () => {
+  const alert = useAlert()
   const dispatch = useDispatch()
   const playlist = useSelector(state => state.playlist)
   const playListIdSelected = useSelector(state => state.stage.playlistId)
@@ -19,9 +21,9 @@ const Playlists = () => {
 
   useEffect(() => {
     if (token) {
-      getPlaylist(token, dispatch)
+      getPlaylist(token, dispatch, alert)
     }
-  }, [dispatch, token])
+  }, [alert, dispatch, token])
 
   if (playlist.length === 0) {
     return <EmptyState />

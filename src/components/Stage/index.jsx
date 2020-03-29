@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useViewportScroll, useTransform, motion } from 'framer-motion'
 import ReactGA from 'react-ga'
+import { useAlert } from 'react-alert'
 
 import { INITIAL, ANIMATE, createTransition } from '../initialTransition'
 import {
@@ -30,6 +31,7 @@ const TARGET_DELAY = 140
 const TARGET_LATER = 200
 
 const Stage = () => {
+  const alert = useAlert()
   const stage = useSelector(state => state.stage)
   const token = useSelector(state => state.token)
   const loading = useSelector(state => state.loadings.stage)
@@ -117,8 +119,8 @@ const Stage = () => {
         .toDataURL('image/jpeg', 0.8)
         .replace(/^data:image\/jpeg;base64,/, '')
 
-      await postCover(token, stage.playlistId, imgData, dispatch)
-      await getPlaylist(token, dispatch)
+      await postCover(token, stage.playlistId, imgData, dispatch, alert)
+      await getPlaylist(token, dispatch, alert)
     } else {
       dispatch({ type: 'SET_ERROR', payload: true, meta: { key: 'needSign' } })
 
