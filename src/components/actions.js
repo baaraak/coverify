@@ -13,7 +13,7 @@ export const getUser = async (token, dispatch) => {
         image: result.data.images[0].url,
       },
     })
-  } catch (err) {
+  } catch {
     dispatch({ type: 'LOG_OUT' })
   }
 }
