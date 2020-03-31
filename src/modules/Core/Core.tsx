@@ -1,9 +1,13 @@
 import React from 'react'
 
-import { ThemeProvider } from 'common/UI'
+import { ThemeProvider, Layout } from 'common/UI'
 
 const Core: React.FC = ({ children, ...props }) => {
-  return <ThemeProvider {...props}>{children}</ThemeProvider>
+  return (
+    <ThemeProvider {...props}>
+      <Layout>{children}</Layout>
+    </ThemeProvider>
+  )
 }
 
 export { Core }
