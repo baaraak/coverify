@@ -19,7 +19,7 @@ declare module 'styled-components' {
 const theme: Theme = {
   settings: {
     fontSizeBase: 16,
-    fontFamilyBase: '',
+    fontFamilyBase: 'Montserrat',
   },
   colors: {
     primary: '#1db954',
@@ -40,5 +40,5 @@ export { theme }
 // TODO: Waiting for prettier 2.0
 /* eslint-disable prettier/prettier */
 // eslint-disable-next-line no-undef
-export type { Theme }
+export type { Theme, ColorVariant }
 

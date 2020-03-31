@@ -5,8 +5,8 @@ import { Button } from 'common/UI'
 const Index: React.FC = () => {
   return (
     <div>
-      <Button>Hello world</Button>
-      <Button variant="outline">Hello world</Button>
+      <Button variant="normal">Hello world</Button>
+      <Button variant="outline">Outline button</Button>
     </div>
   )
 }
