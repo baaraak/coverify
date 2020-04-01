@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 `
 
 const Background = styled.header`
-  background: ${({ theme }) => theme.colors.black};
+  background: var(--color-black);
   padding-top: 1em;
   padding-bottom: 1em;
 
@@ -28,7 +28,7 @@ const Container = styled(BaseContainer)`
 
 const Menu = styled.nav`
   display: flex;
-  border-left: 1px solid ${({ theme }) => theme.colors.white}10;
+  border-left: 1px solid var(--color-white--light);
   padding: 0.85em;
   margin-left: 2em;
   padding-left: 2em;
@@ -46,7 +46,7 @@ export const MenuItem = styled(Text)`
 `
 
 export const LogoImage = styled.img`
-  height: 2em;
+  height: 1.8em;
   display: block;
 `
 

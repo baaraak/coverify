@@ -2,22 +2,21 @@ import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 
 import { WHILE_HOVER, WHILE_TAP } from 'common/constants'
-import type { ColorVariant } from 'common/UI'
 
 type Variant = 'normal' | 'outline'
 
 type ColorSchema = {
-  [key in Variant]: { [key in 'backgroundColor' | 'borderColor']: ColorVariant }
+  [key in Variant]: { [key in 'backgroundColor' | 'borderColor']: string }
 }
 
 const colorSchema: ColorSchema = {
   normal: {
-    backgroundColor: 'primary',
-    borderColor: 'primary',
+    backgroundColor: '--color-primary',
+    borderColor: '--color-primary',
   },
   outline: {
-    backgroundColor: 'dark',
-    borderColor: 'white',
+    backgroundColor: '--color-dark',
+    borderColor: '--color-white',
   },
 }
 
@@ -25,7 +24,7 @@ const Button = styled(motion.button).attrs({
   whileHover: WHILE_HOVER,
   whileTap: WHILE_TAP,
 })<{ variant?: Variant }>`
-  color: ${({ theme }) => theme.colors.white};
+  color: var(--color-white);
   font-size: ${({ theme }) => theme.fontSizes.normal};
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -37,16 +36,16 @@ const Button = styled(motion.button).attrs({
   border-style: solid;
 
   &:active {
-    color: ${({ theme }) => theme.colors.white};
+    color: var(--color-white);
   }
 
-  ${({ theme, variant = 'normal' }) => {
+  ${({ variant = 'normal' }) => {
     const backgroundColorKey = colorSchema[variant].backgroundColor
     const borderColorKey = colorSchema[variant].borderColor
 
     return css`
-      background-color: ${theme.colors[backgroundColorKey]};
-      border-color: ${theme.colors[borderColorKey]};
+      background-color: ${backgroundColorKey};
+      border-color: ${borderColorKey};
     `
   }}
 `

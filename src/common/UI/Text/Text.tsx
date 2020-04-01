@@ -9,10 +9,10 @@ const Text = styled.p<{
   color?: ColorVariant
   weight?: Weight
 }>`
-  ${({ theme, color = 'white', size = 'normal', weight = 'normal' }) => {
+  ${({ color = 'white', size = 'normal', weight = 'normal' }) => {
     return css`
-      color: ${theme.colors[color]};
-      font-size: ${theme.fontSizes[size]};
+      color: var(${`--color-${color}`});
+      font-size: var(${`--color-${size}`});
       font-weight: ${weight};
     `
   }}
