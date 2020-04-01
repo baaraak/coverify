@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import type { ColorVariant } from "common/UI"
+import type { ColorVariant } from 'common/UI'
 type Variant = 'normal' | 'outline'
 
 type ColorSchema = {
@@ -30,15 +30,15 @@ const Button = styled.button<{ variant?: Variant }>`
   border-width: 1px;
   border-style: solid;
 
-  ${({theme, variant = "normal"}) => {
+  ${({ theme, variant = 'normal' }) => {
     const backgroundColorKey = colorSchema[variant].backgroundColor
     const borderColorKey = colorSchema[variant].borderColor
-    
+
     return css`
       background-color: ${theme.colors[backgroundColorKey]};
       border-color: ${theme.colors[borderColorKey]};
-  `}}
-
+    `
+  }}
 `
 
 export { Button }

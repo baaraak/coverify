@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
     const sheet = new ServerStyleSheet()
 
     // Step 2: Retrieve styles from components in the page
-    const page = renderPage(App => props =>
+    const page = renderPage((App) => (props) =>
       sheet.collectStyles(<App {...props} />)
     )
 
@@ -23,7 +23,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
           <link
             href="https://fonts.googleapis.com/css?family=Montserrat:400,800&display=swap"

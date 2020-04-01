@@ -1,11 +1,10 @@
-
-type ColorVariant = 'primary' | 'black' | 'grey' | 'white'
+export type ColorVariant = 'primary' | 'black' | 'grey' | 'white'
 type Colors = Record<ColorVariant, string>
 
-type FontSizeVariant = 'small' | 'normal' | 'medium' | 'heading' | 'huge'
-type FontSizes = Record<FontSizeVariant, number>
+export type FontSizeVariant = 'small' | 'normal' | 'medium' | 'heading' | 'huge'
+type FontSizes = Record<FontSizeVariant, string>
 
-interface Theme {
+export interface Theme {
   settings: Record<'fontSizeBase' | 'fontFamilyBase', number | string>
   colors: Colors
   fontSizes: FontSizes
@@ -16,9 +15,12 @@ declare module 'styled-components' {
   export interface DefaultTheme extends Theme {}
 }
 
+const FONT_SIZE_BASE = 16
+const pxToEm = (px: number): string => `${px / FONT_SIZE_BASE}em`
+
 const theme: Theme = {
   settings: {
-    fontSizeBase: 16,
+    fontSizeBase: FONT_SIZE_BASE,
     fontFamilyBase: 'Montserrat',
   },
   colors: {
@@ -28,17 +30,12 @@ const theme: Theme = {
     white: '#fff',
   },
   fontSizes: {
-    small: 12,
-    normal: 14,
-    medium: 16,
-    heading: 18,
-    huge: 48,
+    small: pxToEm(12),
+    normal: pxToEm(14),
+    medium: pxToEm(16),
+    heading: pxToEm(18),
+    huge: pxToEm(48),
   },
 }
 
 export { theme }
-// TODO: Waiting for prettier 2.0
-/* eslint-disable prettier/prettier */
-// eslint-disable-next-line no-undef
-export type { Theme, ColorVariant }
-

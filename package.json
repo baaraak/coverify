@@ -25,9 +25,9 @@
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
-    "@significa/eslint-config": "0.0.15",
-    "@significa/prettier-config": "0.0.15",
-    "@significa/tsconfig-config": "0.0.15",
+    "@significa/eslint-config": "0.0.16",
+    "@significa/prettier-config": "0.0.16",
+    "@significa/tsconfig-config": "0.0.16",
     "@types/node": "13.9.8",
     "@types/react": "16.9.29",
     "@types/styled-components": "5.0.1",
