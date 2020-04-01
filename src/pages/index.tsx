@@ -1,9 +1,13 @@
 import React from 'react'
 
-import Core from 'modules/Core'
+import Header from 'modules/Header'
 
 const Index: React.FC = () => {
-  return <Core>foo</Core>
+  return (
+    <>
+      <Header />
+    </>
+  )
 }
 
 export default Index

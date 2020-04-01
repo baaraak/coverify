@@ -1,4 +1,4 @@
-export type ColorVariant = 'primary' | 'black' | 'grey' | 'white'
+export type ColorVariant = 'primary' | 'dark' | 'black' | 'grey' | 'white'
 type Colors = Record<ColorVariant, string>
 
 export type FontSizeVariant = 'small' | 'normal' | 'medium' | 'heading' | 'huge'
@@ -24,10 +24,11 @@ const theme: Theme = {
     fontFamilyBase: 'Montserrat',
   },
   colors: {
+    black: '#000000',
     primary: '#1db954',
-    black: '#141414',
+    dark: '#141414',
     grey: '363535',
-    white: '#fff',
+    white: '#ffffff',
   },
   fontSizes: {
     small: pxToEm(12),

@@ -8,6 +8,18 @@ module.exports = {
       config.resolve.plugins = [new TsconfigPathsPlugin()]
     }
 
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: 'svg-url-loader',
+          options: {
+            limit: 10000,
+          },
+        },
+      ],
+    })
+
     return config
   },
 }

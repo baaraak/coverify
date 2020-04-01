@@ -1,6 +1,9 @@
+import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 
+import { WHILE_HOVER, WHILE_TAP } from 'common/constants'
 import type { ColorVariant } from 'common/UI'
+
 type Variant = 'normal' | 'outline'
 
 type ColorSchema = {
@@ -13,12 +16,15 @@ const colorSchema: ColorSchema = {
     borderColor: 'primary',
   },
   outline: {
-    backgroundColor: 'black',
+    backgroundColor: 'dark',
     borderColor: 'white',
   },
 }
 
-const Button = styled.button<{ variant?: Variant }>`
+const Button = styled(motion.button).attrs({
+  whileHover: WHILE_HOVER,
+  whileTap: WHILE_TAP,
+})<{ variant?: Variant }>`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.normal};
   letter-spacing: 1px;
@@ -29,6 +35,10 @@ const Button = styled.button<{ variant?: Variant }>`
   padding: 0.625em 1.875em;
   border-width: 1px;
   border-style: solid;
+
+  &:active {
+    color: ${({ theme }) => theme.colors.white};
+  }
 
   ${({ theme, variant = 'normal' }) => {
     const backgroundColorKey = colorSchema[variant].backgroundColor

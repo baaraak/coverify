@@ -5,8 +5,8 @@ const GlobalStyle = createGlobalStyle`
   ${({ theme }) => css`
     body,
     html {
-      background-color: ${theme.colors.black};
-      font-size: ${theme.settings.fontSizeBase};
+      background-color: ${theme.colors.dark};
+      font-size: ${theme.settings.fontSizeBase}px;
       font-family: ${theme.settings.fontFamilyBase};
     }
   `}
