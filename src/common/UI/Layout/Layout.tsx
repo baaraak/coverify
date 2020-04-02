@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
       ${({ theme: { colors, fontSizes } }) => css`
         /* Colors */
         --color-black: ${colors.black};
+        --color-black-light: ${colors.black}80;
         --color-primary: ${colors.primary};
         --color-dark: ${colors.dark};
         --color-grey: ${colors.grey};

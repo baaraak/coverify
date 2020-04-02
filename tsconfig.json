@@ -2,7 +2,8 @@
   "extends": "./node_modules/@significa/tsconfig-config/index.json",
   "compilerOptions": {
     "isolatedModules": true,
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "lib": ["ESNext"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

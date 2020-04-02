@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "framer-motion": "1.10.3",
+    "html2canvas": "^1.0.0-rc.5",
     "next": "9.3.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
