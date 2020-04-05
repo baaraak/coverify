@@ -2,6 +2,9 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore, combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { persistStore, persistReducer } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
+import storage from 'redux-persist/lib/storage'
 
 // User module
 import { reducer as userReducer } from 'modules/User/store'
@@ -22,12 +25,24 @@ declare module 'react-redux' {
   export interface DefaultRootState extends Reducers {}
 }
 
-const composeEnhancers = composeWithDevTools()
 const rootReducer = combineReducers({ user: userReducer })
-const store = createStore(rootReducer, composeEnhancers)
+
+const persistConfig = { key: 'root', storage }
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+const composeEnhancers = composeWithDevTools()
+
+const store = createStore(persistedReducer, composeEnhancers)
+const persistor = persistStore(store)
 
 const DataProvider: React.FC = ({ children }) => {
-  return <Provider store={store}>{children}</Provider>
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        {children}
+      </PersistGate>
+    </Provider>
+  )
 }
 
 export { DataProvider }
