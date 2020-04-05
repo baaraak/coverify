@@ -1,3 +1,4 @@
+require('dotenv').config()
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
@@ -21,5 +22,9 @@ module.exports = {
     })
 
     return config
+  },
+  env: {
+    SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
+    SPOTIFY_URL: process.env.SPOTIFY_URL,
   },
 }

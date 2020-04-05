@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
         --color-dark: ${colors.dark};
         --color-grey: ${colors.grey};
         --color-white: ${colors.white};
-        --color-white--light: ${colors.white}10;
+        --color-white--light: ${colors.white}20;
 
         /* Font sizes */
         --size-small: ${fontSizes.small};

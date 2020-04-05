@@ -2,7 +2,7 @@ import { motion, AnimationProps } from 'framer-motion'
 import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-import logoSrc from './logo.svg'
+import logoSrc from './assets/logo.svg'
 import { Navigation } from './Navigation'
 import { Toggle } from './Toggle'
 import { APP_NAME, TRANSITION } from 'common/constants'
@@ -33,9 +33,12 @@ const Container = styled(BaseContainer)`
   justify-content: space-between;
 `
 
-const MenuWrapper = styled(Container)`
-  overflow: hidden;
+const MenuWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex: 1;
+  overflow: hidden;
 
   /* Override inline style */
   /* Desktop */

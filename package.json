@@ -15,11 +15,17 @@
     "validate:ts": "tsc"
   },
   "dependencies": {
+    "axios": "0.19.2",
+    "dotenv": "8.2.0",
     "framer-motion": "1.10.3",
     "html2canvas": "^1.0.0-rc.5",
     "next": "9.3.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-redux": "7.2.0",
+    "react-spotify-login": "0.9.1",
+    "redux": "4.0.5",
+    "redux-thunk": "2.3.0",
     "styled-components": "5.0.1",
     "typescript": "3.8.3",
     "wipe.css": "1.3.0"
@@ -32,11 +38,13 @@
     "@significa/tsconfig-config": "0.0.16",
     "@types/node": "13.9.8",
     "@types/react": "16.9.29",
+    "@types/react-redux": "7.1.7",
     "@types/styled-components": "5.0.1",
     "babel-plugin-styled-components": "1.10.7",
     "husky": "4.2.3",
     "lint-staged": "10.1.0",
     "prettier": "2.0.2",
+    "redux-devtools-extension": "2.13.8",
     "svg-url-loader": "5.0.0",
     "tsconfig-paths-webpack-plugin": "3.2.0"
   }
