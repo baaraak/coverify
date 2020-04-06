@@ -1,6 +1,7 @@
 import { Spotify } from './service/spotify'
 
-let context: { spotifyService?: Spotify } = { spotifyService: undefined }
+const initialServices = { spotifyService: undefined }
+let context: { spotifyService?: Spotify } = initialServices
 
 const createServicesContext = (spotifyToken: string) => {
   context = {
@@ -8,4 +9,8 @@ const createServicesContext = (spotifyToken: string) => {
   }
 }
 
-export { context, createServicesContext }
+const eraseServicesContext = () => {
+  context = initialServices
+}
+
+export { context, createServicesContext, eraseServicesContext }

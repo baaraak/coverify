@@ -2,16 +2,22 @@ import App from 'next/app'
 import React from 'react'
 
 import 'wipe.css'
-import Core from 'modules/Core'
+
+import { ThemeProvider, Layout } from 'common/UI'
+import { DataProvider } from 'config/redux'
 
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
 
     return (
-      <Core>
-        <Component {...pageProps} />
-      </Core>
+      <DataProvider>
+        <ThemeProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </DataProvider>
     )
   }
 }

@@ -8,7 +8,7 @@ export const SHORT_DESCRIPTION =
 export const URL = pkg.url
 
 // Share
-export const SHARE_GITHUB = 'http://github.com/danilowoz/coverify/'
+export const SHARE_GITHUB = 'http://github.com/danilowoz/coverify'
 export const SHARE_TWIITER = `https://twitter.com/intent/tweet?text=${APP_NAME} - ${DESCRIPTION} %0A%0A${URL}
 `
 

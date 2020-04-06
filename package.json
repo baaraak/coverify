@@ -1,6 +1,8 @@
 {
   "name": "coverify",
   "version": "1.0.0",
+  "description": "Create your custom cover for your Spotify playlists, choose from images, colors, and fonts that express your favorite songs.",
+  "url": "https://coverify.netlify.com/",
   "main": "index.js",
   "repository": "git@github.com:danilowoz/coverify.git",
   "author": "Danilo Woznica <danilowoz@gmail.com>",
