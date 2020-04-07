@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle, css } from 'styled-components'
 
 import logoSrc from './assets/logo.svg'
 import { Navigation } from './Navigation'
@@ -40,7 +40,11 @@ const GlobalBlurStyle = createGlobalStyle<{ active: boolean }>`
   }
 
   ${BlurView} {
-    filter:blur(${({ active }) => (active ? 10 : 0)}px);
+    ${({ active }) =>
+      active &&
+      css`
+        filter: blur(10px);
+      `}
   }
 `
 
@@ -56,8 +60,13 @@ const Wrapper = styled.div`
 
 const Background = styled.header`
   background: var(--color-black);
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 1.5em;
+  padding-bottom: 2.6em;
+
+  /* Desktop */
+  @media (min-width: 60em) {
+    padding-top: 1em;
+  }
 
   position: fixed;
   top: 0;

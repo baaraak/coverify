@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Stage from '../modules/Stage'
 import Core from 'modules/Core'
 import Header, { BlurContainer } from 'modules/Header'
 
@@ -9,23 +10,10 @@ const Index: React.FC = () => {
       <Header />
 
       <BlurContainer>
-        <img
-          src="https://images.unsplash.com/photo-1586184072411-434bd494c3c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
-          alt="landscape"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1586184072411-434bd494c3c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
-          alt="landscape"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1586184072411-434bd494c3c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
-          alt="landscape"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1586184072411-434bd494c3c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
-          alt="landscape"
-        />
+        <Stage>Stage</Stage>
       </BlurContainer>
+
+      <div style={{ height: '200vh' }} />
     </Core>
   )
 }
