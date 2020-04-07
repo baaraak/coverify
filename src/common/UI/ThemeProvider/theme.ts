@@ -1,4 +1,10 @@
-export type ColorVariant = 'primary' | 'dark' | 'black' | 'grey' | 'white'
+export type ColorVariant =
+  | 'primary'
+  | 'dark'
+  | 'black'
+  | 'grey'
+  | 'white'
+  | 'error'
 type Colors = Record<ColorVariant, string>
 
 export type FontSizeVariant = 'small' | 'normal' | 'medium' | 'heading' | 'huge'
@@ -27,8 +33,9 @@ const theme: Theme = {
     black: '#000000',
     primary: '#1db954',
     dark: '#141414',
-    grey: '363535',
+    grey: '#363535',
     white: '#ffffff',
+    error: '#d24444',
   },
   fontSizes: {
     small: pxToEm(12),

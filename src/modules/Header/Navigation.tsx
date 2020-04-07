@@ -79,7 +79,7 @@ const Navigation: React.FC = () => {
           )
         })}
       </Menu>
-      {isConnected ? (
+      {isConnected && userData ? (
         <UserAvatar
           name={userData.userName}
           image={userData.userImage}

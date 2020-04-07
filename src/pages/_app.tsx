@@ -3,7 +3,7 @@ import React from 'react'
 
 import 'wipe.css'
 
-import { ThemeProvider, Layout } from 'common/UI'
+import { ThemeProvider, Layout, AlertProvider } from 'common/UI'
 import { DataProvider } from 'config/redux'
 
 class MyApp extends App {
@@ -13,9 +13,11 @@ class MyApp extends App {
     return (
       <DataProvider>
         <ThemeProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <AlertProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </AlertProvider>
         </ThemeProvider>
       </DataProvider>
     )

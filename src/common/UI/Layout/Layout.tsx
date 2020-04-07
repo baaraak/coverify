@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
         --color-grey: ${colors.grey};
         --color-white: ${colors.white};
         --color-white--light: ${colors.white}20;
+        --color-error: ${colors.error};
 
         /* Font sizes */
         --size-small: ${fontSizes.small};
