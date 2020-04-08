@@ -2,6 +2,7 @@ import React from 'react'
 
 import Stage from '../modules/Stage'
 import Core from 'modules/Core'
+import { TextControl } from 'modules/Editor'
 import Header, { BlurContainer } from 'modules/Header'
 
 const Index: React.FC = () => {
@@ -10,7 +11,9 @@ const Index: React.FC = () => {
       <Header />
 
       <BlurContainer>
-        <Stage>Stage</Stage>
+        <Stage>
+          <TextControl />
+        </Stage>
       </BlurContainer>
 
       <div style={{ height: '200vh' }} />

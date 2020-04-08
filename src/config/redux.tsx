@@ -7,25 +7,30 @@ import { PersistGate } from 'redux-persist/integration/react'
 import storage from 'redux-persist/lib/storage'
 
 // User module
-import { reducer as userReducer } from 'modules/User/store'
 import type {
-  State as UserState,
-  Actions as UserActions,
-} from 'modules/User/store'
+  State as EditorState,
+  Actions as EditorActions,
+} from 'modules/Editor'
+import { reducer as editorReducer } from 'modules/Editor'
+import { reducer as userReducer } from 'modules/User'
+import type { State as UserState, Actions as UserActions } from 'modules/User'
 
 declare module 'react-redux' {
-  type AllActions = UserActions
+  type AllActions = UserActions | EditorActions
 
   export function useDispatch(): (actions: AllActions) => AllActions
 
   // Types from reducers
-  type Reducers = { user: UserState }
+  type Reducers = { user: UserState; editor: EditorState }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface DefaultRootState extends Reducers {}
 }
 
-const rootReducer = combineReducers({ user: userReducer })
+const rootReducer = combineReducers({
+  user: userReducer,
+  editor: editorReducer,
+})
 
 const persistConfig = { key: 'root', storage }
 const persistedReducer = persistReducer(persistConfig, rootReducer)

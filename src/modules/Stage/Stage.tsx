@@ -2,10 +2,11 @@ import { motion, useViewportScroll, useTransform } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
 
+import { HEADER_HEIGHT, STAGE_HEIGHT } from 'common/sizes'
 import { Container } from 'common/UI'
 
 const Wrapper = styled.div`
-  height: 32em;
+  height: ${STAGE_HEIGHT};
   width: 100%;
   z-index: 9;
 `
@@ -17,10 +18,9 @@ const WrapperFixed = styled(motion.div)`
     var(--color-dark) 0%,
     var(--color-grey) 100%
   );
-  height: 32em;
-
+  height: ${STAGE_HEIGHT};
   position: fixed;
-  top: 4.9em;
+  top: ${HEADER_HEIGHT};
   left: 0;
   right: 0;
   z-index: 9;

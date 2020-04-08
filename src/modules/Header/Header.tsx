@@ -6,6 +6,7 @@ import logoSrc from './assets/logo.svg'
 import { Navigation } from './Navigation'
 import { Toggle } from './Toggle'
 import { APP_NAME, TRANSITION } from 'common/constants'
+import { HEADER_HEIGHT } from 'common/sizes'
 import { Container as BaseContainer } from 'common/UI'
 
 const BlurWrapper = styled.div`
@@ -54,7 +55,7 @@ const Wrapper = styled.div`
   z-index: 9;
 
   @media (min-width: 60em) {
-    height: 4.9em;
+    height: ${HEADER_HEIGHT};
   }
 `
 
