@@ -3630,7 +3630,7 @@ file-loader@4.2.0:
     loader-utils "^1.2.3"
     schema-utils "^2.0.0"
 
-file-loader@^6.0.0, file-loader@~6.0.0:
+file-loader@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-6.0.0.tgz#97bbfaab7a2460c07bcbd72d3a6922407f67649f"
   integrity sha512-/aMOAYEFXDdjG0wytpTL5YQLfZnnTmLNjn+AIrJ/6HVnTfDqLsVKUUwkDf4I4kgex36BvjuXEn/TX9B/1ESyqQ==
@@ -4860,7 +4860,7 @@ loader-utils@1.2.3:
     emojis-list "^2.0.0"
     json5 "^1.0.1"
 
-loader-utils@2.0.0, loader-utils@^2.0.0, loader-utils@~2.0.0:
+loader-utils@2.0.0, loader-utils@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-2.0.0.tgz#e4cace5b816d425a166b5f097e10cd12b36064b0"
   integrity sha512-rP4F0h2RaWSvPEkD7BLDFQnvSf+nK+wr3ESUjNTyAGobqrijmW92zc+SO6d4p4B1wh7+B/Jg1mkQe5NYUEHtHQ==
@@ -7634,14 +7634,6 @@ supports-color@^7.1.0:
   integrity sha512-oRSIpR8pxT1Wr2FquTNnGet79b3BWljqOuoW/h4oBhxJ/HUbX5nX6JSruTkvXDCFMwDPvsaTTbvMLKZWSy0R5g==
   dependencies:
     has-flag "^4.0.0"
-
-svg-url-loader@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/svg-url-loader/-/svg-url-loader-5.0.0.tgz#0cbcfc4eed916df485ec879fb0cf6ea4340e57bc"
-  integrity sha512-KI7KRxYd1PuStyvSX4H/pB2i3PC1mMqP6reizU3TsieZJRW5TvWm4obmAzlWsI0SgvECK5oGYywDLxSMbat06w==
-  dependencies:
-    file-loader "~6.0.0"
-    loader-utils "~2.0.0"
 
 symbol-observable@^1.1.0, symbol-observable@^1.2.0:
   version "1.2.0"

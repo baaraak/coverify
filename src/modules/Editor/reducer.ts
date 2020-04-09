@@ -1,13 +1,10 @@
 import { DefaultRootState } from 'react-redux'
 
+import type { Actions } from './actions'
+import { types } from './actions'
 import imagePlaceholderSrc from './assets/image-placeholder.jpg'
 import { COLORS_SCHEMA } from './constants'
 import { APP_NAME } from 'common/constants'
-
-// Actions opts
-enum types {
-  UPDATE_EDITOR = 'UPDATE_EDITOR',
-}
 
 const INITIAL_STATE = {
   colors: COLORS_SCHEMA[0],
@@ -22,12 +19,6 @@ const INITIAL_STATE = {
 }
 
 export type State = typeof INITIAL_STATE
-
-export interface Actions {
-  type: types
-  payload: string | number | State['colors']
-  meta: keyof State
-}
 
 const reducer = (state = INITIAL_STATE, { type, payload, meta }: Actions) => {
   switch (type) {

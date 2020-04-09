@@ -1,29 +1,12 @@
 import { DefaultRootState } from 'react-redux'
 
-// Actions opts
-enum types {
-  USER_SIGN_REQUEST = 'USER_SIGN_REQUEST',
-  USER_SIGN_RECEIVE = 'USER_SIGN_RECEIVE',
-  USER_SIGN_ERROR = 'USER_SIGN_ERROR',
-
-  USER_INFO_REQUEST = 'USER_INFO_REQUEST',
-  USER_INFO_RECEIVE = 'USER_INFO_RECEIVE',
-  USER_INFO_ERROR = 'USER_INFO_ERROR',
-
-  LOG_OUT = 'LOG_OUT',
-}
+import { types, Actions } from './actions'
 
 // Reducer stuff
 export interface State {
   data?: { token?: string; userName?: string; userImage?: string }
   loading: boolean
   errorMessage?: string
-}
-
-export interface Actions {
-  type: types
-  payload?: string | { userName: string; userImage: string }
-  meta?: { [key: string]: unknown }
 }
 
 const INITIAL_STATE: State = {
@@ -34,12 +17,10 @@ const INITIAL_STATE: State = {
 
 const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
   switch (type) {
-    case types.USER_SIGN_REQUEST:
-    case types.USER_INFO_REQUEST:
+    case types.USER_REQUEST:
       return { ...state, loading: true }
 
-    case types.USER_SIGN_ERROR:
-    case types.USER_INFO_ERROR:
+    case types.USER_ERROR:
       return { ...INITIAL_STATE, errorMessage: payload }
 
     // Sign in

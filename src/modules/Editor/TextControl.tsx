@@ -3,13 +3,18 @@ import React, { FormEvent } from 'react'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import styled, { css } from 'styled-components'
 
+import {
+  dispatchTextAlign,
+  dispatchFontSize,
+  dispatchFontFamily,
+} from './actions'
 import alignCenter from './assets/align-center.svg'
 import alignLeft from './assets/align-left.svg'
 import alignRight from './assets/align-right.svg'
 import decreaseFont from './assets/decrease-font.svg'
 import increaseFont from './assets/increase-font.svg'
 import { COLORS_SCHEMA } from './constants'
-import { types, State, selectors } from './store'
+import { types, State, selectors } from './reducer'
 import { WHILE_HOVER, WHILE_TAP } from 'common/constants'
 
 // Components
@@ -104,45 +109,23 @@ export const ColorButton = styled(motion.button).attrs({
   }
 `
 
-// Constants
-const TEXT_SIZE = {
-  RATE: 4,
-  MAX: 80,
-  MIN: 20,
-}
-
 const TextControl: React.FC = (props) => {
   // States
   const dispatch = useDispatch()
-  const { textAlign, fontSize, fontFamily } = useSelector(
+  const { textAlign, fontFamily } = useSelector(
     selectors.getEditor,
     shallowEqual
   )
 
   // Handles
   const handleFontFamily = (event: FormEvent<HTMLSelectElement>) =>
-    dispatch({
-      type: types.UPDATE_EDITOR,
-      meta: 'fontFamily',
-      // TODO: fix type checking
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      payload: (event.target as any).value,
-    })
+    // TODO: fix type checking
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    dispatchFontFamily((event.target as any).value)
 
-  const handleTextAlign = (value: 'left' | 'center' | 'right') =>
-    dispatch({ type: types.UPDATE_EDITOR, meta: 'textAlign', payload: value })
-
-  const handleFontSize = (shouldIncrease: boolean) => {
-    const newValue = shouldIncrease
-      ? fontSize + TEXT_SIZE.RATE
-      : fontSize - TEXT_SIZE.RATE
-
-    dispatch({
-      type: types.UPDATE_EDITOR,
-      meta: 'fontSize',
-      payload: Math.max(TEXT_SIZE.MIN, Math.min(newValue, TEXT_SIZE.MAX)),
-    })
-  }
+  const handleTextAlign = (value: string) => dispatch(dispatchTextAlign(value))
+  const handleFontSize = (shouldIncrease: boolean) =>
+    dispatch(dispatchFontSize(shouldIncrease))
 
   const handleColor = (value: State['colors']) =>
     dispatch({ type: types.UPDATE_EDITOR, meta: 'colors', payload: value })

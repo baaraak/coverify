@@ -7,9 +7,9 @@ import {
   eraseServicesContext,
 } from 'common/context'
 import {
-  types as userTypes,
+  actions as userActions,
   selectors as userSelectors,
-} from 'modules/User/store'
+} from 'modules/User'
 
 /**
  * Main entry component of application
@@ -28,16 +28,8 @@ const Core: React.FC = ({ children }) => {
    *  Get user data
    */
   const getInformationOfUser = useCallback(async () => {
-    dispatch({ type: userTypes.USER_INFO_REQUEST })
-
-    try {
-      const userData = await spotifyService?.getUserInformation()
-
-      dispatch({ type: userTypes.USER_INFO_RECEIVE, payload: userData })
-    } catch (err) {
-      dispatch({ type: userTypes.USER_INFO_ERROR, payload: err.message })
-    }
-  }, [dispatch, spotifyService])
+    dispatch(userActions.getInformationOfUser())
+  }, [dispatch])
 
   /**
    * Services effect

@@ -2,19 +2,15 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import DefaultButton from 'react-spotify-login'
 
+import { dispatchLoading, dispatchError, dispatchUserToken } from './actions'
 import { SPOTIFY_CLIENT_ID, SPOTIFY_URL, SPOTIFY_SCOPE } from './constants'
-import { types } from './store'
 import { createServicesContext } from 'common/context'
 
 const UserLoginButton: React.FC = (props) => {
   const dispatch = useDispatch()
 
   // User Login
-  const onRequest = () => {
-    return dispatch({
-      type: types.USER_SIGN_REQUEST,
-    })
-  }
+  const onRequest = () => dispatch(dispatchLoading())
 
   const onSuccess = (response: { access_token: string }) => {
     const spotifyToken = response.access_token
@@ -22,12 +18,12 @@ const UserLoginButton: React.FC = (props) => {
     // Creating context of services
     createServicesContext(spotifyToken)
 
-    return dispatch({ type: types.USER_SIGN_RECEIVE, payload: spotifyToken })
+    // Full field reducer
+    dispatch(dispatchUserToken(spotifyToken))
   }
 
-  const onFailure = (response: Error) => {
-    return dispatch({ type: types.USER_SIGN_ERROR, payload: response.message })
-  }
+  const onFailure = (response: Error) =>
+    dispatch(dispatchError(response.message))
 
   return (
     <DefaultButton
