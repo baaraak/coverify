@@ -33,6 +33,8 @@ const reducer = (state = INITIAL_STATE, { type, payload, meta }: Actions) => {
 // Selectors
 const selectors = {
   getEditor: (state: DefaultRootState) => state.editor,
+  getTextAlign: (state: DefaultRootState) => state.editor.textAlign,
+  getFontFamily: (state: DefaultRootState) => state.editor.fontFamily,
 }
 
 export { types, reducer, selectors }

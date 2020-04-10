@@ -50,4 +50,16 @@ const dispatchFontFamily = (fontFamily: string) => ({
   payload: fontFamily,
 })
 
-export { types, dispatchTextAlign, dispatchFontSize, dispatchFontFamily }
+const dispatchColorSchema = (color: State['colors']) => ({
+  type: types.UPDATE_EDITOR,
+  meta: 'colors',
+  payload: color,
+})
+
+export {
+  types,
+  dispatchTextAlign,
+  dispatchFontSize,
+  dispatchFontFamily,
+  dispatchColorSchema,
+}
