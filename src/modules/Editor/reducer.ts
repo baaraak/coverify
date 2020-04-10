@@ -1,4 +1,5 @@
 import { DefaultRootState } from 'react-redux'
+import { CSSProperties } from 'styled-components'
 
 import type { Actions } from './actions'
 import { types } from './actions'
@@ -18,7 +19,9 @@ const INITIAL_STATE = {
   textAlign: 'left',
 }
 
-export type State = typeof INITIAL_STATE
+export type State = typeof INITIAL_STATE & {
+  textAlign: CSSProperties['textAlign']
+}
 
 const reducer = (state = INITIAL_STATE, { type, payload, meta }: Actions) => {
   switch (type) {
@@ -37,4 +40,4 @@ const selectors = {
   getFontFamily: (state: DefaultRootState) => state.editor.fontFamily,
 }
 
-export { types, reducer, selectors }
+export { types, reducer, selectors, INITIAL_STATE }

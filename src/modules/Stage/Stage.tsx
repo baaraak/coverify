@@ -26,6 +26,10 @@ const WrapperFixed = styled(motion.div)`
   z-index: 9;
 `
 
+const CustomContainer = styled(Container)`
+  display: flex;
+`
+
 const Stage: React.FC = ({ children }) => {
   const { scrollY } = useViewportScroll()
   const top = useTransform(scrollY, [0, 78], [78, 0])
@@ -34,7 +38,7 @@ const Stage: React.FC = ({ children }) => {
   return (
     <Wrapper>
       <WrapperFixed style={{ top, borderRadius }}>
-        <Container>{children}</Container>
+        <CustomContainer>{children}</CustomContainer>
       </WrapperFixed>
     </Wrapper>
   )

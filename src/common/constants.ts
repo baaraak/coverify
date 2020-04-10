@@ -8,8 +8,8 @@ export const SHORT_DESCRIPTION =
 export const URL = pkg.url
 
 // Share
-export const SHARE_GITHUB = 'http://github.com/danilowoz/coverify'
-export const SHARE_TWIITER = `https://twitter.com/intent/tweet?text=${APP_NAME} - ${DESCRIPTION} %0A%0A${URL}
+const SHARE_GITHUB = 'http://github.com/danilowoz/coverify'
+const SHARE_TWITTER = `https://twitter.com/intent/tweet?text=${APP_NAME} - ${DESCRIPTION} %0A%0A${URL}
 `
 
 // Content
@@ -24,11 +24,6 @@ export const MENU: Array<{ text: string; href: string }> = [
   },
   {
     text: 'Share to Twitter',
-    href: SHARE_TWIITER,
+    href: SHARE_TWITTER,
   },
 ]
-
-// Animation & transitions
-export const WHILE_HOVER = { scale: 1.02 }
-export const WHILE_TAP = { scale: 0.95 }
-export const TRANSITION = { type: 'spring', damping: 18, stiffness: 130 }

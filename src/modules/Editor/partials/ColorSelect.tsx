@@ -7,7 +7,7 @@ import { dispatchColorSchema } from '../actions'
 import { COLORS_SCHEMA } from '../constants'
 import { State } from '../reducer'
 import { Caption } from './common'
-import { WHILE_HOVER, WHILE_TAP } from 'common/constants'
+import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
 
 export const ColorsCol = styled.div`
   width: 18em;

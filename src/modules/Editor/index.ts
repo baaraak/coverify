@@ -1,3 +1,4 @@
+export { Cover } from './Cover'
 export { TextControl } from './TextControl'
 
 export { types, reducer } from './reducer'

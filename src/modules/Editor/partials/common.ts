@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 
-import { WHILE_HOVER, WHILE_TAP } from 'common/constants'
+import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
 
 export const Button = styled(motion.button).attrs({
   whileHover: WHILE_HOVER,

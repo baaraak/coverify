@@ -7,6 +7,7 @@ import { Caption } from './partials/common'
 import { FontFamily } from './partials/FontFamily'
 import { TextAlign } from './partials/TextAlign'
 import { TextSize } from './partials/TextSize'
+import { INITIAL, ANIMATE, createTransition } from 'common/animations'
 
 // Components
 const Wrapper = styled(motion.div)`
@@ -34,7 +35,12 @@ const VerticalDivisor = styled.div`
 
 const TextControl: React.FC = (props) => {
   return (
-    <Wrapper {...props}>
+    <Wrapper
+      initial={INITIAL}
+      animate={ANIMATE}
+      transition={createTransition(1.6)}
+      {...props}
+    >
       <Caption>Text style</Caption>
       <Row>
         <TextAlign />
