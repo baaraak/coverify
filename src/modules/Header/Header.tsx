@@ -63,11 +63,12 @@ const Wrapper = styled.div`
 const Background = styled.header`
   background: var(--color-black);
   padding-top: 1.5em;
-  padding-bottom: 2.6em;
 
   /* Desktop */
   @media (min-width: 60em) {
     padding-top: 1em;
+    height: ${HEADER_HEIGHT};
+    padding-bottom: 6em;
   }
 
   position: fixed;

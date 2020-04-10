@@ -6,7 +6,12 @@ import styled from 'styled-components'
 
 import { dispatchInitialAnimationOfMainText } from './config/actions'
 import { selectors } from './config/reducer'
-import { INITIAL, ANIMATE, createTransition } from 'common/animations'
+import {
+  INITIAL,
+  ANIMATE,
+  createTransition,
+  useCoverAnimation,
+} from 'common/animations'
 import { COVER_SIZE } from 'common/sizes'
 
 const ImageHandle = styled(motion.div)`
@@ -76,6 +81,8 @@ const Cover: React.FC = () => {
     textAlign,
   } = useSelector(selectors.getEditor, shallowEqual)
   const dispatch = useDispatch()
+  const { coverSize, coverContentScale } = useCoverAnimation()
+
   const fontFamilyImport = fontFamily.replace(/ /, '+')
 
   useEffect(() => {
@@ -95,24 +102,23 @@ const Cover: React.FC = () => {
         initial={INITIAL}
         animate={ANIMATE}
         transition={createTransition(1)}
-        // ref={ref}
         style={{
-          // width: variationSize,
-          // height: variationSize,
+          width: coverSize,
+          height: coverSize,
           backgroundImage: `url(${imageStage})`,
         }}
       >
-        <Content
-        // style={{ scale: variationScale }}
-        >
+        <Content style={{ scale: coverContentScale }}>
           <TextareaTop
             contentEditable="true"
+            suppressContentEditableWarning
             style={{ textAlign, fontFamily, color: colors.foreground }}
           >
             {foreText}
           </TextareaTop>
           <TextareaCenter
             contentEditable="true"
+            suppressContentEditableWarning
             style={{
               textAlign,
               fontFamily,

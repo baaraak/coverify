@@ -1,7 +1,8 @@
-import { motion, useViewportScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
 
+import { useStageAnimation } from 'common/animations'
 import { HEADER_HEIGHT, STAGE_HEIGHT } from 'common/sizes'
 import { Container } from 'common/UI'
 
@@ -32,9 +33,7 @@ const CustomContainer = styled(Container)`
 `
 
 const Stage: React.FC = ({ children }) => {
-  const { scrollY } = useViewportScroll()
-  const top = useTransform(scrollY, [0, 78], [78, 0])
-  const borderRadius = useTransform(scrollY, [0, 78], [30, 0])
+  const { top, borderRadius } = useStageAnimation()
 
   return (
     <Wrapper>

@@ -7,26 +7,12 @@ export type ColorVariant =
   | 'white-light'
   | 'white-lighter'
   | 'error'
-type Colors = Record<ColorVariant, string>
-
 export type FontSizeVariant = 'small' | 'normal' | 'medium' | 'heading' | 'huge'
-type FontSizes = Record<FontSizeVariant, string>
-
-export interface Theme {
-  settings: Record<'fontSizeBase' | 'fontFamilyBase', number | string>
-  colors: Colors
-  fontSizes: FontSizes
-}
-
-declare module 'styled-components' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  export interface DefaultTheme extends Theme {}
-}
 
 const FONT_SIZE_BASE = 16
 const pxToEm = (px: number): string => `${px / FONT_SIZE_BASE}em`
 
-const theme: Theme = {
+const theme = {
   settings: {
     fontSizeBase: FONT_SIZE_BASE,
     fontFamilyBase: 'Montserrat',
@@ -50,4 +36,11 @@ const theme: Theme = {
   },
 }
 
-export { theme }
+export type Theme = typeof theme
+
+declare module 'styled-components' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface DefaultTheme extends Theme {}
+}
+
+export { theme, FONT_SIZE_BASE }
