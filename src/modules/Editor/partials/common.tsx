@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
+import React from 'react'
 import styled, { css } from 'styled-components'
 
 import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
+import { Text } from 'common/UI'
 
 export const Button = styled(motion.button).attrs({
   whileHover: WHILE_HOVER,
@@ -9,7 +11,6 @@ export const Button = styled(motion.button).attrs({
 })`
   opacity: 0.6;
   margin-top: 0.5em;
-  margin-bottom: 0.5em;
   margin-right: 1em;
   padding: 0.2em;
   border-radius: 3px;
@@ -22,7 +23,6 @@ export const Button = styled(motion.button).attrs({
   ${({ active }: { active?: boolean }) =>
     active &&
     css`
-      background: var(--color-grey);
       opacity: 1;
     `}
 
@@ -31,10 +31,11 @@ export const Button = styled(motion.button).attrs({
   }
 `
 
-export const Caption = styled.p`
-  font-size: var(--size-normal);
-  color: var(--color-white);
-`
+export const Caption: React.FC = ({ children, ...props }) => (
+  <Text color="white-light" {...props}>
+    {children}
+  </Text>
+)
 
 export const Select = styled.select`
   padding: 0 1.4em;

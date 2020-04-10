@@ -1,20 +1,21 @@
 import { DefaultRootState } from 'react-redux'
 import { CSSProperties } from 'styled-components'
 
+import imagePlaceholderSrc from '../assets/image-placeholder.jpg'
 import type { Actions } from './actions'
 import { types } from './actions'
-import imagePlaceholderSrc from './assets/image-placeholder.jpg'
 import { COLORS_SCHEMA } from './constants'
 import { APP_NAME } from 'common/constants'
 
 const INITIAL_STATE = {
+  loading: false,
   colors: COLORS_SCHEMA[0],
   fontFamily: 'Montserrat',
   fontSize: 60,
   foreText: 'This is',
   imageStage: imagePlaceholderSrc,
   mainText: 'Your best cover ever',
-  name: `Welcome to ${APP_NAME}`,
+  playlistName: `Welcome to ${APP_NAME}`,
   playlistId: null,
   textAlign: 'left',
 }
@@ -36,8 +37,10 @@ const reducer = (state = INITIAL_STATE, { type, payload, meta }: Actions) => {
 // Selectors
 const selectors = {
   getEditor: (state: DefaultRootState) => state.editor,
+  getEditorLoading: (state: DefaultRootState) => state.editor.loading,
   getTextAlign: (state: DefaultRootState) => state.editor.textAlign,
   getFontFamily: (state: DefaultRootState) => state.editor.fontFamily,
+  getPlaylistName: (state: DefaultRootState) => state.editor.playlistName,
 }
 
 export { types, reducer, selectors, INITIAL_STATE }

@@ -12,7 +12,7 @@ const Text = styled.p<{
   ${({ color = 'white', size = 'normal', weight = 'normal' }) => {
     return css`
       color: var(${`--color-${color}`});
-      font-size: var(${`--color-${size}`});
+      font-size: var(${`--size-${size}`});
       font-weight: ${weight};
     `
   }}

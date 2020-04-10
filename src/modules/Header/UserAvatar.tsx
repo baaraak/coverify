@@ -24,7 +24,7 @@ export const AvatarInfo = styled.p`
 export const ButtonLogOut = styled.button`
   margin-left: 1em;
   padding-left: 1em;
-  border-left: 1px solid var(--color-white--light);
+  border-left: 1px solid var(--color-white-lighter);
   height: 1em;
 
   img {

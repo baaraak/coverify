@@ -28,6 +28,7 @@ const WrapperFixed = styled(motion.div)`
 
 const CustomContainer = styled(Container)`
   display: flex;
+  margin-top: 2em;
 `
 
 const Stage: React.FC = ({ children }) => {

@@ -11,12 +11,12 @@ type ColorSchema = {
 
 const colorSchema: ColorSchema = {
   normal: {
-    backgroundColor: '--color-primary',
-    borderColor: '--color-primary',
+    backgroundColor: 'var(--color-primary)',
+    borderColor: 'var(--color-primary)',
   },
   outline: {
-    backgroundColor: '--color-dark',
-    borderColor: '--color-white',
+    backgroundColor: 'transparent',
+    borderColor: 'var(--color-white)',
   },
 }
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { dispatchTextAlign } from '../actions'
 import alignCenter from '../assets/align-center.svg'
 import alignLeft from '../assets/align-left.svg'
 import alignRight from '../assets/align-right.svg'
-import { selectors } from '../reducer'
+import { dispatchTextAlign } from '../config/actions'
+import { selectors } from '../config/reducer'
 import { Button } from './common'
 
 const TextAlign: React.FC = () => {

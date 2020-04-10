@@ -1,8 +1,8 @@
 import React, { FormEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { dispatchFontFamily } from '../actions'
-import { selectors } from '../reducer'
+import { dispatchFontFamily } from '../config/actions'
+import { selectors } from '../config/reducer'
 import { Caption, Select } from './common'
 
 const FontFamily = () => {

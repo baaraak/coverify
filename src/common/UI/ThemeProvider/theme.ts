@@ -4,6 +4,8 @@ export type ColorVariant =
   | 'black'
   | 'grey'
   | 'white'
+  | 'white-light'
+  | 'white-lighter'
   | 'error'
 type Colors = Record<ColorVariant, string>
 
@@ -35,6 +37,8 @@ const theme: Theme = {
     dark: '#141414',
     grey: '#363535',
     white: '#ffffff',
+    'white-light': '#ffffff70',
+    'white-lighter': '#ffffff15',
     error: '#d24444',
   },
   fontSizes: {

@@ -4,13 +4,14 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import styled from 'styled-components'
 
-import { dispatchInitialAnimationOfMainText } from './actions'
-import { selectors } from './reducer'
+import { dispatchInitialAnimationOfMainText } from './config/actions'
+import { selectors } from './config/reducer'
 import { INITIAL, ANIMATE, createTransition } from 'common/animations'
+import { COVER_SIZE } from 'common/sizes'
 
 const ImageHandle = styled(motion.div)`
-  width: 26em;
-  height: 26em;
+  width: ${COVER_SIZE};
+  height: ${COVER_SIZE};
 
   background-size: cover;
   background-position: center;
@@ -35,8 +36,8 @@ const Content = styled(motion.div)`
   left: 0;
   top: 0;
 
-  width: 26em;
-  height: 26em;
+  width: ${COVER_SIZE};
+  height: ${COVER_SIZE};
 
   padding: 2em;
   display: flex;

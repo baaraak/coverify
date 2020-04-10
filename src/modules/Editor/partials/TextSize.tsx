@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import { dispatchFontSize } from '../actions'
 import decreaseFont from '../assets/decrease-font.svg'
 import increaseFont from '../assets/increase-font.svg'
+import { dispatchFontSize } from '../config/actions'
 import { Button } from './common'
 
 const TextSize: React.FC = () => {

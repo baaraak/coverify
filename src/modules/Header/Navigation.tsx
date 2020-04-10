@@ -16,7 +16,7 @@ const Menu = styled.nav`
   display: flex;
   flex-direction: column;
 
-  border-bottom: 1px solid var(--color-white--light);
+  border-bottom: 1px solid var(--color-white-lighter);
   padding-bottom: 4em;
   margin-bottom: 4em;
 
@@ -29,7 +29,7 @@ const Menu = styled.nav`
     margin-bottom: 0;
 
     border-bottom: 0;
-    border-left: 1px solid var(--color-white--light);
+    border-left: 1px solid var(--color-white-lighter);
   }
 `
 

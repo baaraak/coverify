@@ -2,6 +2,7 @@
 const pkg = require('../../package.json')
 
 export const APP_NAME = 'Coverify'
+export const AUTHOR = 'Danilo Woznica'
 export const DESCRIPTION = pkg.description
 export const SHORT_DESCRIPTION =
   'Create your custom cover for your Spotify playlists.'

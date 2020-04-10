@@ -17,7 +17,7 @@ const Wrapper = styled(motion.div)`
 const Row = styled.div`
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--color-white--light);
+  border-bottom: 1px solid var(--color-white-lighter);
 
   padding-bottom: 1.2em;
   margin-bottom: 1.2em;
@@ -30,7 +30,7 @@ const Row = styled.div`
 const VerticalDivisor = styled.div`
   height: 2em;
   margin-right: 1em;
-  border-left: 1px solid var(--color-white--light);
+  border-left: 1px solid var(--color-white-lighter);
 `
 
 const TextControl: React.FC = (props) => {

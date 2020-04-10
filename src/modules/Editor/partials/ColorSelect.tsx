@@ -3,9 +3,9 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { dispatchColorSchema } from '../actions'
-import { COLORS_SCHEMA } from '../constants'
-import { State } from '../reducer'
+import { dispatchColorSchema } from '../config/actions'
+import { COLORS_SCHEMA } from '../config/constants'
+import { State } from '../config/reducer'
 import { Caption } from './common'
 import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
 
