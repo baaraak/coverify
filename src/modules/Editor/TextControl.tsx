@@ -7,11 +7,18 @@ import { Caption } from './partials/common'
 import { FontFamily } from './partials/FontFamily'
 import { TextAlign } from './partials/TextAlign'
 import { TextSize } from './partials/TextSize'
-import { INITIAL, ANIMATE, createTransition } from 'common/animations'
+import {
+  INITIAL,
+  ANIMATE,
+  createTransition,
+  useTextControlAnimation,
+} from 'common/animations'
 
 // Components
 const Wrapper = styled(motion.div)`
   align-self: center;
+  position: absolute;
+  right: 0;
 `
 
 const Row = styled.div`
@@ -28,12 +35,14 @@ const Row = styled.div`
 `
 
 const VerticalDivisor = styled.div`
-  height: 2em;
-  margin-right: 1em;
+  height: 1.4em;
+  margin-right: 1.2em;
   border-left: 1px solid var(--color-white-lighter);
 `
 
 const TextControl: React.FC = (props) => {
+  const style = useTextControlAnimation()
+
   return (
     <Wrapper
       initial={INITIAL}
@@ -41,18 +50,20 @@ const TextControl: React.FC = (props) => {
       transition={createTransition(1.6)}
       {...props}
     >
-      <Caption>Text style</Caption>
-      <Row>
-        <TextAlign />
-        <VerticalDivisor />
-        <TextSize />
-      </Row>
+      <motion.div style={style}>
+        <Caption gutter>Text style</Caption>
+        <Row>
+          <TextAlign />
+          <VerticalDivisor />
+          <TextSize />
+        </Row>
 
-      <Row>
-        <FontFamily />
-      </Row>
+        <Row>
+          <FontFamily />
+        </Row>
 
-      <ColorSelect />
+        <ColorSelect />
+      </motion.div>
     </Wrapper>
   )
 }

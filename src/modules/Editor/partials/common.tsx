@@ -10,9 +10,7 @@ export const Button = styled(motion.button).attrs({
   whileTap: WHILE_TAP,
 })`
   opacity: 0.6;
-  margin-top: 0.5em;
-  margin-right: 1em;
-  padding: 0.2em;
+  margin-right: 1.2em;
   border-radius: 3px;
   transition: opacity 0.2s ease;
 
@@ -31,10 +29,17 @@ export const Button = styled(motion.button).attrs({
   }
 `
 
-export const Caption: React.FC = ({ children, ...props }) => (
-  <Text color="white-light" {...props}>
+const CustomText = styled(Text)<{ gutter?: boolean }>`
+  padding-bottom: ${({ gutter }) => (gutter ? '1em' : '0em')};
+`
+
+export const Caption: React.FC<{ gutter?: boolean }> = ({
+  children,
+  ...props
+}) => (
+  <CustomText color="white-light" {...props}>
     {children}
-  </Text>
+  </CustomText>
 )
 
 export const Select = styled.select`

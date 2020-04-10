@@ -5,7 +5,12 @@ import styled from 'styled-components'
 
 import downloadSrc from './assets/download.svg'
 import { selectors } from './config/reducer'
-import { INITIAL, ANIMATE, createTransition } from 'common/animations'
+import {
+  INITIAL,
+  ANIMATE,
+  createTransition,
+  useHandleAnimation,
+} from 'common/animations'
 import { AUTHOR } from 'common/constants'
 import { Text, Button, Loading } from 'common/UI'
 import { truncate } from 'common/utils'
@@ -15,6 +20,7 @@ const Wrapper = styled(motion.div)`
   margin-left: 3em;
   margin-bottom: 3em;
   align-self: flex-end;
+  padding-right: 18em; /* width of text control */
 `
 
 const Caption = styled(Text)`
@@ -54,13 +60,13 @@ export const LoadingHandle = styled(motion.div)`
 `
 
 const Handle: React.FC = () => {
-  // const dispatch = useDispatch()
-
   // State
   const isConnected = useSelector(userSelectors.isConnected)
   const user = useSelector(userSelectors.getUserData, shallowEqual)
   const playlistName = useSelector(selectors.getPlaylistName)
   const loading = useSelector(selectors.getEditorLoading)
+
+  const { opacity, offset, scale, padding } = useHandleAnimation()
 
   // Constants
   const playlistNameTruncate = truncate(playlistName)
@@ -75,28 +81,21 @@ const Handle: React.FC = () => {
       initial={INITIAL}
       animate={ANIMATE}
       transition={createTransition(1.4)}
+      style={{ marginLeft: padding, marginBottom: padding }}
     >
       <Caption
         as={motion.p}
         size="small"
-        // style={{ opacity, marginBottom: variationFadeIn }}
+        style={{ opacity, marginBottom: offset }}
       >
         {isConnected ? "You're editing" : 'Playlist'}
       </Caption>
 
-      <Title
-        as={motion.h2}
-        size="huge"
-        weight="bold"
-        // style={{ scale }}
-      >
+      <Title as={motion.h2} size="huge" weight="bold" style={{ scale }}>
         {playlistNameTruncate}
       </Title>
 
-      <Description
-        as={motion.p}
-        // style={{ opacity, marginTop: variationFadeIn }}
-      >
+      <Description as={motion.p} style={{ opacity, marginTop: offset }}>
         {createBy}
       </Description>
 

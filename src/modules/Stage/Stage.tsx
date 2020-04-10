@@ -19,7 +19,6 @@ const WrapperFixed = styled(motion.div)`
     var(--color-dark) 0%,
     var(--color-grey) 100%
   );
-  height: ${STAGE_HEIGHT};
   position: fixed;
   top: ${HEADER_HEIGHT};
   left: 0;
@@ -29,15 +28,15 @@ const WrapperFixed = styled(motion.div)`
 
 const CustomContainer = styled(Container)`
   display: flex;
-  margin-top: 2em;
+  position: relative;
 `
 
 const Stage: React.FC = ({ children }) => {
-  const { top, borderRadius } = useStageAnimation()
+  const { top, borderRadius, padding } = useStageAnimation()
 
   return (
     <Wrapper>
-      <WrapperFixed style={{ top, borderRadius }}>
+      <WrapperFixed style={{ top, borderRadius, paddingTop: padding }}>
         <CustomContainer>{children}</CustomContainer>
       </WrapperFixed>
     </Wrapper>

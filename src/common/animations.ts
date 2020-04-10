@@ -27,6 +27,7 @@ export const TRANSITION = { type: 'spring', damping: 18, stiffness: 130 }
  * Scroll transition
  */
 const INITIAL_TARGET = emToPxInNumber(HEADER_HEIGHT)
+const INITIAL_TARGET_DELAY = INITIAL_TARGET * 2
 const TARGET = emToPxInNumber(COVER_SIZE)
 
 // Hooks
@@ -58,6 +59,47 @@ export const useStageAnimation = () => {
     [HEADER_HEIGHT, '0em']
   )
   const borderRadius = useTransform(scrollY, [0, headerHeightInPx], [30, 0])
+  const padding = useTransform(
+    scrollY,
+    [INITIAL_TARGET, TARGET],
+    ['2em', '1em']
+  )
 
-  return { top, borderRadius }
+  return { top, borderRadius, padding }
+}
+
+export const useHandleAnimation = () => {
+  const { scrollY } = useViewportScroll()
+
+  const opacity = useTransform(
+    scrollY,
+    [INITIAL_TARGET_DELAY, TARGET / 2],
+    [1, 0]
+  )
+  const scale = useTransform(scrollY, [INITIAL_TARGET_DELAY, TARGET], [1, 0.5])
+  const offset = useTransform(
+    scrollY,
+    [INITIAL_TARGET_DELAY, TARGET],
+    ['0em', '-4em']
+  )
+  const padding = useTransform(
+    scrollY,
+    [INITIAL_TARGET_DELAY, TARGET],
+    ['3em', '0.8em']
+  )
+
+  return { opacity, offset, scale, padding }
+}
+
+export const useTextControlAnimation = () => {
+  const { scrollY } = useViewportScroll()
+
+  const opacity = useTransform(
+    scrollY,
+    [INITIAL_TARGET_DELAY, TARGET / 2],
+    [1, 0]
+  )
+  const scale = useTransform(scrollY, [INITIAL_TARGET, TARGET], [1, 0.5])
+
+  return { opacity, scale }
 }

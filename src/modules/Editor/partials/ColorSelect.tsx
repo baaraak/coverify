@@ -14,7 +14,6 @@ export const ColorsCol = styled.div`
   flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
-  margin-top: 0.6em;
 `
 
 const ColorButton = styled(motion.button).attrs({
@@ -47,7 +46,7 @@ const ColorSelect: React.FC = () => {
 
   return (
     <>
-      <Caption>Color</Caption>
+      <Caption gutter>Color</Caption>
       <ColorsCol>
         {COLORS_SCHEMA.map((color, index) => {
           return (

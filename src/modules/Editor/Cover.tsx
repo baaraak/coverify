@@ -52,7 +52,7 @@ const Content = styled(motion.div)`
 `
 
 const TextareaTop = styled.div`
-  font-size: var(--size-medium);
+  font-size: var(--size-heading);
   font-weight: 900;
   width: 100%;
 `
@@ -67,7 +67,7 @@ const TextareaCenter = styled.div`
 `
 
 const EmptySpace = styled.div`
-  height: var(--size-medium);
+  height: var(--size-heading);
 `
 
 const Cover: React.FC = () => {
