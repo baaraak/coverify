@@ -12,15 +12,19 @@ import {
   useHandleAnimation,
 } from 'common/animations'
 import { AUTHOR } from 'common/constants'
+import { MAIN_BREAKPOINT } from 'common/sizes'
 import { Text, Button, Loading } from 'common/UI'
 import { truncate } from 'common/utils'
 import { selectors as userSelectors } from 'modules/User'
 
 const Wrapper = styled(motion.div)`
-  margin-left: 3em;
-  margin-bottom: 3em;
-  align-self: flex-end;
-  padding-right: 18em; /* width of text control */
+  order: -1;
+
+  @media (min-width: ${MAIN_BREAKPOINT}) {
+    order: 0;
+    align-self: flex-end;
+    padding-right: 18em; /* width of text control */
+  }
 `
 
 const Caption = styled(Text)`

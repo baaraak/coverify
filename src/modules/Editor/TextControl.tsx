@@ -13,12 +13,15 @@ import {
   createTransition,
   useTextControlAnimation,
 } from 'common/animations'
+import { MAIN_BREAKPOINT } from 'common/sizes'
 
 // Components
 const Wrapper = styled(motion.div)`
-  align-self: center;
-  position: absolute;
-  right: 0;
+  @media (min-width: ${MAIN_BREAKPOINT}) {
+    align-self: center;
+    position: absolute;
+    right: 0;
+  }
 `
 
 const Row = styled.div`

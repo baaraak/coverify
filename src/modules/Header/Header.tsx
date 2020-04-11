@@ -51,24 +51,20 @@ const GlobalBlurStyle = createGlobalStyle<{ active: boolean }>`
 `
 
 const Wrapper = styled.div`
-  height: 4em;
+  height: ${HEADER_HEIGHT};
   position: relative;
   z-index: 9;
-
-  @media (min-width: 60em) {
-    height: ${HEADER_HEIGHT};
-  }
 `
 
 const Background = styled.header`
   background: var(--color-black);
   padding-top: 1.5em;
+  padding-bottom: 6em;
+  height: ${HEADER_HEIGHT};
 
   /* Desktop */
   @media (min-width: 60em) {
     padding-top: 1em;
-    height: ${HEADER_HEIGHT};
-    padding-bottom: 6em;
   }
 
   position: fixed;

@@ -12,7 +12,7 @@ import {
   createTransition,
   useCoverAnimation,
 } from 'common/animations'
-import { COVER_SIZE } from 'common/sizes'
+import { COVER_SIZE, MAIN_BREAKPOINT } from 'common/sizes'
 
 const ImageHandle = styled(motion.div)`
   width: ${COVER_SIZE};
@@ -41,14 +41,18 @@ const Content = styled(motion.div)`
   left: 0;
   top: 0;
 
-  width: ${COVER_SIZE};
-  height: ${COVER_SIZE};
-
+  width: 100%;
+  height: 100%;
   padding: 2em;
   display: flex;
 
   flex-direction: column;
   transform-origin: left top;
+
+  @media (min-width: ${MAIN_BREAKPOINT}) {
+    width: ${COVER_SIZE};
+    height: ${COVER_SIZE};
+  }
 `
 
 const TextareaTop = styled.div`
