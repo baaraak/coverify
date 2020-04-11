@@ -18,7 +18,7 @@ const Index: React.FC = () => {
         </Stage>
       </BlurContainer>
 
-      <div style={{ height: '200vh' }} />
+      {/* <div style={{ height: '200vh' }} /> */}
     </Core>
   )
 }

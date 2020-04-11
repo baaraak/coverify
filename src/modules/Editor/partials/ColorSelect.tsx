@@ -8,23 +8,33 @@ import { COLORS_SCHEMA } from '../config/constants'
 import { State } from '../config/reducer'
 import { Caption } from './common'
 import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
+import { MAIN_BREAKPOINT } from 'common/sizes'
 
 export const ColorsCol = styled.div`
-  width: 18em;
   flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
+
+  @media (min-width: ${MAIN_BREAKPOINT}) {
+    width: 18em;
+  }
 `
 
 const ColorButton = styled(motion.button).attrs({
   whileHover: WHILE_HOVER,
   whileTap: WHILE_TAP,
 })`
-  width: calc(12.5em / 4.6);
-  height: 2.5em;
   border-radius: 3px;
   overflow: hidden;
   margin-bottom: 0.5em;
+
+  width: calc((100vw - 2em) / 6 - 0.5em);
+  height: calc((100vw - 2em) / 6 - 0.5em);
+
+  @media (min-width: ${MAIN_BREAKPOINT}) {
+    width: calc(12.5em / 4.6);
+    height: 2.5em;
+  }
 
   div {
     width: 100%;

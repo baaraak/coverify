@@ -34,6 +34,12 @@ const ImageHandle = styled(motion.div)`
   grammarly-extension {
     display: none !important;
   }
+
+  margin: 2em 0;
+
+  @media (min-width: ${MAIN_BREAKPOINT}) {
+    margin: 0;
+  }
 `
 
 const Content = styled(motion.div)`

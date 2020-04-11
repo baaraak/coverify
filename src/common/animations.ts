@@ -119,18 +119,26 @@ export const useHandleAnimation = () => {
   const { width } = useWindowSize()
 
   // Defaults
+  const opacityDefault = [1, 0]
+  const scaleDefault = [1, 0.5]
   const paddingDefault = ['3em', '0.8em']
 
   // States
+  const [opacityOutput, setOpacityOutput] = useState<number[]>(opacityDefault)
+  const [scaleOutput, setScaleOutput] = useState<number[]>(scaleDefault)
   const [paddingOutput, setPaddingOutput] = useState<string[]>(paddingDefault)
 
   // Transforms
   const opacity = useTransform(
     scrollY,
     [INITIAL_TARGET_DELAY, TARGET / 2],
-    [1, 0]
+    opacityOutput
   )
-  const scale = useTransform(scrollY, [INITIAL_TARGET_DELAY, TARGET], [1, 0.5])
+  const scale = useTransform(
+    scrollY,
+    [INITIAL_TARGET_DELAY, TARGET],
+    scaleOutput
+  )
   const offset = useTransform(
     scrollY,
     [INITIAL_TARGET_DELAY, TARGET],
@@ -144,8 +152,12 @@ export const useHandleAnimation = () => {
 
   useEffect(() => {
     if (width < emToPxInNumber(MAIN_BREAKPOINT)) {
+      setOpacityOutput([1, 1])
+      setScaleOutput([1, 1])
       setPaddingOutput(['0em', '0em'])
     } else {
+      setOpacityOutput(opacityDefault)
+      setScaleOutput(scaleDefault)
       setPaddingOutput(paddingDefault)
     }
 
