@@ -38,6 +38,7 @@
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
+    "@now/node": "1.5.1",
     "@significa/eslint-config": "0.0.16",
     "@significa/prettier-config": "0.0.16",
     "@significa/tsconfig-config": "0.0.16",
