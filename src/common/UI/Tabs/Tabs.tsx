@@ -17,20 +17,16 @@ const Tab = styled.div`
     rgba(33, 33, 33, 1) 100%
   );
   background: linear-gradient(#141414, rgba(26, 27, 28, 0));
-  padding: 1.8em 0 2.8em;
-
-  /* TODO */
-  /* position: sticky;
-  top: 139px;
-  z-index: 9; */
+  padding: 2em 0;
+  justify-content: center;
 `
 
 const TabItem = styled(motion.button)<{ current: boolean }>`
   font-size: var(--size-medium);
   color: var(--color-white);
-  margin: 0 1.8em;
-  opacity: 0.8;
   font-weight: 900;
+  margin: 0 2em;
+  opacity: 0.8;
   text-shadow: 0 1px 2px var(--color-white-lighter);
   transition: all 0.2s ease;
 

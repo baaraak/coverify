@@ -22,6 +22,7 @@ const BlurWrapper = styled.div`
     top: 0;
     left: 0;
     transition: all 0.2s ease;
+    pointer-events: none;
   }
 `
 const BlurView = styled.div`
