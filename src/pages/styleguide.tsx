@@ -1,12 +1,22 @@
 import React from 'react'
 
-import { Button, Text, Container, Column, Grid, useAlert } from 'common/UI'
+import {
+  Button,
+  Text,
+  Container,
+  Column,
+  Grid,
+  useAlert,
+  Tabs,
+} from 'common/UI'
 
 const StyleGuide: React.FC = () => {
   const dispatchAlert = useAlert()
   return (
     <Container>
-      <Text size="heading">Buttons</Text>
+      <div style={{ marginTop: '4em', marginBottom: '1em' }}>
+        <Text size="heading">Buttons</Text>
+      </div>
 
       <Grid>
         <Column from={1} to={7}>
@@ -17,13 +27,17 @@ const StyleGuide: React.FC = () => {
         </Column>
       </Grid>
 
-      <Text size="heading">Typography</Text>
+      <div style={{ marginTop: '4em', marginBottom: '1em' }}>
+        <Text size="heading">Typography</Text>
+      </div>
       <Text>Hello world</Text>
       <Text as="h1" size="huge" color="primary" weight="bold">
         Custom text
       </Text>
 
-      <Text size="heading">Alert</Text>
+      <div style={{ marginTop: '4em', marginBottom: '1em' }}>
+        <Text size="heading">Alert</Text>
+      </div>
       <Column from={1} to={7}>
         <Button
           onClick={() =>
@@ -44,6 +58,16 @@ const StyleGuide: React.FC = () => {
           Success alert
         </Button>
       </Column>
+
+      <div style={{ marginTop: '4em', marginBottom: '1em' }}>
+        <Text size="heading">Tabs</Text>
+      </div>
+      <Tabs
+        data={[
+          { title: 'Tab 1', content: <Text color="white">Tab 1</Text> },
+          { title: 'Tab 2', content: <Text color="white">Tab 2</Text> },
+        ]}
+      />
     </Container>
   )
 }

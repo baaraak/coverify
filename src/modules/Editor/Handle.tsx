@@ -6,8 +6,8 @@ import styled from 'styled-components'
 import downloadSrc from './assets/download.svg'
 import { selectors } from './config/reducer'
 import {
-  INITIAL,
-  ANIMATE,
+  INITIAL_POSITION,
+  ANIMATE_POSITION,
   createTransition,
   useHandleAnimation,
 } from 'common/animations'
@@ -82,8 +82,8 @@ const Handle: React.FC = () => {
 
   return (
     <Wrapper
-      initial={INITIAL}
-      animate={ANIMATE}
+      initial={INITIAL_POSITION}
+      animate={ANIMATE_POSITION}
       transition={createTransition(1.4)}
       style={{ marginLeft: padding, marginBottom: padding }}
     >

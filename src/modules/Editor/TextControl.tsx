@@ -8,8 +8,8 @@ import { FontFamily } from './partials/FontFamily'
 import { TextAlign } from './partials/TextAlign'
 import { TextSize } from './partials/TextSize'
 import {
-  INITIAL,
-  ANIMATE,
+  INITIAL_POSITION,
+  ANIMATE_POSITION,
   createTransition,
   useTextControlAnimation,
 } from 'common/animations'
@@ -48,8 +48,8 @@ const TextControl: React.FC = (props) => {
 
   return (
     <Wrapper
-      initial={INITIAL}
-      animate={ANIMATE}
+      initial={INITIAL_POSITION}
+      animate={ANIMATE_POSITION}
       transition={createTransition(1.6)}
       {...props}
     >

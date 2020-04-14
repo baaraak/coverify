@@ -12,9 +12,9 @@ import {
 /**
  * Appears on staging
  */
-export const INITIAL = { opacity: 0, y: -50 }
-export const INITIAL_INVERTED = { opacity: 0, y: 50 }
-export const ANIMATE = { opacity: 1, y: 0 }
+export const INITIAL_POSITION = { opacity: 0, y: -50 }
+export const INITIAL_POSITION_INVERTED = { opacity: 0, y: 50 }
+export const ANIMATE_POSITION = { opacity: 1, y: 0 }
 export const createTransition = (delay: number) => ({
   delay: 0.3 * delay,
   duration: 0.6 * (delay * 0.9),

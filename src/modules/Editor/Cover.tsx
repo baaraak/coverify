@@ -7,8 +7,8 @@ import styled from 'styled-components'
 import { dispatchInitialAnimationOfMainText } from './config/actions'
 import { selectors } from './config/reducer'
 import {
-  INITIAL,
-  ANIMATE,
+  INITIAL_POSITION,
+  ANIMATE_POSITION,
   createTransition,
   useCoverAnimation,
 } from 'common/animations'
@@ -109,8 +109,8 @@ const Cover: React.FC = () => {
       </Head>
 
       <ImageHandle
-        initial={INITIAL}
-        animate={ANIMATE}
+        initial={INITIAL_POSITION}
+        animate={ANIMATE_POSITION}
         transition={createTransition(1)}
         style={{
           width: coverSize,
