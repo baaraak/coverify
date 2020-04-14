@@ -45,7 +45,7 @@ const GlobalBlurStyle = createGlobalStyle<{ active: boolean }>`
     ${({ active }) =>
       active &&
       css`
-        filter: blur(10px);
+        filter: blur(30px);
       `}
   }
 `
@@ -59,7 +59,6 @@ const Wrapper = styled.div`
 const Background = styled.header`
   background: var(--color-black);
   padding-top: 1.5em;
-  padding-bottom: 6em;
   height: ${HEADER_HEIGHT};
 
   /* Desktop */
@@ -121,6 +120,7 @@ const Header = () => {
   return (
     <Wrapper>
       <GlobalBlurStyle active={showMenu} />
+
       <Background>
         <Container>
           <LogoImage src={logoSrc} alt={APP_NAME} />

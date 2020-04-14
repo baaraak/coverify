@@ -13,6 +13,18 @@ const Wrapper = styled.div`
   @media (min-width: ${MAIN_BREAKPOINT}) {
     height: ${STAGE_HEIGHT};
   }
+
+  /* body offset background  */
+  &:after {
+    background: var(--color-black);
+    content: '';
+    height: 6em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+  }
 `
 
 const WrapperFixed = styled(motion.div)`
