@@ -10,13 +10,15 @@ export interface Actions {
 
 // Reducer stuff
 export interface State {
-  data?: { token?: string; userName?: string; userImage?: string }
+  data?: { userName?: string; userImage?: string }
+  token?: string
   loading: boolean
   errorMessage?: string
 }
 
 const INITIAL_STATE: State = {
   data: undefined,
+  token: undefined,
   loading: false,
   errorMessage: undefined,
 }
@@ -33,7 +35,8 @@ const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
     case types.USER_SIGN_SUCCESS:
       return {
         ...state,
-        data: { ...state.data, token: payload },
+        data: { ...state.data },
+        token: payload,
         loading: false,
       }
 
@@ -60,7 +63,7 @@ const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
 
 // Selectors
 const selectors = {
-  getToken: (state: DefaultRootState) => state.user.data?.token,
+  getToken: (state: DefaultRootState) => state.user.token,
   getUserData: (data: DefaultRootState) => {
     return {
       userName: data.user.data?.userName,

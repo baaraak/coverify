@@ -6,6 +6,7 @@ import {
   createServicesContext,
   eraseServicesContext,
 } from 'common/context'
+import { actions as playlistActions } from 'modules/Playlist'
 import {
   actions as userActions,
   selectors as userSelectors,
@@ -28,7 +29,8 @@ const Core: React.FC = ({ children }) => {
    *  Get user data
    */
   const getInformationOfUser = useCallback(async () => {
-    dispatch(userActions.getInformationOfUser())
+    dispatch(userActions.dispatchInformationOfUser())
+    // dispatch(playlistActions.dispatchPlaylist())
   }, [dispatch])
 
   /**
@@ -37,11 +39,13 @@ const Core: React.FC = ({ children }) => {
   const initializeServices = useCallback(async () => {
     if (!spotifyService && token) {
       createServicesContext(token)
-      return await getInformationOfUser()
+      await getInformationOfUser()
+      return
     }
 
     if (token) {
-      return await getInformationOfUser()
+      await getInformationOfUser()
+      return
     }
 
     return eraseServicesContext()

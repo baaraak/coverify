@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { COVER_SIZE_COMPACT } from 'common/sizes'
 import { Tabs, Text, Container } from 'common/UI'
+import Playlist from 'modules/Playlist'
 
 const CustomContainer = styled(Container)`
   position: sticky;
@@ -16,7 +17,7 @@ const Navigation: React.FC = () => {
         data={[
           {
             title: 'My playlists',
-            content: <Text color="white">my playlists</Text>,
+            content: <Playlist />,
           },
           {
             title: 'Background image',

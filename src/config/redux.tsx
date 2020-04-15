@@ -15,12 +15,12 @@ import type {
   Actions as EditorActions,
 } from 'modules/Editor'
 import { reducer as editorReducer } from 'modules/Editor'
-import { reducer as userReducer } from 'modules/Playlist'
+import { reducer as playlistReducer } from 'modules/Playlist'
 import type {
   State as PlaylistState,
   Actions as PlaylistActions,
 } from 'modules/Playlist'
-import { reducer as playlistReducer } from 'modules/User'
+import { reducer as userReducer } from 'modules/User'
 import type { State as UserState, Actions as UserActions } from 'modules/User'
 
 /**

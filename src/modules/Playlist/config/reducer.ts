@@ -14,13 +14,17 @@ const INITIAL_STATE = {
 }
 
 export type State = typeof INITIAL_STATE & {
-  data: Array<unknown>
+  data: Array<{
+    id: string
+    image: string
+    name: string
+  }>
 }
 
 const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
   switch (type) {
     case types.PLAYLIST_LOADING:
-      return { ...state, loading: true }
+      return { ...INITIAL_STATE, loading: true }
 
     case types.PLAYLIST_SUCCESS:
       return { ...state, loading: false, data: payload }
@@ -35,6 +39,7 @@ const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
 
 const selectors = {
   getPlaylists: (state: DefaultRootState) => state.playlist.data,
+  getPlaylistsError: (state: DefaultRootState) => state.playlist.errorMessage,
 }
 
 export { reducer, selectors }

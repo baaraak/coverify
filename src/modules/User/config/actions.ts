@@ -19,7 +19,7 @@ const dispatchError = (message: string) => ({
   payload: message,
 })
 
-const getInformationOfUser = (): ThunkResult<void> => async (dispatch) => {
+const dispatchInformationOfUser = (): ThunkResult<void> => async (dispatch) => {
   const { spotifyService } = context
   dispatch(dispatchLoading())
 
@@ -37,5 +37,5 @@ export {
   dispatchLoading,
   dispatchLogOut,
   dispatchUserToken,
-  getInformationOfUser,
+  dispatchInformationOfUser,
 }
