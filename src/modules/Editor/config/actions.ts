@@ -1,17 +1,7 @@
+import { types } from './actionTypes'
 import type { State } from './reducer'
 import { INITIAL_STATE } from './reducer'
 import type { ThunkResult } from 'config/redux'
-
-// Config
-enum types {
-  UPDATE_EDITOR = 'UPDATE_EDITOR',
-}
-
-export interface Actions {
-  type: types
-  payload: string | number | State['colors']
-  meta: keyof State
-}
 
 /**
  * Update text align of cover
@@ -94,7 +84,6 @@ const dispatchInitialAnimationOfMainText = (): ThunkResult<void> => (
 }
 
 export {
-  types,
   dispatchTextAlign,
   dispatchFontSize,
   dispatchFontFamily,

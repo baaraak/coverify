@@ -1,6 +1,12 @@
 import { DefaultRootState } from 'react-redux'
 
-import { types, Actions } from './actions'
+import { types } from './actionsTypes'
+
+export interface Actions {
+  type: types
+  payload?: string | { userName: string; userImage: string }
+  meta?: { [key: string]: unknown }
+}
 
 // Reducer stuff
 export interface State {
@@ -17,14 +23,14 @@ const INITIAL_STATE: State = {
 
 const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
   switch (type) {
-    case types.USER_REQUEST:
+    case types.USER_LOADING:
       return { ...state, loading: true }
 
     case types.USER_ERROR:
       return { ...INITIAL_STATE, errorMessage: payload }
 
     // Sign in
-    case types.USER_SIGN_RECEIVE:
+    case types.USER_SIGN_SUCCESS:
       return {
         ...state,
         data: { ...state.data, token: payload },
@@ -32,7 +38,7 @@ const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
       }
 
     // Fetch user data
-    case types.USER_INFO_RECEIVE:
+    case types.USER_INFO_SUCCESS:
       if (typeof payload === 'object') {
         return {
           ...state,
@@ -72,4 +78,4 @@ const selectors = {
   },
 }
 
-export { types, reducer, selectors }
+export { reducer, selectors }

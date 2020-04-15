@@ -2,8 +2,16 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import DefaultButton from 'react-spotify-login'
 
-import { dispatchLoading, dispatchError, dispatchUserToken } from './actions'
-import { SPOTIFY_CLIENT_ID, SPOTIFY_URL, SPOTIFY_SCOPE } from './constants'
+import {
+  dispatchLoading,
+  dispatchError,
+  dispatchUserToken,
+} from './config/actions'
+import {
+  SPOTIFY_CLIENT_ID,
+  SPOTIFY_URL,
+  SPOTIFY_SCOPE,
+} from './config/constants'
 import { createServicesContext } from 'common/context'
 
 const UserLoginButton: React.FC = (props) => {

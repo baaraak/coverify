@@ -1,8 +1,7 @@
 export { UserLoginButton } from './UserLoginButton'
 
-export { types, reducer, selectors } from './reducer'
-import * as actions from './actions'
+export { reducer, selectors } from './config/reducer'
+import * as actions from './config/actions'
 export { actions }
 
-export type { State } from './reducer'
-export type { Actions } from './actions'
+export type { State, Actions } from './config/reducer'

@@ -2,8 +2,7 @@ import { DefaultRootState } from 'react-redux'
 import { CSSProperties } from 'styled-components'
 
 import imagePlaceholderSrc from '../assets/image-placeholder.jpg'
-import type { Actions } from './actions'
-import { types } from './actions'
+import { types } from './actionTypes'
 import { COLORS_SCHEMA } from './constants'
 import { APP_NAME } from 'common/constants'
 
@@ -22,6 +21,12 @@ const INITIAL_STATE = {
 
 export type State = typeof INITIAL_STATE & {
   textAlign: CSSProperties['textAlign']
+}
+
+export interface Actions {
+  type: types
+  payload: string | number | State['colors']
+  meta: keyof State
 }
 
 const reducer = (state = INITIAL_STATE, { type, payload, meta }: Actions) => {
@@ -43,4 +48,4 @@ const selectors = {
   getPlaylistName: (state: DefaultRootState) => state.editor.playlistName,
 }
 
-export { types, reducer, selectors, INITIAL_STATE }
+export { reducer, selectors, INITIAL_STATE }

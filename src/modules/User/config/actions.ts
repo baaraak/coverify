@@ -1,30 +1,16 @@
+import { types } from './actionsTypes'
 import { context } from 'common/context'
 import type { ThunkResult } from 'config/redux'
 
-// Config
-enum types {
-  USER_REQUEST = 'USER_REQUEST',
-  USER_ERROR = 'USER_ERROR',
-
-  USER_INFO_RECEIVE = 'USER_INFO_RECEIVE',
-  USER_SIGN_RECEIVE = 'USER_SIGN_RECEIVE',
-
-  LOG_OUT = 'LOG_OUT',
-}
-
-export interface Actions {
-  type: types
-  payload?: string | { userName: string; userImage: string }
-  meta?: { [key: string]: unknown }
-}
-
 // Actions
+const dispatchLogOut = () => ({ type: types.LOG_OUT })
+
 const dispatchLoading = () => ({
-  type: types.USER_REQUEST,
+  type: types.USER_LOADING,
 })
 
 const dispatchUserToken = (token: string) => ({
-  type: types.USER_SIGN_RECEIVE,
+  type: types.USER_SIGN_SUCCESS,
   payload: token,
 })
 
@@ -40,16 +26,16 @@ const getInformationOfUser = (): ThunkResult<void> => async (dispatch) => {
   try {
     const userData = await spotifyService?.getUserInformation()
 
-    dispatch({ type: types.USER_INFO_RECEIVE, payload: userData })
+    dispatch({ type: types.USER_INFO_SUCCESS, payload: userData })
   } catch (err) {
     dispatch(dispatchError(err.message))
   }
 }
 
 export {
-  types,
-  dispatchLoading,
   dispatchError,
+  dispatchLoading,
+  dispatchLogOut,
   dispatchUserToken,
   getInformationOfUser,
 }

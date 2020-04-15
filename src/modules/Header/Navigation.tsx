@@ -8,7 +8,7 @@ import { Text, Button } from 'common/UI'
 import {
   UserLoginButton,
   selectors as userSelectors,
-  types as userTypes,
+  actions as userActions,
 } from 'modules/User'
 
 const Menu = styled.nav`
@@ -57,9 +57,7 @@ const Navigation: React.FC = () => {
   const userData = useSelector(userSelectors.getUserData, shallowEqual)
   const dispatch = useDispatch()
 
-  const endSession = () => {
-    dispatch({ type: userTypes.LOG_OUT })
-  }
+  const endSession = () => dispatch(userActions.dispatchLogOut())
 
   return (
     <>
