@@ -1,12 +1,30 @@
 import { types } from './actionTypes'
-import type { State } from './reducer'
+import type { State, Actions } from './reducer'
 import { INITIAL_STATE } from './reducer'
 import type { ThunkResult } from 'config/redux'
 
 /**
+ * Update playlist name
+ */
+const dispatchPlaylistName = (value: string): Actions => ({
+  type: types.UPDATE_EDITOR,
+  meta: 'playlistName',
+  payload: value,
+})
+
+/**
+ * Update playlist if
+ */
+const dispatchPlaylistId = (value: string): Actions => ({
+  type: types.UPDATE_EDITOR,
+  meta: 'playlistId',
+  payload: value,
+})
+
+/**
  * Update text align of cover
  */
-const dispatchTextAlign = (value: string) => ({
+const dispatchTextAlign = (value: string): Actions => ({
   type: types.UPDATE_EDITOR,
   meta: 'textAlign',
   payload: value,
@@ -43,7 +61,7 @@ const dispatchFontSize = (shouldIncrease: boolean): ThunkResult<void> => (
 /**
  * Update font family of cover
  */
-const dispatchFontFamily = (fontFamily: string) => ({
+const dispatchFontFamily = (fontFamily: string): Actions => ({
   type: types.UPDATE_EDITOR,
   meta: 'fontFamily',
   payload: fontFamily,
@@ -52,7 +70,7 @@ const dispatchFontFamily = (fontFamily: string) => ({
 /**
  * Update color schema of cover
  */
-const dispatchColorSchema = (color: State['colors']) => ({
+const dispatchColorSchema = (color: State['colors']): Actions => ({
   type: types.UPDATE_EDITOR,
   meta: 'colors',
   payload: color,
@@ -84,6 +102,8 @@ const dispatchInitialAnimationOfMainText = (): ThunkResult<void> => (
 }
 
 export {
+  dispatchPlaylistId,
+  dispatchPlaylistName,
   dispatchTextAlign,
   dispatchFontSize,
   dispatchFontFamily,

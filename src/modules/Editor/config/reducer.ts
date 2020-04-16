@@ -46,6 +46,7 @@ const selectors = {
   getTextAlign: (state: DefaultRootState) => state.editor.textAlign,
   getFontFamily: (state: DefaultRootState) => state.editor.fontFamily,
   getPlaylistName: (state: DefaultRootState) => state.editor.playlistName,
+  getPlaylistId: (state: DefaultRootState) => state.editor.playlistId,
 }
 
 export { reducer, selectors, INITIAL_STATE }

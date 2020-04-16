@@ -5,15 +5,16 @@ import { COVER_SIZE_COMPACT } from 'common/sizes'
 import { Tabs, Text, Container } from 'common/UI'
 import Playlist from 'modules/Playlist'
 
-const CustomContainer = styled(Container)`
+const CustomTab = styled(Tabs)`
   position: sticky;
-  top: calc(${COVER_SIZE_COMPACT} + 2.2em);
+  top: calc(${COVER_SIZE_COMPACT} + 1.9em);
+  z-index: 999;
 `
 
 const Navigation: React.FC = () => {
   return (
-    <CustomContainer>
-      <Tabs
+    <Container>
+      <CustomTab
         data={[
           {
             title: 'My playlists',
@@ -25,7 +26,7 @@ const Navigation: React.FC = () => {
           },
         ]}
       />
-    </CustomContainer>
+    </Container>
   )
 }
 

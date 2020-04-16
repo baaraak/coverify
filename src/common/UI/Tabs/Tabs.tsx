@@ -65,12 +65,12 @@ interface TabsProps {
   data: Array<{ title: string; content: React.ReactNode }>
 }
 
-const Tabs: React.FC<TabsProps> = ({ data }) => {
+const Tabs: React.FC<TabsProps> = ({ data, className }) => {
   const [currentTab, setCurrentTab] = useState(0)
 
   return (
     <>
-      <Tab>
+      <Tab className={className}>
         {data.map(({ title }, index) => {
           return (
             <TabItem

@@ -60,7 +60,14 @@ const Stage: React.FC = ({ children }) => {
 
   return (
     <Wrapper>
-      <WrapperFixed style={{ top, borderRadius, paddingTop: padding }}>
+      <WrapperFixed
+        style={{
+          top,
+          borderRadius,
+          paddingTop: padding,
+          paddingBottom: padding,
+        }}
+      >
         <CustomContainer>{children}</CustomContainer>
       </WrapperFixed>
     </Wrapper>

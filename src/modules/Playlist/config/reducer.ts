@@ -13,12 +13,16 @@ const INITIAL_STATE = {
   errorMessage: undefined,
 }
 
-export type State = typeof INITIAL_STATE & {
-  data: Array<{
-    id: string
-    image: string
-    name: string
-  }>
+export interface PlaylistItem {
+  id: string
+  image?: string
+  name: string
+}
+
+export type State = {
+  loading: boolean
+  data: PlaylistItem[]
+  errorMessage?: string
 }
 
 const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {

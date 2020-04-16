@@ -18,7 +18,6 @@ const Index: React.FC = () => {
       </Stage>
 
       <Navigation />
-      <div style={{ height: '200vh' }} />
     </Core>
   )
 }
