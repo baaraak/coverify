@@ -1,4 +1,3 @@
-import { Header, BlurContainer } from './Header'
+import { Header } from './Header'
 
-export { BlurContainer }
 export default Header
