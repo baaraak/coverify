@@ -1,45 +1,47 @@
 import React, { createContext, useState } from 'react'
 
 import { Spotify } from './spotify'
+import { UnSplash } from './unsplash'
 
 /**
  * Dependencies
  */
 const dependencies = {
   spotify: Spotify,
-}
-
-interface DependenciesOptions {
-  spotify: { token: string }
+  unsplash: UnSplash,
 }
 
 /**
  * Types
  */
 type DependenciesProps = typeof dependencies
-
-interface ContextMethods {
-  create: <N extends keyof DependenciesProps>(
-    service: N & string,
-    options: DependenciesOptions[N]
-  ) => DependenciesProps[N] | false
-  get: <N extends keyof DependenciesProps>(
-    service: N & string
-  ) => InstanceType<DependenciesProps[N]> | false
-  destroy: (service: keyof DependenciesProps) => boolean
-
-  // inject: (service: DependenciesNames) => void | false
+type DependenciesOptions = {
+  [N in keyof DependenciesProps]: ConstructorParameters<DependenciesProps[N]>
 }
 
-type State = Partial<DependenciesProps>
+/**
+ * Methods
+ */
+interface ContextMethods {
+  create: <N extends keyof DependenciesProps>(
+    service: N,
+    options: DependenciesOptions[N]
+  ) => InstanceType<DependenciesProps[N]> | false
+  get: <N extends keyof DependenciesProps>(
+    service: N
+  ) => InstanceType<DependenciesProps[N]> | false
+  destroy: (service: keyof DependenciesProps) => boolean
+}
 
-// Methods
 const DependenciesContext = createContext<ContextMethods>({
   create: () => false,
   destroy: () => false,
   get: () => false,
-  // inject: () => undefined,
 })
+
+type State = {
+  [N in keyof DependenciesProps]?: InstanceType<DependenciesProps[N]>
+}
 
 // Provider
 const DependenciesProvider: React.FC = ({ children }) => {
@@ -48,7 +50,10 @@ const DependenciesProvider: React.FC = ({ children }) => {
   /**
    * Create a new service
    */
-  const create: ContextMethods['create'] = (name, options) => {
+  const create: ContextMethods['create'] = <N extends keyof DependenciesProps>(
+    name: N,
+    options: DependenciesOptions[N]
+  ) => {
     const dependencyConstructor = dependencies[name]
 
     // It doesn't exist
@@ -58,7 +63,10 @@ const DependenciesProvider: React.FC = ({ children }) => {
 
     // It already exist
     if (initialized[name]) {
-      return initialized[name]
+      // TODO: I'm sure that it is not undefined
+      // But why typescript not?
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      return initialized[name]!
     }
 
     // init
@@ -99,13 +107,11 @@ const DependenciesProvider: React.FC = ({ children }) => {
    * Get a dependency
    */
   const get: ContextMethods['get'] = (name) => {
-    // It doesn't exist
-    if (!initialized[name]) {
-      return false
+    if (initialized[name]) {
+      return initialized[name]
     }
 
-    // return
-    return initialized[name]
+    return false
   }
 
   /**

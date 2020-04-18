@@ -62,6 +62,7 @@ const HandleContent = styled(motion.div)<{ current: boolean }>`
 `
 
 interface TabsProps {
+  className?: string
   data: Array<{ title: string; content: React.ReactNode }>
 }
 
