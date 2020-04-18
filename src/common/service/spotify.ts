@@ -17,7 +17,7 @@ type ResponseGetUserInformation = { userName: string; userImage: string }
 class Spotify {
   private token: string
 
-  constructor(token: string) {
+  constructor({ token }: { token: string }) {
     this.token = token
   }
 
