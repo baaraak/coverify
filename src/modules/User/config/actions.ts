@@ -1,6 +1,8 @@
+import { useContext } from 'react'
+import { useDispatch } from 'react-redux'
+
 import { types } from './actionsTypes'
-import { context } from 'common/context'
-import type { ThunkResult } from 'config/redux'
+import { DependenciesContext } from 'common/service/context'
 
 // Actions
 const dispatchLogOut = () => ({ type: types.LOG_OUT })
@@ -19,17 +21,27 @@ const dispatchError = (message: string) => ({
   payload: message,
 })
 
-const dispatchInformationOfUser = (): ThunkResult<void> => async (dispatch) => {
-  const { spotifyService } = context
-  dispatch(dispatchLoading())
+const useDispatchInformationOfUser = () => {
+  const dispatch = useDispatch()
+  const dependencies = useContext(DependenciesContext)
 
-  try {
-    const userData = await spotifyService?.getUserInformation()
+  const submit = async () => {
+    console.log('useDispatchInformationOfUser')
+    // get service
+    const spotifyService = dependencies.get('spotify')
+    if (!spotifyService) return
 
-    dispatch({ type: types.USER_INFO_SUCCESS, payload: userData })
-  } catch (err) {
-    dispatch(dispatchError(err.message))
+    dispatch(dispatchLoading())
+
+    try {
+      const userData = await spotifyService.getUserInformation()
+      dispatch({ type: types.USER_INFO_SUCCESS, payload: userData })
+    } catch (err) {
+      dispatch(dispatchError(err.message))
+    }
   }
+
+  return submit
 }
 
 export {
@@ -37,5 +49,5 @@ export {
   dispatchLoading,
   dispatchLogOut,
   dispatchUserToken,
-  dispatchInformationOfUser,
+  useDispatchInformationOfUser,
 }

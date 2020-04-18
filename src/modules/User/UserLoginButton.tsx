@@ -1,5 +1,5 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useContext, useEffect, useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import DefaultButton from 'react-spotify-login'
 
 import {
@@ -7,15 +7,20 @@ import {
   dispatchError,
   dispatchUserToken,
 } from './config/actions'
+import { useDispatchInformationOfUser } from './config/actions'
 import {
   SPOTIFY_CLIENT_ID,
   SPOTIFY_URL,
   SPOTIFY_SCOPE,
 } from './config/constants'
-import { createServicesContext } from 'common/context'
+import { selectors } from './config/reducer'
+import { DependenciesContext } from 'common/service/context'
 
 const UserLoginButton: React.FC = (props) => {
   const dispatch = useDispatch()
+  const dependencies = useContext(DependenciesContext)
+  const dispatchInformationOfUser = useDispatchInformationOfUser()
+  const token = useSelector(selectors.getToken)
 
   // User Login
   const onRequest = () => dispatch(dispatchLoading())
@@ -24,7 +29,7 @@ const UserLoginButton: React.FC = (props) => {
     const spotifyToken = response.access_token
 
     // Creating context of services
-    createServicesContext(spotifyToken)
+    dependencies.create('spotify', { token: spotifyToken })
 
     // Full field reducer
     dispatch(dispatchUserToken(spotifyToken))
@@ -32,6 +37,16 @@ const UserLoginButton: React.FC = (props) => {
 
   const onFailure = (response: Error) =>
     dispatch(dispatchError(response.message))
+
+  const getInfoOfUser = useCallback(async () => {
+    if (token) {
+      await dispatchInformationOfUser()
+    }
+  }, [token])
+
+  useEffect(() => {
+    getInfoOfUser()
+  }, [getInfoOfUser])
 
   return (
     <DefaultButton

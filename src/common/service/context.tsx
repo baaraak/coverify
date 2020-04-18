@@ -9,10 +9,6 @@ const dependencies = {
   spotify: Spotify,
 }
 
-/**
- * Dependencies
- */
-
 interface DependenciesOptions {
   spotify: { token: string }
 }
@@ -29,8 +25,9 @@ interface ContextMethods {
   ) => DependenciesProps[N] | false
   get: <N extends keyof DependenciesProps>(
     service: N & string
-  ) => DependenciesProps[N] | false
+  ) => InstanceType<DependenciesProps[N]> | false
   destroy: (service: keyof DependenciesProps) => boolean
+
   // inject: (service: DependenciesNames) => void | false
 }
 

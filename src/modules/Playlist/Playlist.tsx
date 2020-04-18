@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useCallback } from 'react'
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import styled from 'styled-components'
 
-import { dispatchPlaylist } from './config/actions'
-import { selectors } from './config/reducer'
+import { useDispatchPlaylist } from './config/actions'
+import { selectors as playlistSelector } from './config/reducer'
 import { Empty } from './Empty'
 import { Item } from './Item'
 import { Welcome } from './Welcome'
@@ -29,30 +29,41 @@ const Playlist = () => {
   // Handles
   const alert = useAlert()
   const dispatch = useDispatch()
+  const getPlaylist = useDispatchPlaylist()
 
-  // States
+  // Third-states
   const isConnected = useSelector(userSelectors.isConnected)
-  const errorMessage = useSelector(selectors.getPlaylistsError)
-  const playlists = useSelector(selectors.getPlaylists)
-  const playlistIdSelected = useSelector(editorSelectors.getPlaylistId)
+  const playlistIdSelected = useSelector(
+    editorSelectors.getPlaylistId,
+    shallowEqual
+  )
+
+  // Module states
+  const errorMessage = useSelector(playlistSelector.getPlaylistsError)
+  const playlists = useSelector(playlistSelector.getPlaylists)
+  const playlistsLoading = useSelector(playlistSelector.getLoading)
 
   // Effects
-  useEffect(() => {
+  const getInfoOfUser = useCallback(async () => {
     if (isConnected) {
-      dispatch(dispatchPlaylist())
+      await getPlaylist()
     }
 
     if (isConnected && errorMessage) {
       alert.error(`Error encountered to load the playlist: ${errorMessage}`)
     }
-  }, [alert, dispatch, errorMessage, isConnected])
+  }, [alert, errorMessage, isConnected])
+
+  useEffect(() => {
+    getInfoOfUser()
+  }, [getInfoOfUser])
 
   // Renders
-  if (!isConnected) {
+  if (playlistsLoading || !isConnected) {
     return <Welcome />
   }
 
-  if (Array.isArray(playlists) && playlists.length > 0) {
+  if (playlists.length > 0) {
     return (
       <Grid>
         {playlists.map((item) => {

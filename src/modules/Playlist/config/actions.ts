@@ -1,6 +1,9 @@
+import { useContext } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { types } from './actionsTypes'
-import { context } from 'common/context'
-import type { ThunkResult } from 'config/redux'
+import { DependenciesContext } from 'common/service/context'
+import { selectors as userSelector } from 'modules/User'
 
 const dispatchLoading = () => ({ type: types.PLAYLIST_LOADING })
 
@@ -9,33 +12,39 @@ const dispatchError = (message: string) => ({
   payload: message,
 })
 
-const dispatchPlaylist = (): ThunkResult<void> => async (
-  dispatch,
-  getState
-) => {
-  const { user } = getState()
-  const { spotifyService } = context
+const useDispatchPlaylist = () => {
+  const dispatch = useDispatch()
+  const user = useSelector(userSelector.getUserData)
+  const dependencies = useContext(DependenciesContext)
 
-  dispatch(dispatchLoading())
+  const submit = async () => {
+    console.log('useDispatchPlaylist')
 
-  try {
-    console.log(spotifyService)
-    const playlistData = await spotifyService?.getUserPlaylist()
+    try {
+      // get service
+      const spotifyService = dependencies.get('spotify')
+      if (!spotifyService) return
 
-    const filteredData = playlistData
-      ?.filter((item) => item.owner?.display_name === user.data?.userName)
-      .map((item) => {
-        return {
-          id: item.id,
-          name: item.name,
-          image: item.images?.[0]?.url,
-        }
-      })
+      dispatch(dispatchLoading())
+      const playlistData = await spotifyService.getUserPlaylist()
 
-    dispatch({ type: types.PLAYLIST_SUCCESS, payload: filteredData })
-  } catch (err) {
-    dispatch(dispatchError(err.message))
+      const filteredData = playlistData
+        ?.filter((item) => item.owner?.display_name === user?.userName)
+        .map((item) => {
+          return {
+            id: item.id,
+            name: item.name,
+            image: item.images?.[0]?.url,
+          }
+        })
+
+      dispatch({ type: types.PLAYLIST_SUCCESS, payload: filteredData })
+    } catch (err) {
+      dispatch(dispatchError(err.message))
+    }
   }
+
+  return submit
 }
 
-export { dispatchPlaylist }
+export { useDispatchPlaylist }

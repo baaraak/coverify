@@ -43,6 +43,7 @@ const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
 
 const selectors = {
   getPlaylists: (state: DefaultRootState) => state.playlist.data,
+  getLoading: (state: DefaultRootState) => state.playlist.loading,
   getPlaylistsError: (state: DefaultRootState) => state.playlist.errorMessage,
 }
 
