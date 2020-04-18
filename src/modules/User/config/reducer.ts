@@ -26,7 +26,7 @@ const INITIAL_STATE: State = {
 const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
   switch (type) {
     case types.USER_LOADING:
-      return { ...state, loading: true }
+      return { ...state, errorMessage: undefined, loading: true }
 
     case types.USER_ERROR:
       return { ...INITIAL_STATE, errorMessage: payload }
@@ -70,6 +70,8 @@ const selectors = {
       userImage: data.user.data?.userImage,
     }
   },
+  getLoading: (state: DefaultRootState) => state.user.loading,
+  getErrorMessage: (state: DefaultRootState) => state.user.errorMessage,
   isConnected: (state: DefaultRootState) => {
     const payloadOfReducer = state.user.data
 

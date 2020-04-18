@@ -26,6 +26,29 @@ export const emToPxInNumber = (rem: string) => {
   return remOnNumber * FONT_SIZE_BASE
 }
 
+/**
+ * Suspense for short changes
+ */
+export const useSuspense = (value: boolean) => {
+  const [newValue, setNewValue] = useState(value)
+
+  useEffect(() => {
+    if (!value) {
+      return setNewValue(false)
+    }
+
+    const timer = setTimeout(() => {
+      setNewValue(true)
+    }, 1000)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [value])
+
+  return newValue
+}
+
 // Stolen from https://usehooks.com/useDebounce/
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useDebounce = <T extends any>(value: T, delay = 300): T => {

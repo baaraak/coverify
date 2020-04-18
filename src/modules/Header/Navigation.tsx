@@ -1,15 +1,9 @@
 import React from 'react'
-import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import styled from 'styled-components'
 
-import { UserAvatar } from './UserAvatar'
+import { User } from './User'
 import { MENU } from 'common/constants'
-import { Text, Button } from 'common/UI'
-import {
-  UserLoginButton,
-  selectors as userSelectors,
-  actions as userActions,
-} from 'modules/User'
+import { Text } from 'common/UI'
 
 const Menu = styled.nav`
   flex: 0;
@@ -53,12 +47,6 @@ const MenuItem = styled(Text)`
 `
 
 const Navigation: React.FC = () => {
-  const isConnected = useSelector(userSelectors.isConnected)
-  const userData = useSelector(userSelectors.getUserData, shallowEqual)
-  const dispatch = useDispatch()
-
-  const endSession = () => dispatch(userActions.dispatchLogOut())
-
   return (
     <>
       <Menu>
@@ -77,17 +65,8 @@ const Navigation: React.FC = () => {
           )
         })}
       </Menu>
-      {isConnected && userData ? (
-        <UserAvatar
-          name={userData.userName}
-          image={userData.userImage}
-          logOut={endSession}
-        />
-      ) : (
-        <Button as={UserLoginButton} variant="outline">
-          Log in with Spotify
-        </Button>
-      )}
+
+      <User />
     </>
   )
 }

@@ -14,7 +14,7 @@ const setBackground = ({ type }: TypeProp) => {
 
 const Wrapper = styled.div<TypeProp>`
   background-color: var(${setBackground});
-  padding: 1.5em;
+  padding: 1em 1.5em;
   border-radius: 0.5em;
   display: flex;
   justify-content: space-between;

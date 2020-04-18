@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import styled from 'styled-components'
 
@@ -29,7 +29,6 @@ const Playlist = () => {
   // Handles
   const alert = useAlert()
   const dispatch = useDispatch()
-  const getPlaylist = useDispatchPlaylist()
 
   // Third-states
   const isConnected = useSelector(userSelectors.isConnected)
@@ -40,23 +39,18 @@ const Playlist = () => {
 
   // Module states
   const errorMessage = useSelector(playlistSelector.getPlaylistsError)
-  const playlists = useSelector(playlistSelector.getPlaylists)
+  const playlists = useSelector(playlistSelector.getPlaylists, shallowEqual)
   const playlistsLoading = useSelector(playlistSelector.getLoading)
 
   // Effects
-  const getInfoOfUser = useCallback(async () => {
-    if (isConnected) {
-      await getPlaylist()
-    }
-
-    if (isConnected && errorMessage) {
-      alert.error(`Error encountered to load the playlist: ${errorMessage}`)
-    }
-  }, [alert, errorMessage, isConnected])
-
   useEffect(() => {
-    getInfoOfUser()
-  }, [getInfoOfUser])
+    if (errorMessage) {
+      alert.error(errorMessage)
+    }
+  }, [alert, errorMessage])
+
+  // Get data of playlist
+  useDispatchPlaylist()
 
   // Renders
   if (playlistsLoading || !isConnected) {

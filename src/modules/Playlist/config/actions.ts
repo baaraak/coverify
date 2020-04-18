@@ -1,31 +1,45 @@
-import { useContext } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useContext, useEffect, useCallback } from 'react'
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 
 import { types } from './actionsTypes'
 import { DependenciesContext } from 'common/service/context'
 import { selectors as userSelector } from 'modules/User'
 
+/**
+ * Loading
+ */
 const dispatchLoading = () => ({ type: types.PLAYLIST_LOADING })
 
+/**
+ * Error
+ */
 const dispatchError = (message: string) => ({
   type: types.PLAYLIST_ERROR,
   payload: message,
 })
 
+/**
+ * Listener of event
+ */
 const useDispatchPlaylist = () => {
   const dispatch = useDispatch()
-  const user = useSelector(userSelector.getUserData)
+  const user = useSelector(userSelector.getUserData, shallowEqual)
   const dependencies = useContext(DependenciesContext)
+  const spotifyService = dependencies.get('spotify')
 
-  const submit = async () => {
-    console.log('useDispatchPlaylist')
+  /**
+   * Handle
+   */
+  const submit = useCallback(async () => {
+    if (!spotifyService) {
+      return dispatch(
+        dispatchError('Something went wrong on the playlists load.')
+      )
+    }
 
     try {
-      // get service
-      const spotifyService = dependencies.get('spotify')
-      if (!spotifyService) return
-
       dispatch(dispatchLoading())
+
       const playlistData = await spotifyService.getUserPlaylist()
 
       const filteredData = playlistData
@@ -42,9 +56,18 @@ const useDispatchPlaylist = () => {
     } catch (err) {
       dispatch(dispatchError(err.message))
     }
-  }
 
-  return submit
+    return
+  }, [dispatch, spotifyService, user])
+
+  /**
+   * Effect with dependencies
+   */
+  useEffect(() => {
+    if (spotifyService && user?.userName) {
+      submit()
+    }
+  }, [submit, spotifyService, user])
 }
 
 export { useDispatchPlaylist }
