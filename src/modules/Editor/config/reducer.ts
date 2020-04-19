@@ -15,7 +15,7 @@ const INITIAL_STATE = {
   fontFamily: 'Montserrat',
   fontSize: 60,
   foreText: 'This is',
-  imageStage: imagePlaceholderSrc,
+  backgroundUrl: imagePlaceholderSrc,
   mainText: 'Your best cover ever',
   playlistName: `Welcome to ${APP_NAME}`,
   playlistId: null,

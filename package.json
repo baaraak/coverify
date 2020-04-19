@@ -29,6 +29,7 @@
     "react-content-loader": "5.0.4",
     "react-dom": "16.13.1",
     "react-redux": "7.2.0",
+    "react-snuggle": "1.2.1",
     "react-spotify-login": "0.9.1",
     "redux": "4.0.5",
     "redux-persist": "6.0.0",

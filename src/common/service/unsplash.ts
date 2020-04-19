@@ -21,7 +21,7 @@ class UnSplash {
    * Mark image as download
    */
   public async downloadImage(id: string) {
-    axios.get(`.netlify/functions/download`, { params: { id } })
+    axios.get(`api/download`, { params: { id } })
   }
 
   /**

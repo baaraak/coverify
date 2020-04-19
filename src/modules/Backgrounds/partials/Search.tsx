@@ -1,9 +1,10 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import searchSrc from '../assets/search.svg'
 import { useGetBackgroundSearch, dispatchSearch } from '../config/actions'
+import { selectors } from '../config/reducer'
 import { useDebounce } from 'common/utils'
 
 const SearchBar = styled.input`
@@ -35,7 +36,9 @@ const Search: React.FC = ({ ...props }) => {
   // UI States
   const dispatch = useDispatch()
   const [searchValue, setSearchValue] = useState('')
-  const debounceSearch = useDebounce(searchValue)
+  const debounceSearch = useDebounce(searchValue, 1000)
+
+  const searchQueryFromStorage = useSelector(selectors.getSearchQuery)
 
   // Handles
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
@@ -44,10 +47,15 @@ const Search: React.FC = ({ ...props }) => {
     setSearchValue((event.target as any).value)
   }
 
-  // Effects
+  // Dispatch data to reducer debounce
   useEffect(() => {
     dispatch(dispatchSearch(debounceSearch))
   }, [debounceSearch, dispatch])
+
+  // Make sure that UI is updated with storage
+  useEffect(() => {
+    setSearchValue(searchQueryFromStorage)
+  }, [searchQueryFromStorage])
 
   useGetBackgroundSearch()
 

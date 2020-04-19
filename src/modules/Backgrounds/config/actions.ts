@@ -3,6 +3,7 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 
 import { selectors } from '../config/reducer'
 import { types } from './actionTypes'
+import { getRandomWordList } from './constants'
 import { DependenciesContext } from 'common/service/context'
 
 /**
@@ -24,6 +25,14 @@ const dispatchError = (message: string) => ({
 const dispatchSearch = (query: string) => ({
   type: types.BACKGROUND_SEARCH,
   payload: query,
+})
+
+/**
+ * Set random word
+ */
+const dispatchRandomWord = () => ({
+  type: types.BACKGROUND_SEARCH,
+  payload: getRandomWordList(),
 })
 
 /**
@@ -87,4 +96,4 @@ const useGetBackgroundSearch = () => {
   }, [submit, searchQuery, unSplashService, hasValidData])
 }
 
-export { useGetBackgroundSearch, dispatchSearch }
+export { useGetBackgroundSearch, dispatchSearch, dispatchRandomWord }

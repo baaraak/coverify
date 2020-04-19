@@ -4,6 +4,15 @@ import { INITIAL_STATE } from './reducer'
 import type { ThunkResult } from 'config/redux'
 
 /**
+ * Update playlist background
+ */
+const dispatchBackground = (url: string): Actions => ({
+  type: types.UPDATE_EDITOR,
+  meta: 'backgroundUrl',
+  payload: url,
+})
+
+/**
  * Update playlist name
  */
 const dispatchPlaylistName = (value: string): Actions => ({
@@ -13,7 +22,7 @@ const dispatchPlaylistName = (value: string): Actions => ({
 })
 
 /**
- * Update playlist if
+ * Update playlist id
  */
 const dispatchPlaylistId = (value: string): Actions => ({
   type: types.UPDATE_EDITOR,
@@ -102,6 +111,7 @@ const dispatchInitialAnimationOfMainText = (): ThunkResult<void> => (
 }
 
 export {
+  dispatchBackground,
   dispatchPlaylistId,
   dispatchPlaylistName,
   dispatchTextAlign,

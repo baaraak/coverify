@@ -2,9 +2,9 @@ import { motion } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
 
-import emptyArtwork from './assets/empty-artwork.jpeg'
-import penSrc from './assets/pen.svg'
-import { PlaylistItem } from './config/reducer'
+import emptyArtwork from '../assets/empty-artwork.jpeg'
+import penSrc from '../assets/pen.svg'
+import { PlaylistItem } from '../config/reducer'
 import { Text } from 'common/UI'
 
 export const Button = styled.button`
@@ -59,7 +59,7 @@ const Item: React.FC<{
   isSelected: boolean
 }> = ({ onSelect, data, isSelected }) => {
   return (
-    <Button key={data.id} onClick={onSelect}>
+    <Button onClick={onSelect}>
       <Handle>
         {isSelected && (
           <EditLayer initial={{ opacity: 0 }} animate={{ opacity: 1 }}>

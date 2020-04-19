@@ -6627,6 +6627,11 @@ react-redux@7.2.0:
     prop-types "^15.7.2"
     react-is "^16.9.0"
 
+react-snuggle@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-snuggle/-/react-snuggle-1.2.1.tgz#439dfae90b2ea13922c2a92013bba16a7196f9ed"
+  integrity sha512-hb1tGdGitSBiLqR09uICGLiRIARx86WtQEom81hsV+0qKu1CUWv0TAujI1FBaj+Z8mO1FFZXUdHrIYQNZlEccg==
+
 react-spotify-login@0.9.1:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/react-spotify-login/-/react-spotify-login-0.9.1.tgz#1afc35c02c424ac2f16494c713cd7515937e4b4e"

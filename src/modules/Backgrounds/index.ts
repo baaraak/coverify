@@ -1,8 +1,8 @@
 import { Backgrounds } from './Backgrounds'
+import * as actions from './config/actions'
 
 export { reducer, selectors } from './config/reducer'
 export type { State, Actions } from './config/reducer'
-// import * as actions from './config/actions'
-// export { actions }
+export { actions }
 
 export default Backgrounds

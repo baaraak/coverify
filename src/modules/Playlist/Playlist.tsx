@@ -4,8 +4,8 @@ import styled from 'styled-components'
 
 import { useGetPlaylist } from './config/actions'
 import { selectors as playlistSelector } from './config/reducer'
-import { Empty } from './Empty'
-import { Item } from './Item'
+import { Empty } from './partials/Empty'
+import { Item } from './partials/Item'
 import { Welcome } from './Welcome'
 import { useAlert } from 'common/UI'
 import {

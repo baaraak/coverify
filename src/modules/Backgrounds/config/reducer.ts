@@ -6,7 +6,7 @@ import { types } from './actionTypes'
 /**
  * Types
  */
-interface BackgroundItem {
+export interface BackgroundItem {
   id?: string
   alt_description?: string
   urls?: Record<'raw' | 'regular' | 'full', string>
@@ -105,8 +105,8 @@ const selectors = {
     const now = dayjs()
     const timestamp = data[query].timestamp
 
-    // Greater than 10 minutes
-    if (now.diff(timestamp, 'minute') > 10) {
+    // Greater than 30 minutes
+    if (now.diff(timestamp, 'minute') > 30) {
       return false
     }
 

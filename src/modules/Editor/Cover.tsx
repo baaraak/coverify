@@ -86,7 +86,7 @@ const Cover: React.FC = () => {
     fontFamily,
     foreText,
     fontSize,
-    imageStage,
+    backgroundUrl,
     mainText,
     textAlign,
   } = useSelector(selectors.getEditor, shallowEqual)
@@ -115,7 +115,7 @@ const Cover: React.FC = () => {
         style={{
           width: coverSize,
           height: coverSize,
-          backgroundImage: `url(${imageStage})`,
+          backgroundImage: `url(${backgroundUrl})`,
         }}
       >
         <Content style={{ scale: coverContentScale }}>
