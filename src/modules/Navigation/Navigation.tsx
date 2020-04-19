@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { COVER_SIZE_COMPACT } from 'common/sizes'
-import { Tabs, Text, Container } from 'common/UI'
+import { Tabs, Container } from 'common/UI'
+import Backgrounds from 'modules/Backgrounds'
 import Playlist from 'modules/Playlist'
 
 const CustomTab = styled(Tabs)`
@@ -17,12 +18,12 @@ const Navigation: React.FC = () => {
       <CustomTab
         data={[
           {
-            title: 'My playlists',
-            content: <Playlist />,
+            title: 'Background image',
+            content: <Backgrounds />,
           },
           {
-            title: 'Background image',
-            content: <Text color="white">Tab 2</Text>,
+            title: 'My playlists',
+            content: <Playlist />,
           },
         ]}
       />

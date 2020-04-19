@@ -4,6 +4,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { persistStore, persistReducer } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import storage from 'redux-persist/lib/storage'
 import thunk, { ThunkMiddleware, ThunkAction } from 'redux-thunk'
 
@@ -47,7 +48,11 @@ const rootReducer = combineReducers({
   playlist: playlistReducer,
 })
 
-const persistConfig = { key: 'root', storage }
+const persistConfig = {
+  key: 'coverify',
+  storage,
+  stateReconciler: autoMergeLevel2,
+}
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const composeEnhancers = composeWithDevTools(

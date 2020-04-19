@@ -24,7 +24,7 @@ const Empty = () => {
   return (
     <Wrapper>
       <img src={emptySrc} alt="Empty" />
-      <Text size="heading" color="white-light">
+      <Text as="h2" size="heading" color="white-light">
         Nothing to see here.
       </Text>
     </Wrapper>
