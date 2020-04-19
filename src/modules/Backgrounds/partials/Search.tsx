@@ -1,7 +1,10 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState, useEffect, ChangeEvent } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import searchSrc from '../assets/search.svg'
+import { useGetBackgroundSearch, dispatchSearch } from '../config/actions'
+import { useDebounce } from 'common/utils'
 
 const SearchBar = styled.input`
   background: url(${searchSrc}) 10px center no-repeat;
@@ -28,20 +31,32 @@ const SearchBar = styled.input`
   }
 `
 
-const Search: React.FC = () => {
+const Search: React.FC = ({ ...props }) => {
   // UI States
-  const [search, setSearch] = useState('')
+  const dispatch = useDispatch()
+  const [searchValue, setSearchValue] = useState('')
+  const debounceSearch = useDebounce(searchValue)
 
   // Handles
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value)
+    // TODO: Why events are so hard to handle?
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setSearchValue((event.target as any).value)
   }
+
+  // Effects
+  useEffect(() => {
+    dispatch(dispatchSearch(debounceSearch))
+  }, [debounceSearch, dispatch])
+
+  useGetBackgroundSearch()
 
   return (
     <SearchBar
-      value={search}
+      value={searchValue}
       placeholder="Search for something here..."
       onChange={handleSearch}
+      {...props}
     />
   )
 }

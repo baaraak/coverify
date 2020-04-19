@@ -19,6 +19,10 @@ const Core: React.FC = ({ children }) => {
     }
   }, [token, dependencies])
 
+  useEffect(() => {
+    dependencies.create('unsplash', [])
+  }, [dependencies])
+
   return <>{children}</>
 }
 

@@ -6,6 +6,9 @@ import { types } from './actionTypes'
 import { COLORS_SCHEMA } from './constants'
 import { APP_NAME } from 'common/constants'
 
+/**
+ * Initial state
+ */
 const INITIAL_STATE = {
   loading: false,
   colors: COLORS_SCHEMA[0],
@@ -19,6 +22,9 @@ const INITIAL_STATE = {
   textAlign: 'left',
 }
 
+/**
+ * Types
+ */
 export type State = typeof INITIAL_STATE & {
   textAlign: CSSProperties['textAlign']
 }
@@ -29,6 +35,9 @@ export interface Actions {
   meta: keyof State
 }
 
+/**
+ * Reducer
+ */
 const reducer = (state = INITIAL_STATE, { type, payload, meta }: Actions) => {
   switch (type) {
     case types.UPDATE_EDITOR:
@@ -39,7 +48,9 @@ const reducer = (state = INITIAL_STATE, { type, payload, meta }: Actions) => {
   }
 }
 
-// Selectors
+/**
+ * Selector
+ */
 const selectors = {
   getEditor: (state: DefaultRootState) => state.editor,
   getEditorLoading: (state: DefaultRootState) => state.editor.loading,

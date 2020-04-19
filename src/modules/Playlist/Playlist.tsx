@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import styled from 'styled-components'
 
-import { useDispatchPlaylist } from './config/actions'
+import { useGetPlaylist } from './config/actions'
 import { selectors as playlistSelector } from './config/reducer'
 import { Empty } from './Empty'
 import { Item } from './Item'
@@ -38,8 +38,8 @@ const Playlist = () => {
   )
 
   // Module states
-  const errorMessage = useSelector(playlistSelector.getPlaylistsError)
-  const playlists = useSelector(playlistSelector.getPlaylists, shallowEqual)
+  const errorMessage = useSelector(playlistSelector.getErrorMessage)
+  const playlists = useSelector(playlistSelector.getData, shallowEqual)
   const playlistsLoading = useSelector(playlistSelector.getLoading)
 
   // Effects
@@ -50,7 +50,7 @@ const Playlist = () => {
   }, [alert, errorMessage])
 
   // Get data of playlist
-  useDispatchPlaylist()
+  useGetPlaylist()
 
   // Renders
   if (playlistsLoading || !isConnected) {

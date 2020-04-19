@@ -1,16 +1,13 @@
 import { DefaultRootState } from 'react-redux'
 
-import { types } from './actionsTypes'
+import { types } from './actionTypes'
 
+/**
+ * Types
+ */
 export interface Actions {
   type: types
-  payload?: string | Array<unknown>
-}
-
-const INITIAL_STATE = {
-  loading: false,
-  data: [],
-  errorMessage: undefined,
+  payload?: string | PlaylistItem[]
 }
 
 export interface PlaylistItem {
@@ -23,6 +20,15 @@ export type State = {
   loading: boolean
   data: PlaylistItem[]
   errorMessage?: string
+}
+
+/**
+ * Reducer
+ */
+const INITIAL_STATE: State = {
+  loading: false,
+  data: [],
+  errorMessage: undefined,
 }
 
 const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
@@ -41,10 +47,13 @@ const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
   }
 }
 
+/**
+ * Selector
+ */
 const selectors = {
-  getPlaylists: (state: DefaultRootState) => state.playlist.data,
+  getData: (state: DefaultRootState) => state.playlist.data,
   getLoading: (state: DefaultRootState) => state.playlist.loading,
-  getPlaylistsError: (state: DefaultRootState) => state.playlist.errorMessage,
+  getErrorMessage: (state: DefaultRootState) => state.playlist.errorMessage,
 }
 
 export { reducer, selectors }

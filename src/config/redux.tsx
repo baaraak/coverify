@@ -4,13 +4,17 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { persistStore, persistReducer } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
-import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import storage from 'redux-persist/lib/storage'
 import thunk, { ThunkMiddleware, ThunkAction } from 'redux-thunk'
 
 /**
  * Modules imports
  */
+import type {
+  State as BackgroundsState,
+  Actions as BackgroundsActions,
+} from 'modules/Backgrounds'
+import { reducer as backgroundsReducer } from 'modules/Backgrounds'
 import type {
   State as EditorState,
   Actions as EditorActions,
@@ -27,8 +31,17 @@ import type { State as UserState, Actions as UserActions } from 'modules/User'
 /**
  * Types definition
  */
-type State = { user: UserState; editor: EditorState; playlist: PlaylistState }
-type AllActions = UserActions | EditorActions | PlaylistActions
+type State = {
+  user: UserState
+  editor: EditorState
+  playlist: PlaylistState
+  backgrounds: BackgroundsState
+}
+type AllActions =
+  | UserActions
+  | EditorActions
+  | PlaylistActions
+  | BackgroundsActions
 export type ThunkResult<R> = ThunkAction<R, State, undefined, AllActions>
 
 /**
@@ -43,15 +56,15 @@ declare module 'react-redux' {
  * Main configuration
  */
 const rootReducer = combineReducers({
-  user: userReducer,
+  backgrounds: backgroundsReducer,
   editor: editorReducer,
   playlist: playlistReducer,
+  user: userReducer,
 })
 
 const persistConfig = {
   key: 'coverify',
   storage,
-  stateReconciler: autoMergeLevel2,
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

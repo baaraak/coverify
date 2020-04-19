@@ -1,14 +1,16 @@
 import { DefaultRootState } from 'react-redux'
 
-import { types } from './actionsTypes'
+import { types } from './actionTypes'
 
+/**
+ * Types
+ */
 export interface Actions {
   type: types
   payload?: string | { userName: string; userImage: string }
   meta?: { [key: string]: unknown }
 }
 
-// Reducer stuff
 export interface State {
   data?: { userName?: string; userImage?: string }
   token?: string
@@ -16,6 +18,9 @@ export interface State {
   errorMessage?: string
 }
 
+/**
+ * Reducer
+ */
 const INITIAL_STATE: State = {
   data: undefined,
   token: undefined,
@@ -61,7 +66,9 @@ const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
   }
 }
 
-// Selectors
+/**
+ * Selector
+ */
 const selectors = {
   getToken: (state: DefaultRootState) => state.user.token,
   getUserData: (data: DefaultRootState) => {

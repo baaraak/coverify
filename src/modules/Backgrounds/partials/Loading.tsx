@@ -21,4 +21,4 @@ const Loading = () => (
   </ContentLoader>
 )
 
-export default Loading
+export { Loading }

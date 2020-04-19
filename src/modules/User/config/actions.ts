@@ -1,7 +1,7 @@
 import { useContext, useEffect, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { types } from './actionsTypes'
+import { types } from './actionTypes'
 import { DependenciesContext } from 'common/service/context'
 
 /**

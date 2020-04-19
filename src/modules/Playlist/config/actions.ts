@@ -1,7 +1,7 @@
 import { useContext, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 
-import { types } from './actionsTypes'
+import { types } from './actionTypes'
 import { DependenciesContext } from 'common/service/context'
 import { selectors as userSelector } from 'modules/User'
 
@@ -21,7 +21,7 @@ const dispatchError = (message: string) => ({
 /**
  * Listener of event
  */
-const useDispatchPlaylist = () => {
+const useGetPlaylist = () => {
   const dispatch = useDispatch()
   const user = useSelector(userSelector.getUserData, shallowEqual)
   const dependencies = useContext(DependenciesContext)
@@ -70,4 +70,4 @@ const useDispatchPlaylist = () => {
   }, [submit, spotifyService, user])
 }
 
-export { useDispatchPlaylist }
+export { useGetPlaylist }
