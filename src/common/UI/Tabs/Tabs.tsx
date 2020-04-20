@@ -76,9 +76,9 @@ const Tabs: React.FC<TabsProps> = ({ data, className }) => {
           return (
             <TabItem
               key={title}
-              // initial={INITIAL_POSITION_INVERTED}
-              // animate={ANIMATE_POSITION}
-              // transition={createTransition(1.4)}
+              initial={INITIAL_POSITION_INVERTED}
+              animate={ANIMATE_POSITION}
+              transition={createTransition(1.4)}
               onClick={() => setCurrentTab(index)}
               current={currentTab === index}
             >

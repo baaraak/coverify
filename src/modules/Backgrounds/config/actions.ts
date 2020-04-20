@@ -16,7 +16,7 @@ const dispatchLoading = () => ({ type: types.BACKGROUND_LOADING })
  */
 const dispatchError = (message: string) => ({
   type: types.BACKGROUND_ERROR,
-  payload: message,
+  payload: `UnSplash: ${message}`,
 })
 
 /**

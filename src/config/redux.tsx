@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistStore, persistReducer, createTransform } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 import storage from 'redux-persist/lib/storage'
 import thunk, { ThunkMiddleware, ThunkAction } from 'redux-thunk'
@@ -62,12 +62,36 @@ const rootReducer = combineReducers({
   user: userReducer,
 })
 
+/**
+ * Persist config
+ */
+const blackList = ['errorMessage', 'loading']
+const filterKeys = (data: Record<string, unknown>) => {
+  const keys = Object.keys(data).filter((e) => !blackList.includes(e))
+
+  return keys.reduce((acc, curr) => {
+    if (data[curr] !== undefined) {
+      return { ...acc, ...{ [curr]: data[curr] } }
+    }
+
+    return acc
+  }, {})
+}
+const transform = createTransform(
+  (inboundState: Record<string, unknown>) => filterKeys(inboundState),
+  (outboundState: Record<string, unknown>) => filterKeys(outboundState)
+)
+
 const persistConfig = {
   key: 'coverify',
   storage,
+  transforms: [transform],
 }
-const persistedReducer = persistReducer(persistConfig, rootReducer)
 
+/**
+ * Config
+ */
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 const composeEnhancers = composeWithDevTools(
   applyMiddleware(thunk as ThunkMiddleware<State, AllActions>)
 )

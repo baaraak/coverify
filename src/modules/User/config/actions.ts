@@ -29,7 +29,7 @@ const dispatchUserToken = (token: string) => ({
  */
 const dispatchError = (message: string) => ({
   type: types.USER_ERROR,
-  payload: message,
+  payload: `User: ${message}`,
 })
 
 /**

@@ -15,7 +15,7 @@ const dispatchLoading = () => ({ type: types.PLAYLIST_LOADING })
  */
 const dispatchError = (message: string) => ({
   type: types.PLAYLIST_ERROR,
-  payload: message,
+  payload: `Playlist from Spotify: ${message}`,
 })
 
 /**
