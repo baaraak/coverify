@@ -1,12 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkg = require('../../package.json')
 
+// UI
 export const APP_NAME = 'Coverify'
 export const AUTHOR = 'Danilo Woznica'
 export const DESCRIPTION = pkg.description
 export const SHORT_DESCRIPTION =
   'Create your custom cover for your Spotify playlists.'
 export const URL = pkg.url
+
+export const COVER_ID = 'cover-wrapper'
 
 // Share
 const SHARE_GITHUB = 'http://github.com/danilowoz/coverify'

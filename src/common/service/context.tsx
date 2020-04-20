@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react'
 
+import { ScreenShot } from './screenshot'
 import { Spotify } from './spotify'
 import { UnSplash } from './unsplash'
 
@@ -9,6 +10,7 @@ import { UnSplash } from './unsplash'
 const dependencies = {
   spotify: Spotify,
   unsplash: UnSplash,
+  screenshot: ScreenShot,
 }
 
 /**

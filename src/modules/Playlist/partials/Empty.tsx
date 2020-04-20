@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import emptySrc from '../assets/Empty.svg'
+import emptySrc from '../assets/empty.svg'
 import { Text } from 'common/UI'
 
 const Wrapper = styled.div`

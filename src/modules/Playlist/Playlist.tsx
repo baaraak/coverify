@@ -42,6 +42,9 @@ const Playlist = () => {
   const playlists = useSelector(playlistSelector.getData, shallowEqual)
   const playlistsLoading = useSelector(playlistSelector.getLoading)
 
+  // Get data of playlist
+  useGetPlaylist()
+
   // Effects
   useEffect(() => {
     if (errorMessage) {
@@ -49,8 +52,12 @@ const Playlist = () => {
     }
   }, [alert, errorMessage])
 
-  // Get data of playlist
-  useGetPlaylist()
+  // If there is no playlist picked, then selected the first one
+  useEffect(() => {
+    if (playlists.length > 0 && !playlistIdSelected) {
+      dispatch(editorActions.dispatchPlaylistId(playlists[0].id))
+    }
+  }, [playlists, dispatch, playlistIdSelected])
 
   // Renders
   if (playlistsLoading || !isConnected) {

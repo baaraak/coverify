@@ -11,6 +11,7 @@ import { APP_NAME } from 'common/constants'
  */
 const INITIAL_STATE = {
   loading: false,
+  errorMessage: undefined,
   colors: COLORS_SCHEMA[0],
   fontFamily: 'Montserrat',
   fontSize: 60,
@@ -18,7 +19,7 @@ const INITIAL_STATE = {
   backgroundUrl: imagePlaceholderSrc,
   mainText: 'Your best cover ever',
   playlistName: `Welcome to ${APP_NAME}`,
-  playlistId: null,
+  playlistId: '',
   textAlign: 'left',
 }
 
@@ -40,8 +41,17 @@ export interface Actions {
  */
 const reducer = (state = INITIAL_STATE, { type, payload, meta }: Actions) => {
   switch (type) {
-    case types.UPDATE_EDITOR:
-      return { ...state, [meta]: payload }
+    case types.EDITOR_LOADING:
+      return { ...state, loading: true }
+
+    case types.EDITOR_ERROR:
+      return { ...state, loading: false, errorMessage: payload }
+
+    case types.COVER_UPDATE_SUCCESS:
+      return { ...state, loading: false, errorMessage: undefined }
+
+    case types.EDITOR_UPDATE:
+      return { ...state, loading: false, [meta]: payload }
 
     default:
       return state

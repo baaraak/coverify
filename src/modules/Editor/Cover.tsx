@@ -12,6 +12,7 @@ import {
   createTransition,
   useCoverAnimation,
 } from 'common/animations'
+import { COVER_ID } from 'common/constants'
 import { COVER_SIZE, MAIN_BREAKPOINT } from 'common/sizes'
 
 const ImageHandle = styled(motion.div)`
@@ -109,6 +110,7 @@ const Cover: React.FC = () => {
       </Head>
 
       <ImageHandle
+        id={COVER_ID}
         initial={INITIAL_POSITION}
         animate={ANIMATE_POSITION}
         transition={createTransition(1)}

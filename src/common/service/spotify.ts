@@ -43,6 +43,19 @@ class Spotify {
 
     return dataFromApi.data.items
   }
+
+  public async updatePlaylistCover(playlistId: string, imgData: string) {
+    return await axios.put(
+      `https://api.spotify.com/v1/playlists/${playlistId}/images`,
+      imgData,
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+          'Content-Type': 'image/jpeg',
+        },
+      }
+    )
+  }
 }
 
 export { Spotify }

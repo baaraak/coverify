@@ -4,6 +4,10 @@ import { shallowEqual, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import downloadSrc from './assets/download.svg'
+import {
+  useUpdateCoverOfPlaylist,
+  useDownloadCoverOfPlaylist,
+} from './config/actions'
 import { selectors } from './config/reducer'
 import {
   INITIAL_POSITION,
@@ -14,7 +18,7 @@ import {
 import { AUTHOR } from 'common/constants'
 import { MAIN_BREAKPOINT } from 'common/sizes'
 import { Text, Button, Loading } from 'common/UI'
-import { truncate } from 'common/utils'
+import { truncate, scrollToAsync } from 'common/utils'
 import { selectors as userSelectors } from 'modules/User'
 
 const Wrapper = styled(motion.div)`
@@ -64,12 +68,17 @@ export const LoadingHandle = styled(motion.div)`
 `
 
 const Handle: React.FC = () => {
+  // Action
+  const updatePlaylistCover = useUpdateCoverOfPlaylist()
+  const downloadPlaylistCover = useDownloadCoverOfPlaylist()
+
   // State
   const isConnected = useSelector(userSelectors.isConnected)
   const user = useSelector(userSelectors.getUserData, shallowEqual)
   const playlistName = useSelector(selectors.getPlaylistName)
   const loading = useSelector(selectors.getEditorLoading)
 
+  // Animation
   const { opacity, offset, scale, padding } = useHandleAnimation()
 
   // Constants
@@ -79,6 +88,17 @@ const Handle: React.FC = () => {
       <span> Create by</span> {user.userName ? user.userName : AUTHOR}
     </>
   )
+
+  // Handles
+  const handleUpdateCover = async () => {
+    await scrollToAsync()
+    updatePlaylistCover()
+  }
+
+  const handleDownloadCover = async () => {
+    await scrollToAsync()
+    downloadPlaylistCover()
+  }
 
   return (
     <Wrapper
@@ -104,10 +124,7 @@ const Handle: React.FC = () => {
       </Description>
 
       <Actions>
-        <Button
-          variant="normal"
-          // onClick={takePrint}
-        >
+        <Button variant="normal" onClick={handleUpdateCover}>
           Update on Spotify
           <LoadingHandle
             initial={{ width: 0, opacity: 0 }}
@@ -116,10 +133,7 @@ const Handle: React.FC = () => {
             <Loading />
           </LoadingHandle>
         </Button>
-        <Button
-          variant="outline"
-          // onClick={downloadCover}
-        >
+        <Button variant="outline" onClick={handleDownloadCover}>
           <img width="15" src={downloadSrc} alt="Download img" />
         </Button>
       </Actions>

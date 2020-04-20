@@ -19,7 +19,7 @@ const dispatchError = (message: string) => ({
 })
 
 /**
- * Listener of event
+ * Listener of event to get playlist from user
  */
 const useGetPlaylist = () => {
   const dispatch = useDispatch()
@@ -68,6 +68,8 @@ const useGetPlaylist = () => {
       submit()
     }
   }, [submit, spotifyService, user])
+
+  return submit
 }
 
 export { useGetPlaylist }

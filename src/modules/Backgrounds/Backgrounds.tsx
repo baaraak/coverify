@@ -16,7 +16,7 @@ import { actions } from 'modules/Editor'
 const Backgrounds: React.FC = () => {
   // Manager
   const alert = useAlert()
-  const gridRef = useRef()
+  const gridRef = useRef<typeof Snuggle>(null)
   const dispatch = useDispatch()
 
   // States

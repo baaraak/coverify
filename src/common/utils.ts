@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 
 import { FONT_SIZE_BASE } from './UI/ThemeProvider/theme'
 
-export const scrollToAsync = (x: number, y: number) =>
+export const scrollToAsync = (x = 0, y = 0) =>
   new Promise((resolve) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ;(global as any).window.scrollTo(x, y)

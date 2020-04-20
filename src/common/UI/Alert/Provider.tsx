@@ -4,7 +4,7 @@ import { transitions, positions, Provider } from 'react-alert'
 import { Template } from './Template'
 
 const options = {
-  position: positions.BOTTOM_CENTER,
+  position: positions.TOP_CENTER,
   timeout: 5000,
   offset: '.5em',
   transition: transitions.FADE,

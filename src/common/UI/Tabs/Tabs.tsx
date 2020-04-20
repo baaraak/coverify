@@ -76,9 +76,9 @@ const Tabs: React.FC<TabsProps> = ({ data, className }) => {
           return (
             <TabItem
               key={title}
-              initial={INITIAL_POSITION_INVERTED}
-              animate={ANIMATE_POSITION}
-              transition={createTransition(1.4)}
+              // initial={INITIAL_POSITION_INVERTED}
+              // animate={ANIMATE_POSITION}
+              // transition={createTransition(1.4)}
               onClick={() => setCurrentTab(index)}
               current={currentTab === index}
             >
@@ -89,9 +89,9 @@ const Tabs: React.FC<TabsProps> = ({ data, className }) => {
       </Tab>
 
       <WrapperContent
-        initial={INITIAL_POSITION_INVERTED}
-        animate={ANIMATE_POSITION}
-        transition={createTransition(2)}
+      // initial={INITIAL_POSITION_INVERTED}
+      // animate={ANIMATE_POSITION}
+      // transition={createTransition(2)}
       >
         {data.map(({ content, title }, index) => {
           return (
@@ -100,7 +100,6 @@ const Tabs: React.FC<TabsProps> = ({ data, className }) => {
               current={currentTab === index}
               animate={{
                 opacity: currentTab === index ? 1 : 0,
-                top: currentTab === index ? '0em' : '3em',
               }}
             >
               {content}
