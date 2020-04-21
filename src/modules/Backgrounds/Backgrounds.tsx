@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext, useCallback } from 'react'
+import React, { useEffect, useContext, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Snuggle from 'react-snuggle'
 
@@ -15,7 +15,6 @@ import { actions } from 'modules/Editor'
 const Backgrounds: React.FC = () => {
   // Manager
   const alert = useAlert()
-  const gridRef = useRef<typeof Snuggle>(null)
   const dispatch = useDispatch()
 
   // States
@@ -50,12 +49,6 @@ const Backgrounds: React.FC = () => {
     }
 
     if (data.length > 0) {
-      const onLoad = () => {
-        if (gridRef.current) {
-          gridRef.current?.resize()
-        }
-      }
-
       const pickImage = async (element: BackgroundItem) => {
         if (element?.urls?.full && element?.id) {
           dispatch(actions.dispatchBackground(element?.urls?.full))
@@ -64,15 +57,10 @@ const Backgrounds: React.FC = () => {
       }
 
       return (
-        <Snuggle ref={gridRef}>
+        <Snuggle>
           {data.map((element) => {
             return (
-              <Item
-                key={element.id}
-                element={element}
-                onLoadItem={onLoad}
-                pickImage={pickImage}
-              />
+              <Item key={element.id} element={element} pickImage={pickImage} />
             )
           })}
         </Snuggle>

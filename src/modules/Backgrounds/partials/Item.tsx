@@ -32,11 +32,10 @@ const Copyright = styled(Text)`
 
 interface ItemProps {
   element: BackgroundItem
-  onLoadItem: () => void
   pickImage: (element: BackgroundItem) => void
 }
 
-const Item: React.FC<ItemProps> = ({ element, onLoadItem, pickImage }) => {
+const Item: React.FC<ItemProps> = ({ element, pickImage }) => {
   return (
     <motion.button
       key={element.id}
@@ -45,7 +44,6 @@ const Item: React.FC<ItemProps> = ({ element, onLoadItem, pickImage }) => {
       whileTap={WHILE_TAP}
     >
       <Image
-        onLoad={onLoadItem}
         src={element?.urls?.small}
         alt={element?.alt_description}
         width={element.width}
