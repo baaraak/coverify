@@ -26,6 +26,7 @@ const UserLoginButton: React.FC = (props) => {
     const spotifyToken = response.access_token
 
     // Creating context of services
+    // TODO: fix any
     dependencies.create('spotify', { token: spotifyToken })
 
     // Full field reducer
