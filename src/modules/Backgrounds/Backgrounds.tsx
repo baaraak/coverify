@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext } from 'react'
+import React, { useEffect, useRef, useContext, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Snuggle from 'react-snuggle'
 
@@ -10,7 +10,6 @@ import { Loading } from './partials/Loading'
 import { Search } from './partials/Search'
 import { DependenciesContext } from 'common/service/context'
 import { useAlert } from 'common/UI'
-import { useSuspense } from 'common/utils'
 import { actions } from 'modules/Editor'
 
 const Backgrounds: React.FC = () => {
@@ -23,7 +22,6 @@ const Backgrounds: React.FC = () => {
   const errorMessage = useSelector(selectors.getErrorMessage)
   const data = useSelector(selectors.getData)
   const loading = useSelector(selectors.getLoading)
-  const suspenseLoading = useSuspense(loading)
 
   const dependencies = useContext(DependenciesContext)
   const unSplashService = dependencies.get('unsplash')
@@ -36,13 +34,18 @@ const Backgrounds: React.FC = () => {
   }, [alert, errorMessage])
 
   // Very first render
+  const setRandomWordOnSearch = useCallback(
+    () => dispatch(dispatchRandomWord()),
+    [dispatch]
+  )
+
   useEffect(() => {
-    dispatch(dispatchRandomWord())
-  }, [dispatch])
+    setRandomWordOnSearch()
+  }, [setRandomWordOnSearch])
 
   // Render
   const conditionalRender = () => {
-    if (suspenseLoading) {
+    if (loading) {
       return <Loading />
     }
 
@@ -76,7 +79,7 @@ const Backgrounds: React.FC = () => {
       )
     }
 
-    return <Empty />
+    return <Empty onClickRandomWord={setRandomWordOnSearch} />
   }
 
   const renderResults = conditionalRender()

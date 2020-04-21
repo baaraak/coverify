@@ -6120,10 +6120,10 @@ react-redux@7.2.0:
     prop-types "^15.7.2"
     react-is "^16.9.0"
 
-react-snuggle@1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/react-snuggle/-/react-snuggle-1.2.2.tgz#64a1dc9d78b4143d0726093adbee044d5e629d7c"
-  integrity sha512-Bkvpu6N69nxFvY6XJcVCnjLQCAbn/AQ1k7cSCV4fLj1IvB3IqOYaGTzoe84iHKmRIXGL3O5E9id8DVi4vWGhHQ==
+react-snuggle@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/react-snuggle/-/react-snuggle-1.2.3.tgz#2724acdceb6b3ea0a793b6e150327d7dc98b4521"
+  integrity sha512-+z/pveKihWAy7OSSzRQxkiHATT/1GSNJ+QOReUm7uoFd5jD3D1b7p/0bg40LBYC4slX8c/zij4+LX6D0KmSi1w==
 
 react-spotify-login@0.9.1:
   version "0.9.1"

@@ -24,9 +24,9 @@ const Wrapper = styled.div`
   }
 `
 
-const Empty = () => {
-  const onClick = () => null
-
+const Empty: React.FC<{ onClickRandomWord: () => void }> = ({
+  onClickRandomWord,
+}) => {
   return (
     <Wrapper>
       <img src={emptySrc} alt="NotFound" />
@@ -35,7 +35,9 @@ const Empty = () => {
       </Text>
 
       <Text size="heading" color="white">
-        <button onClick={onClick}>Would you like any suggestions?</button>
+        <button onClick={onClickRandomWord}>
+          Would you like any suggestions?
+        </button>
       </Text>
     </Wrapper>
   )
