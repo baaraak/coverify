@@ -7,6 +7,7 @@ import { selectors as playlistSelector } from './config/reducer'
 import { Empty } from './partials/Empty'
 import { Item } from './partials/Item'
 import { Welcome } from './Welcome'
+import { MAIN_BREAKPOINT } from 'common/sizes'
 import { useAlert } from 'common/UI'
 import {
   selectors as editorSelectors,
@@ -20,8 +21,13 @@ const Grid = styled.div`
   justify-content: space-between;
 
   > * {
-    width: calc(100% / 4 - 1em);
-    margin-bottom: 2em;
+    width: calc(100% / 2 - 0.5em);
+    margin-bottom: 1em;
+
+    @media (min-width: ${MAIN_BREAKPOINT}) {
+      width: calc(100% / 4 - 1em);
+      margin-bottom: 2em;
+    }
   }
 `
 

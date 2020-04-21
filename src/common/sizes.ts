@@ -7,4 +7,4 @@ export const COVER_SIZE = '26.6em'
 export const COVER_SIZE_COMPACT = '6em'
 
 // Mobile
-export const MAIN_BREAKPOINT = '68em'
+export const MAIN_BREAKPOINT = '60em'

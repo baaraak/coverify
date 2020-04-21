@@ -7,6 +7,7 @@ import {
   ANIMATE_POSITION,
   createTransition,
 } from 'common/animations'
+import { MAIN_BREAKPOINT } from 'common/sizes'
 
 const Tab = styled.div`
   border-top: 1px solid var(--color-white-lighter);
@@ -17,18 +18,26 @@ const Tab = styled.div`
     rgba(33, 33, 33, 1) 100%
   );
   background: linear-gradient(#141414, rgba(26, 27, 28, 0));
-  padding: 2em 0;
+  padding: 1em 0;
   justify-content: center;
+
+  @media (min-width: ${MAIN_BREAKPOINT}) {
+    padding: 2em 0;
+  }
 `
 
 const TabItem = styled(motion.button)<{ current: boolean }>`
   font-size: var(--size-medium);
   color: var(--color-white);
   font-weight: 900;
-  margin: 0 2em;
   opacity: 0.8;
   text-shadow: 0 1px 2px var(--color-white-lighter);
   transition: all 0.2s ease;
+  margin: 0 1em;
+
+  @media (min-width: ${MAIN_BREAKPOINT}) {
+    margin: 0 2em;
+  }
 
   ${({ current }) =>
     current &&
@@ -57,6 +66,7 @@ const HandleContent = styled(motion.div)<{ current: boolean }>`
       position: absolute;
       top: 1em;
       width: 100%;
+      height: 50vh;
       z-index: 1;
     `}}
 `

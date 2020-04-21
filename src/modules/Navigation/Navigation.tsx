@@ -1,15 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { COVER_SIZE_COMPACT } from 'common/sizes'
+import { COVER_SIZE_COMPACT, MAIN_BREAKPOINT } from 'common/sizes'
 import { Tabs, Container } from 'common/UI'
 import Backgrounds from 'modules/Backgrounds'
 import Playlist from 'modules/Playlist'
 
 const CustomTab = styled(Tabs)`
   position: sticky;
-  top: calc(${COVER_SIZE_COMPACT} + 1.9em);
-  z-index: 999;
+  top: 4.8em;
+  z-index: 5;
+
+  @media (min-width: ${MAIN_BREAKPOINT}) {
+    top: calc(${COVER_SIZE_COMPACT} + 1.9em);
+  }
 `
 
 const Navigation: React.FC = () => {
