@@ -71,8 +71,8 @@ export const useWindowSize = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const globalWindow = (global as any).window
 
-  const [width, setWidth] = useState(0)
-  const [height, setHeight] = useState(0)
+  const [width, setWidth] = useState(1200)
+  const [height, setHeight] = useState(1200)
   const debounceWidth = useDebounce<number>(width)
   const debounceHeight = useDebounce<number>(height)
 

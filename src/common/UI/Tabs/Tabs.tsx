@@ -89,9 +89,9 @@ const Tabs: React.FC<TabsProps> = ({ data, className }) => {
       </Tab>
 
       <WrapperContent
-      // initial={INITIAL_POSITION_INVERTED}
-      // animate={ANIMATE_POSITION}
-      // transition={createTransition(2)}
+        initial={INITIAL_POSITION_INVERTED}
+        animate={ANIMATE_POSITION}
+        transition={createTransition(2)}
       >
         {data.map(({ content, title }, index) => {
           return (
@@ -99,6 +99,7 @@ const Tabs: React.FC<TabsProps> = ({ data, className }) => {
               key={title}
               current={currentTab === index}
               animate={{
+                y: currentTab === index ? 0 : -50,
                 opacity: currentTab === index ? 1 : 0,
               }}
             >
