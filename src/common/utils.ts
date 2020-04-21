@@ -79,7 +79,7 @@ export const useWindowSize = () => {
   const handleWidth = useCallback(() => {
     setWidth(globalWindow.innerWidth)
     setHeight(globalWindow.innerHeight)
-  }, [globalWindow.innerWidth, globalWindow.innerHeight])
+  }, [globalWindow])
 
   useEffect(() => {
     if (globalWindow) {
