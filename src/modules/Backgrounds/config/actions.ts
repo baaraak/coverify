@@ -60,10 +60,20 @@ const useGetBackgroundSearch = () => {
       dispatch(dispatchLoading())
 
       const backgroundData = await unSplashService.queryImage(searchQuery)
+      const filterByOnlyKnownData = backgroundData.data.map((e) => ({
+        id: e.id,
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        alt_description: e.alt_description,
+        urls: e.urls,
+        color: e.color,
+        width: e.width,
+        height: e.height,
+        user: e.user,
+      }))
 
       dispatch({
         type: types.BACKGROUND_SUCCESS,
-        payload: backgroundData.data,
+        payload: filterByOnlyKnownData,
         meta: searchQuery,
       })
     } catch (err) {

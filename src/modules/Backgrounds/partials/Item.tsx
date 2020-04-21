@@ -14,6 +14,7 @@ const Image = styled.img`
     0 100px 80px rgba(0, 0, 0, 0.07);
   border-radius: 2px;
   width: 100%;
+  height: auto;
 `
 
 const Copyright = styled(Text)`
@@ -45,8 +46,10 @@ const Item: React.FC<ItemProps> = ({ element, onLoadItem, pickImage }) => {
     >
       <Image
         onLoad={onLoadItem}
-        src={element?.urls?.regular}
+        src={element?.urls?.small}
         alt={element?.alt_description}
+        width={element.width}
+        height={element.height}
       />
 
       <Copyright color="white-light" size="small">
