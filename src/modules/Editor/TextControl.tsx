@@ -13,6 +13,7 @@ import {
   createTransition,
   useTextControlAnimation,
 } from 'common/animations'
+import i18n from 'common/i18n'
 import { MAIN_BREAKPOINT } from 'common/sizes'
 
 // Components
@@ -54,7 +55,7 @@ const TextControl: React.FC = (props) => {
       {...props}
     >
       <motion.div style={style}>
-        <Caption gutter>Text style</Caption>
+        <Caption gutter>{i18n.t('editor.textStyle')}</Caption>
         <Row>
           <TextAlign />
           <VerticalDivisor />

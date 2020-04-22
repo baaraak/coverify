@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import welcomeSrc from './assets/welcome.svg'
+import i18n from 'common/i18n'
 import { Button, Text } from 'common/UI'
 import { UserLoginButton } from 'modules/User'
 
@@ -27,7 +28,7 @@ const Welcome = () => {
       <img src={welcomeSrc} alt="Welcome" />
       <br />
       <Button variant="outline" as={UserLoginButton}>
-        Log in with Spotify
+        {i18n.t('logIn', { where: i18n.t('spotify') })}
       </Button>
       <Text size="normal" color="white-light">
         Import all playlist and edit its artwork

@@ -4,6 +4,7 @@ import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import styled from 'styled-components'
 
 import { UserAvatar } from './UserAvatar'
+import i18n from 'common/i18n'
 import { DependenciesContext } from 'common/service/context'
 import { Button, useAlert } from 'common/UI'
 import { useSuspense } from 'common/utils'
@@ -74,7 +75,7 @@ const User: React.FC = () => {
 
   return (
     <Button as={UserLoginButton} variant="outline">
-      Log in with Spotify
+      {i18n.t('logIn', { where: i18n.t('spotify') })}
     </Button>
   )
 }

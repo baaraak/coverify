@@ -6,6 +6,7 @@ import type { State, Actions } from './reducer'
 import { INITIAL_STATE } from './reducer'
 import { selectors } from './reducer'
 import { COVER_ID, APP_NAME } from 'common/constants'
+import i18n from 'common/i18n'
 import { DependenciesContext } from 'common/service/context'
 import { useAlert } from 'common/UI'
 import type { ThunkResult } from 'config/redux'
@@ -184,7 +185,10 @@ const useUpdateCoverOfPlaylist = () => {
 
   const submit = async () => {
     // Check auth
-    if (!isConnected) return alert.error('First you need to sign in on Spotify')
+    if (!isConnected)
+      return alert.error(
+        i18n.t('alert.errorSignIn', { where: i18n.t('spotify') })
+      )
 
     // Get node
     const node = document.getElementById(COVER_ID)
@@ -203,7 +207,7 @@ const useUpdateCoverOfPlaylist = () => {
 
         dispatch(dispatchUpdateCover())
         refetchPlaylists()
-        alert.info('The playlist cover has been updated successfully!')
+        alert.info(i18n.t('alert.coverUpdated'))
       } catch (err) {
         dispatch(dispatchError(err.message))
       }

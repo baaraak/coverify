@@ -5,6 +5,7 @@ import imagePlaceholderSrc from '../assets/image-placeholder.jpg'
 import { types } from './actionTypes'
 import { COLORS_SCHEMA } from './constants'
 import { APP_NAME } from 'common/constants'
+import i18n from 'common/i18n'
 
 /**
  * Initial state
@@ -15,10 +16,10 @@ const INITIAL_STATE = {
   colors: COLORS_SCHEMA[0],
   fontFamily: 'Montserrat',
   fontSize: 60,
-  foreText: 'This is',
+  foreText: i18n.t('editor.foreText'),
   backgroundUrl: imagePlaceholderSrc,
-  mainText: 'Your best cover ever',
-  playlistName: `Welcome to ${APP_NAME}`,
+  mainText: i18n.t('editor.mainText'),
+  playlistName: i18n.t('editor.playlistName', { appName: APP_NAME }),
   playlistId: '',
   textAlign: 'left',
 }

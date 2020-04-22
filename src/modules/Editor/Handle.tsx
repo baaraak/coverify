@@ -16,6 +16,7 @@ import {
   useHandleAnimation,
 } from 'common/animations'
 import { AUTHOR } from 'common/constants'
+import i18n from 'common/i18n'
 import { MAIN_BREAKPOINT } from 'common/sizes'
 import { Text, Button, Loading } from 'common/UI'
 import { truncate, scrollToAsync } from 'common/utils'
@@ -85,7 +86,8 @@ const Handle: React.FC = () => {
   const playlistNameTruncate = truncate(playlistName)
   const createBy = (
     <>
-      <span> Create by</span> {user.userName ? user.userName : AUTHOR}
+      <span> {i18n.t('editor.createBy')}</span>{' '}
+      {user.userName ? user.userName : AUTHOR}
     </>
   )
 
@@ -125,7 +127,7 @@ const Handle: React.FC = () => {
 
       <Actions>
         <Button variant="normal" onClick={handleUpdateCover}>
-          Update on Spotify
+          {i18n.t('editor.updateOn', { where: i18n.t('spotify') })}
           <LoadingHandle
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: loading ? '1em' : 0, opacity: loading ? 1 : 0 }}

@@ -1,3 +1,5 @@
+import i18n from './i18n'
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkg = require('../../package.json')
 
@@ -19,15 +21,15 @@ const SHARE_TWITTER = `https://twitter.com/intent/tweet?text=${APP_NAME} - ${DES
 // Content
 export const MENU: Array<{ text: string; href: string }> = [
   {
-    text: 'Codebase',
+    text: i18n.t('menu.codebase'),
     href: SHARE_GITHUB,
   },
   {
-    text: 'Issues',
+    text: i18n.t('menu.issues'),
     href: `${SHARE_GITHUB}/issues/`,
   },
   {
-    text: 'Share to Twitter',
+    text: i18n.t('menu.codebase', { where: i18n.t('twitter') }),
     href: SHARE_TWITTER,
   },
 ]

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { User } from './User'
 import { MENU } from 'common/constants'
+import i18n from 'common/i18n'
 import { Text } from 'common/UI'
 
 const Menu = styled.nav`
@@ -47,6 +48,11 @@ const MenuItem = styled(Text)`
 `
 
 const Navigation: React.FC = () => {
+  const handleLanguage = (lang: string) => {
+    i18n.changeLanguage(lang)
+    window.location.reload()
+  }
+
   return (
     <>
       <Menu>
@@ -64,6 +70,13 @@ const Navigation: React.FC = () => {
             </MenuItem>
           )
         })}
+
+        <MenuItem>
+          <button onClick={() => handleLanguage('en-US')}>EN</button>
+        </MenuItem>
+        <MenuItem>
+          <button onClick={() => handleLanguage('pt-BR')}>PT</button>
+        </MenuItem>
       </Menu>
 
       <User />

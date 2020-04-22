@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import i18n from 'common/i18n'
 import { COVER_SIZE_COMPACT, MAIN_BREAKPOINT } from 'common/sizes'
 import { Tabs, Container } from 'common/UI'
 import Backgrounds from 'modules/Backgrounds'
@@ -22,11 +23,11 @@ const Navigation: React.FC = () => {
       <CustomTab
         data={[
           {
-            title: 'Background image',
+            title: i18n.t('navigation.backgroundImage'),
             content: <Backgrounds />,
           },
           {
-            title: 'My playlists',
+            title: i18n.t('navigation.myPlaylists'),
             content: <Playlist />,
           },
         ]}

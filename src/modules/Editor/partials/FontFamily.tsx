@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { dispatchFontFamily } from '../config/actions'
 import { selectors } from '../config/reducer'
 import { Caption, Select } from './common'
+import i18n from 'common/i18n'
 
 const FontFamily = () => {
   const dispatch = useDispatch()
@@ -17,7 +18,7 @@ const FontFamily = () => {
 
   return (
     <>
-      <Caption>Typeface</Caption>
+      <Caption>{i18n.t('editor.typeface')}</Caption>
 
       <Select defaultValue={value} onChange={handle}>
         <option disabled>Sans serif ———</option>

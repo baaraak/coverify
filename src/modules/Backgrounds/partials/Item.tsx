@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { BackgroundItem } from '../config/reducer'
 import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
 import { APP_NAME } from 'common/constants'
+import i18n from 'common/i18n'
 import { Text } from 'common/UI'
 
 const Image = styled.img`
@@ -51,7 +52,7 @@ const Item: React.FC<ItemProps> = ({ element, pickImage }) => {
       />
 
       <Copyright color="white-light" size="small">
-        Photo by{' '}
+        {i18n.t('navigation.photoBy')}{' '}
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -59,7 +60,7 @@ const Item: React.FC<ItemProps> = ({ element, pickImage }) => {
         >
           {element?.user?.name}
         </a>{' '}
-        on{' '}
+        {i18n.t('navigation.photoByOn')}{' '}
         <a
           target="_blank"
           rel="noopener noreferrer"

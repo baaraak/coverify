@@ -8,6 +8,7 @@ import { COLORS_SCHEMA } from '../config/constants'
 import { State } from '../config/reducer'
 import { Caption } from './common'
 import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
+import i18n from 'common/i18n'
 import { MAIN_BREAKPOINT } from 'common/sizes'
 
 export const ColorsCol = styled.div`
@@ -56,7 +57,7 @@ const ColorSelect: React.FC = () => {
 
   return (
     <>
-      <Caption gutter>Color</Caption>
+      <Caption gutter>{i18n.t('editor.color')}</Caption>
       <ColorsCol>
         {COLORS_SCHEMA.map((color, index) => {
           return (
