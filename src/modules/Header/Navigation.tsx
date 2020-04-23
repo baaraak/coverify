@@ -48,6 +48,12 @@ const MenuItem = styled(Text)`
   }
 `
 
+const LanguageSelector = styled(MenuItem)`
+  opacity: 0.4;
+  font-size: var(--size-small);
+  text-transform: uppercase;
+`
+
 const Navigation: React.FC = () => {
   const dependencies = useContext(DependenciesContext)
 
@@ -84,12 +90,12 @@ const Navigation: React.FC = () => {
           )
         })}
 
-        <MenuItem>
-          <button onClick={() => handleLanguage('en-US')}>EN</button>
-        </MenuItem>
-        <MenuItem>
-          <button onClick={() => handleLanguage('pt-BR')}>PT</button>
-        </MenuItem>
+        <LanguageSelector as="button" onClick={() => handleLanguage('en-US')}>
+          EN
+        </LanguageSelector>
+        <LanguageSelector as="button" onClick={() => handleLanguage('pt-BR')}>
+          PT
+        </LanguageSelector>
       </Menu>
 
       <User />

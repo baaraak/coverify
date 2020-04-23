@@ -13,7 +13,7 @@ import { Container as BaseContainer } from 'common/UI'
 const Wrapper = styled.div`
   height: ${HEADER_HEIGHT};
   position: relative;
-  z-index: 9;
+  z-index: 10;
 `
 
 const Background = styled.header`

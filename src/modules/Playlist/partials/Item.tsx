@@ -5,9 +5,10 @@ import styled from 'styled-components'
 import emptyArtwork from '../assets/empty-artwork.jpeg'
 import penSrc from '../assets/pen.svg'
 import { PlaylistItem } from '../config/reducer'
+import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
 import { Text } from 'common/UI'
 
-export const Button = styled.button`
+export const Button = styled(motion.button)`
   width: 100%;
 `
 
@@ -59,7 +60,7 @@ const Item: React.FC<{
   isSelected: boolean
 }> = ({ onSelect, data, isSelected }) => {
   return (
-    <Button onClick={onSelect}>
+    <Button onClick={onSelect} whileHover={WHILE_HOVER} whileTap={WHILE_TAP}>
       <Handle>
         {isSelected && (
           <EditLayer initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
