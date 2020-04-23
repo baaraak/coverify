@@ -182,13 +182,20 @@ const useUpdateCoverOfPlaylist = () => {
   // States
   const playlistId = useSelector(selectors.getPlaylistId)
   const isConnected = useSelector(userSelector.isConnected)
+  const analyticsService = dependencies.get('analytics')
 
   const submit = async () => {
     // Check auth
-    if (!isConnected)
-      return alert.error(
-        i18n.t('alert.errorSignIn', { where: i18n.t('spotify') })
-      )
+    if (!isConnected) {
+      const error = i18n.t('alert.errorSignIn', { where: i18n.t('spotify') })
+
+      alert.error(error)
+
+      if (analyticsService) {
+        analyticsService.logEvent('error', error)
+      }
+      return
+    }
 
     // Get node
     const node = document.getElementById(COVER_ID)

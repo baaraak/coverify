@@ -1,19 +1,27 @@
-import React, { FormEvent } from 'react'
+import React, { useContext, FormEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { dispatchFontFamily } from '../config/actions'
 import { selectors } from '../config/reducer'
 import { Caption, Select } from './common'
 import i18n from 'common/i18n'
+import { DependenciesContext } from 'common/service/context'
 
 const FontFamily = () => {
   const dispatch = useDispatch()
   const value = useSelector(selectors.getFontFamily)
+  const dependencies = useContext(DependenciesContext)
+  const analyticsService = dependencies.get('analytics')
 
   const handle = (event: FormEvent<HTMLSelectElement>) => {
     // TODO: fix type checking
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    dispatch(dispatchFontFamily((event.target as any).value))
+    const value = (event.target as any).value
+    dispatch(dispatchFontFamily(value))
+
+    if (analyticsService) {
+      analyticsService.logEvent('editor', `pick ${value})`)
+    }
   }
 
   return (

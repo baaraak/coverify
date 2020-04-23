@@ -45,6 +45,7 @@ const useGetBackgroundSearch = () => {
 
   const dependencies = useContext(DependenciesContext)
   const unSplashService = dependencies.get('unsplash')
+  const analyticsService = dependencies.get('analytics')
 
   /**
    * Handle
@@ -76,6 +77,11 @@ const useGetBackgroundSearch = () => {
         payload: filterByOnlyKnownData,
         meta: searchQuery,
       })
+
+      // Analytics
+      if (analyticsService) {
+        analyticsService.logEvent('background search', searchQuery)
+      }
     } catch (err) {
       dispatch(dispatchError(err.message))
     }

@@ -24,13 +24,18 @@ const Backgrounds: React.FC = () => {
 
   const dependencies = useContext(DependenciesContext)
   const unSplashService = dependencies.get('unsplash')
+  const analyticsService = dependencies.get('analytics')
 
   // Effects
   useEffect(() => {
     if (errorMessage) {
       alert.error(errorMessage)
+
+      if (analyticsService) {
+        analyticsService.logEvent('error', errorMessage)
+      }
     }
-  }, [alert, errorMessage])
+  }, [alert, analyticsService, errorMessage])
 
   // Very first render
   const setRandomWordOnSearch = useCallback(
@@ -53,6 +58,10 @@ const Backgrounds: React.FC = () => {
         if (element?.urls?.full && element?.id) {
           dispatch(actions.dispatchBackground(element?.urls?.full))
           await unSplashService.downloadImage(element?.id)
+
+          if (analyticsService) {
+            analyticsService.logEvent('editor', 'pick background')
+          }
         }
       }
 

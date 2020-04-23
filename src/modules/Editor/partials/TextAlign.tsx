@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import alignCenter from '../assets/align-center.svg'
@@ -7,12 +7,21 @@ import alignRight from '../assets/align-right.svg'
 import { dispatchTextAlign } from '../config/actions'
 import { selectors } from '../config/reducer'
 import { Button } from './common'
+import { DependenciesContext } from 'common/service/context'
 
 const TextAlign: React.FC = () => {
   const dispatch = useDispatch()
   const value = useSelector(selectors.getTextAlign)
+  const dependencies = useContext(DependenciesContext)
+  const analyticsService = dependencies.get('analytics')
 
-  const handle = (value: string) => dispatch(dispatchTextAlign(value))
+  const handle = (value: string) => {
+    dispatch(dispatchTextAlign(value))
+
+    if (analyticsService) {
+      analyticsService.logEvent('editor', `pick ${value})`)
+    }
+  }
 
   return (
     <>

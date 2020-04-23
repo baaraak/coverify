@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React from 'react'
+import React, { useContext } from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -17,6 +17,7 @@ import {
 } from 'common/animations'
 import { AUTHOR } from 'common/constants'
 import i18n from 'common/i18n'
+import { DependenciesContext } from 'common/service/context'
 import { MAIN_BREAKPOINT } from 'common/sizes'
 import { Text, Button, Loading } from 'common/UI'
 import { truncate, scrollToAsync } from 'common/utils'
@@ -72,6 +73,8 @@ const Handle: React.FC = () => {
   // Action
   const updatePlaylistCover = useUpdateCoverOfPlaylist()
   const downloadPlaylistCover = useDownloadCoverOfPlaylist()
+  const dependencies = useContext(DependenciesContext)
+  const analyticsService = dependencies.get('analytics')
 
   // State
   const isConnected = useSelector(userSelectors.isConnected)
@@ -95,11 +98,19 @@ const Handle: React.FC = () => {
   const handleUpdateCover = async () => {
     await scrollToAsync()
     updatePlaylistCover()
+
+    if (analyticsService) {
+      analyticsService.logPageView('editor', 'update on spotify')
+    }
   }
 
   const handleDownloadCover = async () => {
     await scrollToAsync()
     downloadPlaylistCover()
+
+    if (analyticsService) {
+      analyticsService.logPageView('editor', 'download cover')
+    }
   }
 
   return (

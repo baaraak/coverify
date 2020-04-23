@@ -31,6 +31,10 @@ const UserLoginButton: React.FC = (props) => {
 
     // Full field reducer
     dispatch(dispatchUserToken(spotifyToken))
+
+    // Analytics
+    const analytics = dependencies.get('analytics')
+    analytics.logEvent('user', 'login')
   }
 
   const onFailure = (response: Error) =>

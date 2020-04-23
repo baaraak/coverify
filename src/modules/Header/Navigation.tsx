@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 
 import { User } from './User'
 import { MENU } from 'common/constants'
 import i18n from 'common/i18n'
+import { DependenciesContext } from 'common/service/context'
 import { Text } from 'common/UI'
 
 const Menu = styled.nav`
@@ -48,9 +49,20 @@ const MenuItem = styled(Text)`
 `
 
 const Navigation: React.FC = () => {
+  const dependencies = useContext(DependenciesContext)
+
+  // Analytics
+  const event = (value: string) => {
+    const analytics = dependencies.get('analytics')
+    analytics.logEvent('navigation', value)
+  }
+
+  // Language
   const handleLanguage = (lang: string) => {
     i18n.changeLanguage(lang)
     window.location.reload()
+
+    event(lang)
   }
 
   return (
@@ -65,6 +77,7 @@ const Navigation: React.FC = () => {
               size="medium"
               target="_blank"
               href={item.href}
+              onClick={() => event(item.href)}
             >
               {item.text}
             </MenuItem>

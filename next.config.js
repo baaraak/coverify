@@ -15,6 +15,7 @@ module.exports = withImages({
   env: {
     SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
     SPOTIFY_URL: process.env.SPOTIFY_URL,
+    ANALYTICS: process.env.ANALYTICS,
   },
   typescript: {
     // TODO: Should be remove as soon as possible

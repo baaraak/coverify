@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
@@ -9,6 +9,7 @@ import { State } from '../config/reducer'
 import { Caption } from './common'
 import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
 import i18n from 'common/i18n'
+import { DependenciesContext } from 'common/service/context'
 import { MAIN_BREAKPOINT } from 'common/sizes'
 
 export const ColorsCol = styled.div`
@@ -51,9 +52,16 @@ const ColorButton = styled(motion.button).attrs({
 
 const ColorSelect: React.FC = () => {
   const dispatch = useDispatch()
+  const dependencies = useContext(DependenciesContext)
+  const analyticsService = dependencies.get('analytics')
 
-  const handle = (value: State['colors']) =>
+  const handle = (value: State['colors']) => {
     dispatch(dispatchColorSchema(value))
+
+    if (analyticsService) {
+      analyticsService.logEvent('editor', 'pick color')
+    }
+  }
 
   return (
     <>

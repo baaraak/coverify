@@ -12,16 +12,29 @@ const Core: React.FC = ({ children }) => {
   const dependencies = useContext(DependenciesContext)
   const token = useSelector(userSelector.getToken)
 
+  /**
+   * Init services
+   */
   useEffect(() => {
-    // rehydrate
+    dependencies.create('unsplash', [])
+
+    const trackingCode = process.env.ANALYTICS || ''
+    const analyticsService = dependencies.create('analytics', { trackingCode })
+
+    if (analyticsService) {
+      analyticsService.init()
+      analyticsService.logPageView()
+    }
+  }, [dependencies])
+
+  /**
+   * Rehydrate services
+   */
+  useEffect(() => {
     if (token) {
       dependencies.create('spotify', { token })
     }
   }, [token, dependencies])
-
-  useEffect(() => {
-    dependencies.create('unsplash', [])
-  }, [dependencies])
 
   return <>{children}</>
 }

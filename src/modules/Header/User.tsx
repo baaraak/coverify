@@ -25,26 +25,34 @@ const User: React.FC = () => {
   const isConnected = useSelector(userSelectors.isConnected, shallowEqual)
   const dependencies = useContext(DependenciesContext)
   const alert = useAlert()
+  const analyticsService = dependencies.get('analytics')
 
   // State
   const userData = useSelector(userSelectors.getUserData, shallowEqual)
   const loading = useSelector(userSelectors.getLoading)
   const errorMessage = useSelector(userSelectors.getErrorMessage, shallowEqual)
-
   const suspenseLoading = useSuspense(loading)
 
   // Handler
   const endSession = () => {
     dependencies.destroy('spotify')
     dispatch(userActions.dispatchLogOut())
+
+    // Analytics
+    const analytics = dependencies.get('analytics')
+    analytics.logEvent('user', 'login')
   }
 
   // Effect
   useEffect(() => {
     if (errorMessage) {
       alert.error(errorMessage)
+
+      if (analyticsService) {
+        analyticsService.logEvent('error', errorMessage)
+      }
     }
-  }, [alert, errorMessage])
+  }, [alert, analyticsService, errorMessage])
 
   if (suspenseLoading) {
     return (

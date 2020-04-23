@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import styled from 'styled-components'
 
@@ -7,6 +7,7 @@ import { selectors as playlistSelector } from './config/reducer'
 import { Empty } from './partials/Empty'
 import { Item } from './partials/Item'
 import { Welcome } from './Welcome'
+import { DependenciesContext } from 'common/service/context'
 import { MAIN_BREAKPOINT } from 'common/sizes'
 import { useAlert } from 'common/UI'
 import {
@@ -35,6 +36,8 @@ const Playlist = () => {
   // Handles
   const alert = useAlert()
   const dispatch = useDispatch()
+  const dependencies = useContext(DependenciesContext)
+  const analyticsService = dependencies.get('analytics')
 
   // Third-states
   const isConnected = useSelector(userSelectors.isConnected)
@@ -55,8 +58,12 @@ const Playlist = () => {
   useEffect(() => {
     if (errorMessage) {
       alert.error(errorMessage)
+
+      if (analyticsService) {
+        analyticsService.logEvent('error', errorMessage)
+      }
     }
-  }, [alert, errorMessage])
+  }, [alert, analyticsService, errorMessage])
 
   // If there is no playlist picked, then selected the first one
   useEffect(() => {
