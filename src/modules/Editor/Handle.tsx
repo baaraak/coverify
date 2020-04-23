@@ -125,7 +125,7 @@ const Handle: React.FC = () => {
         size="small"
         style={{ opacity, marginBottom: offset }}
       >
-        {isConnected ? "You're editing" : 'Playlist'}
+        {isConnected ? i18n.t('editor.editing') : i18n.t('playlist')}
       </Caption>
 
       <Title as={motion.h2} size="huge" weight="bold" style={{ scale }}>

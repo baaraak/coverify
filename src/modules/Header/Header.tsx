@@ -10,10 +10,10 @@ import { APP_NAME } from 'common/constants'
 import { HEADER_HEIGHT } from 'common/sizes'
 import { Container as BaseContainer } from 'common/UI'
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ open: boolean }>`
   height: ${HEADER_HEIGHT};
   position: relative;
-  z-index: 10;
+  z-index: ${({ open }) => (open ? 10 : 9)};
 `
 
 const Background = styled.header`
@@ -93,7 +93,7 @@ const Header = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper open={showMenu}>
       <Background>
         <Container>
           <LogoImage src={logoSrc} alt={APP_NAME} />

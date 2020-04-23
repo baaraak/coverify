@@ -6,6 +6,7 @@ export default {
       share: 'Compartilhar no {{where}}',
     },
     editor: {
+      editing: 'Você está editando',
       foreText: 'Isto é',
       mainText: 'A sua melhor capa',
       playlistName: `Bem-vindo ao {{appName}}`,
@@ -21,6 +22,7 @@ export default {
       photoBy: 'Foto por',
       photoByOn: 'no',
     },
+    playlist: 'Playlist',
     twitter: 'Twitter',
     spotify: 'Spotify',
     logIn: 'Entrar com {{where}}',

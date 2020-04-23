@@ -109,7 +109,7 @@ const Tabs: React.FC<TabsProps> = ({ data, className }) => {
               key={title}
               current={currentTab === index}
               animate={{
-                y: currentTab === index ? 0 : -50,
+                y: currentTab === index ? 0 : 50,
                 opacity: currentTab === index ? 1 : 0,
               }}
             >
