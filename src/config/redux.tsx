@@ -2,7 +2,8 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { persistReducer, createTransform } from 'redux-persist'
+import { persistStore, persistReducer, createTransform } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
 import storage from 'redux-persist/lib/storage'
 import thunk, { ThunkMiddleware, ThunkAction } from 'redux-thunk'
 
@@ -85,6 +86,7 @@ const persistConfig = {
   key: 'coverify',
   storage,
   transforms: [transform],
+  blacklist: ['editor'],
 }
 
 /**
@@ -99,12 +101,19 @@ const composeEnhancers = composeWithDevTools(
  * Creator of store and persistor
  */
 const store = createStore(persistedReducer, composeEnhancers)
+const persistor = persistStore(store)
 
 /**
  * Provider
  */
 const DataProvider: React.FC = ({ children }) => {
-  return <Provider store={store}>{children}</Provider>
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        {children}
+      </PersistGate>
+    </Provider>
+  )
 }
 
-export { DataProvider }
+export { DataProvider, persistor }

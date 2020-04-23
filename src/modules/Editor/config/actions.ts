@@ -14,6 +14,13 @@ import { actions as playlistActions } from 'modules/Playlist'
 import { selectors as userSelector } from 'modules/User'
 
 /**
+ * Reset
+ */
+const dispatchReset = () => ({
+  type: types.EDITOR_RESET,
+})
+
+/**
  * Loading
  */
 const dispatchLoading = () => ({
@@ -227,6 +234,7 @@ const useUpdateCoverOfPlaylist = () => {
 }
 
 export {
+  dispatchReset,
   dispatchBackground,
   dispatchPlaylistId,
   dispatchPlaylistName,

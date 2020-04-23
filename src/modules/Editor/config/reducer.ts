@@ -42,6 +42,9 @@ export interface Actions {
  */
 const reducer = (state = INITIAL_STATE, { type, payload, meta }: Actions) => {
   switch (type) {
+    case types.EDITOR_RESET:
+      return INITIAL_STATE
+
     case types.EDITOR_LOADING:
       return { ...state, loading: true }
 

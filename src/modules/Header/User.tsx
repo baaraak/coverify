@@ -8,6 +8,8 @@ import i18n from 'common/i18n'
 import { DependenciesContext } from 'common/service/context'
 import { Button, useAlert } from 'common/UI'
 import { useSuspense } from 'common/utils'
+import { persistor } from 'config/redux'
+import { actions as editorActions } from 'modules/Editor'
 import {
   UserLoginButton,
   selectors as userSelectors,
@@ -35,8 +37,13 @@ const User: React.FC = () => {
 
   // Handler
   const endSession = () => {
-    dependencies.destroy('spotify')
+    // Actions
     dispatch(userActions.dispatchLogOut())
+    dispatch(editorActions.dispatchReset())
+
+    // Remove dependencies and data
+    persistor.purge()
+    dependencies.destroy('spotify')
 
     // Analytics
     const analytics = dependencies.get('analytics')

@@ -69,6 +69,7 @@ const Playlist = () => {
   useEffect(() => {
     if (playlists.length > 0 && !playlistIdSelected) {
       dispatch(editorActions.dispatchPlaylistId(playlists[0].id))
+      dispatch(editorActions.dispatchPlaylistName(playlists[0].name))
     }
   }, [playlists, dispatch, playlistIdSelected])
 
