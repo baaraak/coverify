@@ -13,7 +13,7 @@ const wordList = [
   'nature',
   'mountain',
   'film',
-  'fashion',
+  'cassette',
   'summer',
   'health',
   'art',

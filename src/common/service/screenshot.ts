@@ -33,6 +33,7 @@ class ScreenShot {
     const canvas = await this.html2canvas(this.node, {
       allowTaint: true,
       useCORS: true,
+      backgroundColor: '#000',
     })
 
     return canvas
