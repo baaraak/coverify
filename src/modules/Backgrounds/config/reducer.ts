@@ -46,14 +46,30 @@ const reducer = (
   state = INITIAL_STATE,
   { type, payload, meta = '' }: Actions
 ) => {
+  // Make sure do not overload the reducer, removing the oldest
+  const sizeOfData = Object.keys(state.data).length
+  const oldestValueOfData = Object.keys(state.data).sort((a, b) => {
+    return state.data[a].timestamp - state.data[b].timestamp
+  })[0]
+
   switch (type) {
-    case types.BACKGROUND_SEARCH:
-      return { ...state, search: payload }
-
-    case types.BACKGROUND_LOADING:
-      return { ...state, errorMessage: undefined, loading: true }
-
     case types.BACKGROUND_SUCCESS:
+      if (sizeOfData > 10) {
+        delete state.data[oldestValueOfData]
+
+        return {
+          ...state,
+          loading: false,
+          data: {
+            ...state.data,
+            [meta]: {
+              timestamp: new Date().getTime(),
+              data: payload,
+            },
+          },
+        }
+      }
+
       return {
         ...state,
         loading: false,
@@ -65,6 +81,12 @@ const reducer = (
           },
         },
       }
+
+    case types.BACKGROUND_SEARCH:
+      return { ...state, search: payload }
+
+    case types.BACKGROUND_LOADING:
+      return { ...state, errorMessage: undefined, loading: true }
 
     case types.BACKGROUND_ERROR:
       return { ...INITIAL_STATE, errorMessage: payload }
