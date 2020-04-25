@@ -56,11 +56,13 @@ const LanguageSelector = styled(MenuItem)`
 
 const Navigation: React.FC = () => {
   const dependencies = useContext(DependenciesContext)
+  const analyticsService = dependencies.get('analytics')
 
   // Analytics
   const event = (value: string) => {
-    const analytics = dependencies.get('analytics')
-    analytics.logEvent('navigation', value)
+    if (analyticsService) {
+      analyticsService.logEvent('navigation', value)
+    }
   }
 
   // Language

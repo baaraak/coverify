@@ -48,8 +48,10 @@ const User: React.FC = () => {
     dependencies.destroy('spotify')
 
     // Analytics
-    const analytics = dependencies.get('analytics')
-    analytics.logEvent('user', 'login')
+
+    if (analyticsService) {
+      analyticsService.logEvent('user', 'login')
+    }
   }
 
   // Effect

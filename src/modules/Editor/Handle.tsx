@@ -106,7 +106,7 @@ const Handle: React.FC = () => {
     updatePlaylistCover()
 
     if (analyticsService) {
-      analyticsService.logPageView('editor', 'update on spotify')
+      analyticsService.logEvent('editor', 'update on spotify')
     }
   }
 
@@ -115,7 +115,7 @@ const Handle: React.FC = () => {
     downloadPlaylistCover()
 
     if (analyticsService) {
-      analyticsService.logPageView('editor', 'download cover')
+      analyticsService.logEvent('editor', 'download cover')
     }
   }
 

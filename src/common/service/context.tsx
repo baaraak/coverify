@@ -18,23 +18,42 @@ const dependencies = {
 /**
  * Types
  */
-type DependenciesProps = typeof dependencies
-type DependenciesOptions = {
-  [N in keyof DependenciesProps]: ConstructorParameters<DependenciesProps[N]>
+type InstanceOfDependencies = {
+  analytics: Analytics
+  spotify: Spotify
+  unsplash: UnSplash
+  screenshot: ScreenShot
 }
+
+type DependenciesProps = typeof dependencies
+type DependenciesKeys = keyof DependenciesProps
+
+type DependenciesParameters = {
+  [K in DependenciesKeys]: Unpacked<ConstructorParameters<DependenciesProps[K]>>
+}
+
+type InstanceDependencies = {
+  [K in DependenciesKeys]: InstanceType<DependenciesProps[K]>
+}
+
+type State = {
+  [K in keyof InstanceDependencies]?: InstanceDependencies[K]
+}
+
+type ReturnOfContext<R extends DependenciesKeys> =
+  | InstanceOfDependencies[R]
+  | false
 
 /**
  * Methods
  */
 interface ContextMethods {
-  create: <N extends keyof DependenciesProps>(
-    service: N,
-    options: DependenciesOptions[N]
-  ) => InstanceType<DependenciesProps[N]> | false
-  get: <N extends keyof DependenciesProps>(
-    service: N
-  ) => InstanceType<DependenciesProps[N]> | false
-  destroy: (service: keyof DependenciesProps) => boolean
+  create: <S extends DependenciesKeys>(
+    service: S,
+    options?: DependenciesParameters[S]
+  ) => ReturnOfContext<S>
+  get: <S extends DependenciesKeys>(service: S) => ReturnOfContext<S>
+  destroy: (service: DependenciesKeys) => boolean
 }
 
 const DependenciesContext = createContext<ContextMethods>({
@@ -43,38 +62,35 @@ const DependenciesContext = createContext<ContextMethods>({
   get: () => false,
 })
 
-type State = {
-  [N in keyof DependenciesProps]?: InstanceType<DependenciesProps[N]>
-}
-
-// Provider
+/**
+ * Provider of dependencies service
+ */
 const DependenciesProvider: React.FC = ({ children }) => {
   const [initialized, setInitialized] = useState<State>({})
 
   /**
-   * Create a new service
+   * Create a new service and return the instance
    */
-  const create: ContextMethods['create'] = <N extends keyof DependenciesProps>(
-    name: N,
-    options: DependenciesOptions[N]
+  const create: ContextMethods['create'] = <S extends DependenciesKeys>(
+    name: S,
+    options?: DependenciesParameters[S]
   ) => {
-    const dependencyConstructor = dependencies[name]
+    const Dependency = dependencies[name]
 
     // It doesn't exist
-    if (!dependencyConstructor) {
+    if (!Dependency) {
       return false
     }
 
     // It already exist
     if (initialized[name]) {
-      // TODO: I'm sure that it is not undefined
-      // But why typescript not?
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      return initialized[name]!
+      return initialized[name] as InstanceDependencies[S]
     }
 
-    // init
-    const instanceOfDependency = new dependencyConstructor(options)
+    // Init
+    // I wasn't able to pass the right options typed-safe
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const instanceOfDependency = new Dependency(options as any)
 
     // Update
     setInitialized((prev) => ({
@@ -83,7 +99,7 @@ const DependenciesProvider: React.FC = ({ children }) => {
     }))
 
     // Return
-    return instanceOfDependency
+    return instanceOfDependency as InstanceDependencies[S]
   }
 
   /**
@@ -108,11 +124,13 @@ const DependenciesProvider: React.FC = ({ children }) => {
   }
 
   /**
-   * Get a dependency
+   * Get a the instance of dependency
    */
-  const get: ContextMethods['get'] = (name) => {
-    if (initialized[name]) {
-      return initialized[name]
+  const get: ContextMethods['get'] = <S extends DependenciesKeys>(
+    service: S
+  ) => {
+    if (initialized[service]) {
+      return initialized[service] as InstanceOfDependencies[S]
     }
 
     return false

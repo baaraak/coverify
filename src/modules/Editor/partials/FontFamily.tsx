@@ -14,7 +14,7 @@ const FontFamily = () => {
   const analyticsService = dependencies.get('analytics')
 
   const handle = (event: FormEvent<HTMLSelectElement>) => {
-    // TODO: fix type checking
+    // TODO: Why events are so hard to handle?
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const value = (event.target as any).value
     dispatch(dispatchFontFamily(value))

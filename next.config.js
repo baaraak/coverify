@@ -18,8 +18,6 @@ module.exports = withImages({
     ANALYTICS: process.env.ANALYTICS,
   },
   typescript: {
-    // TODO: Should be remove as soon as possible
-    ignoreBuildErrors: true,
     ignoreDevErrors: true,
   },
 })

@@ -217,11 +217,14 @@ const useUpdateCoverOfPlaylist = () => {
     if (screenShotService && spotifyService && playlistId) {
       try {
         const snapshot = await screenShotService.getImage()
-        await spotifyService.updatePlaylistCover(playlistId, snapshot)
 
-        dispatch(dispatchUpdateCover())
-        refetchPlaylists()
-        alert.info(i18n.t('alert.coverUpdated'))
+        if (snapshot) {
+          await spotifyService.updatePlaylistCover(playlistId, snapshot)
+
+          dispatch(dispatchUpdateCover())
+          refetchPlaylists()
+          alert.info(i18n.t('alert.coverUpdated'))
+        }
       } catch (err) {
         dispatch(dispatchError(err.message))
       }

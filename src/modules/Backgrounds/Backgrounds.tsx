@@ -57,7 +57,10 @@ const Backgrounds: React.FC = () => {
       const pickImage = async (element: BackgroundItem) => {
         if (element?.urls?.full && element?.id) {
           dispatch(actions.dispatchBackground(element?.urls?.full))
-          await unSplashService.downloadImage(element?.id)
+
+          if (unSplashService) {
+            await unSplashService.downloadImage(element?.id)
+          }
 
           if (analyticsService) {
             analyticsService.logEvent('editor', 'pick background')

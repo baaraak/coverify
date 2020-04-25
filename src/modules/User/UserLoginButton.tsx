@@ -18,6 +18,7 @@ import { DependenciesContext } from 'common/service/context'
 const UserLoginButton: React.FC = (props) => {
   const dispatch = useDispatch()
   const dependencies = useContext(DependenciesContext)
+  const analyticsService = dependencies.get('analytics')
 
   // User Login
   const onRequest = () => dispatch(dispatchLoading())
@@ -26,15 +27,17 @@ const UserLoginButton: React.FC = (props) => {
     const spotifyToken = response.access_token
 
     // Creating context of services
-    // TODO: fix any
-    dependencies.create('spotify', { token: spotifyToken })
+    if (dependencies) {
+      dependencies.create('spotify', { token: spotifyToken })
+    }
 
     // Full field reducer
     dispatch(dispatchUserToken(spotifyToken))
 
     // Analytics
-    const analytics = dependencies.get('analytics')
-    analytics.logEvent('user', 'login')
+    if (analyticsService) {
+      analyticsService.logEvent('user', 'login')
+    }
   }
 
   const onFailure = (response: Error) =>

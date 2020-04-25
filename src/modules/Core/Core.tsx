@@ -16,7 +16,7 @@ const Core: React.FC = ({ children }) => {
    * Init services
    */
   useEffect(() => {
-    dependencies.create('unsplash', [])
+    dependencies.create('unsplash')
 
     const trackingCode = process.env.ANALYTICS || ''
     const analyticsService = dependencies.create('analytics', { trackingCode })
