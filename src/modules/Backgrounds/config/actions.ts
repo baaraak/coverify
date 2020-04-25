@@ -87,7 +87,7 @@ const useGetBackgroundSearch = () => {
     }
 
     return
-  }, [dispatch, searchQuery, unSplashService])
+  }, [analyticsService, dispatch, searchQuery, unSplashService])
 
   /**
    * Effect with dependencies

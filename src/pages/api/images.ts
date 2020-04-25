@@ -9,8 +9,19 @@ export default async (req: NowRequest, res: NowResponse) => {
   const data = await axios.get('https://api.unsplash.com/search/photos', {
     headers: { Authorization: `Client-ID ${process.env.UNSPLASH_TOKEN}` },
     // eslint-disable-next-line @typescript-eslint/camelcase
-    params: { query, per_page: 30 },
+    params: { query, per_page: 50 },
   })
 
-  res.json({ data: data.data.results })
+  const dataPageTwo = await axios.get(
+    'https://api.unsplash.com/search/photos',
+    {
+      headers: { Authorization: `Client-ID ${process.env.UNSPLASH_TOKEN}` },
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      params: { query, page: 2, per_page: 50 },
+    }
+  )
+
+  const mixedData = [...data.data.results, ...dataPageTwo.data.results]
+
+  res.json({ data: mixedData })
 }

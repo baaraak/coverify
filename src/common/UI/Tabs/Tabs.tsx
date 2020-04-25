@@ -12,12 +12,7 @@ import { MAIN_BREAKPOINT } from 'common/sizes'
 const Tab = styled.div`
   border-top: 1px solid var(--color-white-lighter);
   display: flex;
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(33, 33, 33, 1) 100%
-  );
-  background: linear-gradient(#141414, rgba(26, 27, 28, 0));
+  background: linear-gradient(var(--color-dark), rgba(26, 27, 28, 0));
   padding: 1em 0;
   justify-content: center;
 

@@ -35,6 +35,7 @@ const WrapperFixed = styled(motion.div)`
   );
   z-index: 9;
   position: relative;
+  border-top: 2px solid #ffffff20;
 
   @media (min-width: ${MAIN_BREAKPOINT}) {
     overflow: hidden;

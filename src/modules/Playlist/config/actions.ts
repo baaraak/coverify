@@ -6,6 +6,11 @@ import { DependenciesContext } from 'common/service/context'
 import { selectors as userSelector } from 'modules/User'
 
 /**
+ * Reset
+ */
+const dispatchReset = () => ({ type: types.PLAYLIST_RESET })
+
+/**
  * Loading
  */
 const dispatchLoading = () => ({ type: types.PLAYLIST_LOADING })
@@ -72,4 +77,4 @@ const useGetPlaylist = () => {
   return submit
 }
 
-export { useGetPlaylist }
+export { useGetPlaylist, dispatchReset }

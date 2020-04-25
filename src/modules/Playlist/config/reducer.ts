@@ -33,6 +33,9 @@ const INITIAL_STATE: State = {
 
 const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
   switch (type) {
+    case types.PLAYLIST_RESET:
+      return INITIAL_STATE
+
     case types.PLAYLIST_LOADING:
       return { ...INITIAL_STATE, loading: true }
 

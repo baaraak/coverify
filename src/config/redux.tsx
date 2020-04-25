@@ -86,7 +86,7 @@ const persistConfig = {
   key: 'coverify',
   storage,
   transforms: [transform],
-  blacklist: ['editor'],
+  blacklist: ['editor', 'playlist'],
 }
 
 /**

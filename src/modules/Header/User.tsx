@@ -10,6 +10,7 @@ import { Button, useAlert } from 'common/UI'
 import { useSuspense } from 'common/utils'
 import { persistor } from 'config/redux'
 import { actions as editorActions } from 'modules/Editor'
+import { actions as playlistActions } from 'modules/Playlist'
 import {
   UserLoginButton,
   selectors as userSelectors,
@@ -40,6 +41,7 @@ const User: React.FC = () => {
     // Actions
     dispatch(userActions.dispatchLogOut())
     dispatch(editorActions.dispatchReset())
+    dispatch(playlistActions.dispatchReset())
 
     // Remove dependencies and data
     persistor.purge()

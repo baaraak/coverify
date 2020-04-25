@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -31,6 +31,10 @@ const Wrapper = styled(motion.div)`
     align-self: flex-end;
     padding-right: 18em; /* width of text control */
   }
+`
+
+const ChangesFeedback = styled(motion.div)`
+  transform-origin: left center;
 `
 
 const Caption = styled(Text)`
@@ -76,6 +80,8 @@ const Handle: React.FC = () => {
   const dependencies = useContext(DependenciesContext)
   const analyticsService = dependencies.get('analytics')
 
+  const [shouldAlertPlaylist, setShouldAlertPlaylist] = useState(false)
+
   // State
   const isConnected = useSelector(userSelectors.isConnected)
   const user = useSelector(userSelectors.getUserData, shallowEqual)
@@ -113,6 +119,18 @@ const Handle: React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    setShouldAlertPlaylist(true)
+
+    const timer = setTimeout(() => {
+      setShouldAlertPlaylist(false)
+    }, 100)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [playlistName])
+
   return (
     <Wrapper
       initial={INITIAL_POSITION}
@@ -120,21 +138,26 @@ const Handle: React.FC = () => {
       transition={createTransition(1.4)}
       style={{ marginLeft: padding, marginBottom: padding }}
     >
-      <Caption
-        as={motion.p}
-        size="small"
-        style={{ opacity, marginBottom: offset }}
+      <ChangesFeedback
+        initial={{ scale: 1 }}
+        animate={{ scale: shouldAlertPlaylist ? 1.05 : 1 }}
       >
-        {isConnected ? i18n.t('editor.editing') : i18n.t('playlist')}
-      </Caption>
+        <Caption
+          as={motion.p}
+          size="small"
+          style={{ opacity, marginBottom: offset }}
+        >
+          {isConnected ? i18n.t('editor.editing') : i18n.t('playlist')}
+        </Caption>
 
-      <Title as={motion.h2} size="huge" weight="bold" style={{ scale }}>
-        {playlistNameTruncate}
-      </Title>
+        <Title as={motion.h2} size="huge" weight="bold" style={{ scale }}>
+          {playlistNameTruncate}
+        </Title>
 
-      <Description as={motion.p} style={{ opacity, marginTop: offset }}>
-        {createBy}
-      </Description>
+        <Description as={motion.p} style={{ opacity, marginTop: offset }}>
+          {createBy}
+        </Description>
+      </ChangesFeedback>
 
       <Actions>
         <Button variant="normal" onClick={handleUpdateCover}>

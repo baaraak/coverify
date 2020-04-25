@@ -9,7 +9,7 @@ import { types } from './actionTypes'
 export interface BackgroundItem {
   id?: string
   alt_description?: string
-  urls?: Record<'raw' | 'regular' | 'full' | 'small', string>
+  urls?: Record<'raw' | 'regular' | 'full' | 'small' | 'thumb', string>
   color?: string
   width?: number
   height?: number
