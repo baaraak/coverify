@@ -8,7 +8,6 @@ import i18n from 'common/i18n'
 import { DependenciesContext } from 'common/service/context'
 import { Button, useAlert } from 'common/UI'
 import { useSuspense } from 'common/utils'
-import { persistor } from 'config/redux'
 import { actions as editorActions } from 'modules/Editor'
 import { actions as playlistActions } from 'modules/Playlist'
 import {
@@ -16,6 +15,7 @@ import {
   selectors as userSelectors,
   actions as userActions,
 } from 'modules/User'
+import { persistor } from 'modules/User/config/persistor'
 
 const CustomContentLoader = styled(ContentLoader)`
   height: 2.6em;
@@ -44,8 +44,8 @@ const User: React.FC = () => {
     dispatch(playlistActions.dispatchReset())
 
     // Remove dependencies and data
-    persistor.purge()
     dependencies.destroy('spotify')
+    persistor.remove()
 
     // Analytics
 

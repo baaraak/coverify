@@ -1,6 +1,7 @@
 import { DefaultRootState } from 'react-redux'
 
 import { types } from './actionTypes'
+import { persistor } from './persistor'
 
 /**
  * Types
@@ -23,7 +24,7 @@ export interface State {
  */
 const INITIAL_STATE: State = {
   data: undefined,
-  token: undefined,
+  token: persistor.get(),
   loading: false,
   errorMessage: undefined,
 }
@@ -38,6 +39,8 @@ const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
 
     // Sign in
     case types.USER_SIGN_SUCCESS:
+      persistor.set(payload as string)
+
       return {
         ...state,
         data: { ...state.data },

@@ -2,9 +2,6 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { persistStore, persistReducer, createTransform } from 'redux-persist'
-import { PersistGate } from 'redux-persist/integration/react'
-import storage from 'redux-persist/lib/storage'
 import thunk, { ThunkMiddleware, ThunkAction } from 'redux-thunk'
 
 /**
@@ -63,57 +60,18 @@ const rootReducer = combineReducers({
 })
 
 /**
- * Persist config
+ * Creator of store
  */
-const blackList = ['errorMessage', 'loading']
-const filterKeys = (data: Record<string, unknown>) => {
-  const keys = Object.keys(data).filter((e) => !blackList.includes(e))
-
-  return keys.reduce((acc, curr) => {
-    if (data[curr] !== undefined) {
-      return { ...acc, ...{ [curr]: data[curr] } }
-    }
-
-    return acc
-  }, {})
-}
-const transform = createTransform(
-  (inboundState: Record<string, unknown>) => filterKeys(inboundState),
-  (outboundState: Record<string, unknown>) => filterKeys(outboundState)
-)
-
-const persistConfig = {
-  key: 'coverify',
-  storage,
-  transforms: [transform],
-  blacklist: ['editor', 'playlist'],
-}
-
-/**
- * Config
- */
-const persistedReducer = persistReducer(persistConfig, rootReducer)
 const composeEnhancers = composeWithDevTools(
   applyMiddleware(thunk as ThunkMiddleware<State, AllActions>)
 )
-
-/**
- * Creator of store and persistor
- */
-const store = createStore(persistedReducer, composeEnhancers)
-const persistor = persistStore(store)
+const store = createStore(rootReducer, composeEnhancers)
 
 /**
  * Provider
  */
 const DataProvider: React.FC = ({ children }) => {
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        {children}
-      </PersistGate>
-    </Provider>
-  )
+  return <Provider store={store}>{children}</Provider>
 }
 
-export { DataProvider, persistor }
+export { DataProvider }
