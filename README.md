@@ -1,4 +1,6 @@
-![Coverify](https://user-images.githubusercontent.com/4838076/77704183-6e16b600-6fb4-11ea-8a29-03762b026ce9.png)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4838076/80309094-91f33480-87ca-11ea-8a12-e3b7185bf951.gif" alt="covers" />
+</p>
 
 # Coverify
 
