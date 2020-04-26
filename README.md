@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://user-images.githubusercontent.com/4838076/80309094-91f33480-87ca-11ea-8a12-e3b7185bf951.gif" alt="covers" />
+<img src="https://user-images.githubusercontent.com/4838076/80310744-3037c800-87d4-11ea-8028-fca8141945a2.gif" alt="covers" />
 </p>
 
 # Coverify
