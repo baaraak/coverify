@@ -20,7 +20,7 @@ const dispatchLoading = () => ({ type: types.PLAYLIST_LOADING })
  */
 const dispatchError = (message: string) => ({
   type: types.PLAYLIST_ERROR,
-  payload: `Playlist from Spotify: ${message}`,
+  payload: message,
 })
 
 /**
@@ -59,7 +59,7 @@ const useGetPlaylist = () => {
 
       dispatch({ type: types.PLAYLIST_SUCCESS, payload: filteredData })
     } catch (err) {
-      dispatch(dispatchError(err.message))
+      dispatch(dispatchError(err.response.status))
     }
 
     return

@@ -8,6 +8,7 @@ import { Empty } from './partials/Empty'
 import { Item } from './partials/Item'
 import { Loading } from './partials/Loading'
 import { Search } from './partials/Search'
+import i18n from 'common/i18n'
 import { DependenciesContext } from 'common/service/context'
 import { useAlert } from 'common/UI'
 import { actions } from 'modules/Editor'
@@ -29,7 +30,7 @@ const Backgrounds: React.FC = () => {
   // Effects
   useEffect(() => {
     if (errorMessage) {
-      alert.error(errorMessage)
+      alert.error(i18n.t(`alert.${errorMessage}`))
 
       if (analyticsService) {
         analyticsService.logEvent('error', errorMessage)

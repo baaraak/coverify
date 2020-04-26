@@ -27,6 +27,7 @@ export default {
     spotify: 'Spotify',
     logIn: 'Log in with {{where}}',
     alert: {
+      401: 'Sorry, but your session has expired.',
       coverUpdated: 'The playlist cover has been updated successfully!',
       errorSignIn: 'First you need to sign in on {{where}}',
     },

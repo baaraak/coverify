@@ -57,7 +57,7 @@ const User: React.FC = () => {
   // Effect
   useEffect(() => {
     if (errorMessage) {
-      alert.error(errorMessage)
+      alert.error(i18n.t(`alert.${errorMessage}`))
 
       if (analyticsService) {
         analyticsService.logEvent('error', errorMessage)

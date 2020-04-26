@@ -83,7 +83,7 @@ const useGetBackgroundSearch = () => {
         analyticsService.logEvent('background search', searchQuery)
       }
     } catch (err) {
-      dispatch(dispatchError(err.message))
+      dispatch(dispatchError(err.status))
     }
 
     return

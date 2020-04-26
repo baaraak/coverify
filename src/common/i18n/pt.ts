@@ -27,6 +27,7 @@ export default {
     spotify: 'Spotify',
     logIn: 'Entrar com {{where}}',
     alert: {
+      401: 'Desculpe, a sua sessão expirou.',
       coverUpdated: 'O capa da playlist foi atualizada com sucesso!',
       errorSignIn: 'Primeiro você precisa acessar ao {{where}}',
     },

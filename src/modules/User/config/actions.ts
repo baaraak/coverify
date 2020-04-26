@@ -1,7 +1,8 @@
 import { useContext, useEffect, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { types } from './actionTypes'
+import { selectors } from './reducer'
 import { DependenciesContext } from 'common/service/context'
 
 /**
@@ -29,7 +30,7 @@ const dispatchUserToken = (token: string) => ({
  */
 const dispatchError = (message: string) => ({
   type: types.USER_ERROR,
-  payload: `User: ${message}`,
+  payload: message,
 })
 
 /**
@@ -39,6 +40,7 @@ const useGetInformationOfUser = () => {
   const dispatch = useDispatch()
   const dependencies = useContext(DependenciesContext)
   const spotifyService = dependencies.get('spotify')
+  const token = useSelector(selectors.getToken)
 
   /**
    * Handle
@@ -58,7 +60,7 @@ const useGetInformationOfUser = () => {
       const userData = await spotifyService.getUserInformation()
       dispatch({ type: types.USER_INFO_SUCCESS, payload: userData })
     } catch (err) {
-      dispatch(dispatchError(err.message))
+      dispatch(dispatchError(String(err.response.status)))
     }
 
     return
@@ -68,10 +70,10 @@ const useGetInformationOfUser = () => {
    * Effect with dependencies
    */
   useEffect(() => {
-    if (spotifyService) {
+    if (spotifyService && token) {
       submit()
     }
-  }, [submit, spotifyService])
+  }, [submit, spotifyService, token])
 }
 
 export {

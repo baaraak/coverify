@@ -226,7 +226,7 @@ const useUpdateCoverOfPlaylist = () => {
           alert.info(i18n.t('alert.coverUpdated'))
         }
       } catch (err) {
-        dispatch(dispatchError(err.message))
+        dispatch(dispatchError(err.status))
       }
     }
 
