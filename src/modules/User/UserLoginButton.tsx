@@ -40,8 +40,10 @@ const UserLoginButton: React.FC = (props) => {
     }
   }
 
-  const onFailure = (response: Error) =>
+  const onFailure = (response: Error) => {
+    dependencies.destroy('spotify')
     dispatch(dispatchError(response.message))
+  }
 
   /**
    * Listener of service to get the data of user
