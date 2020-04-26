@@ -1,10 +1,15 @@
 <p align="center">
-<img src="https://user-images.githubusercontent.com/4838076/80309094-91f33480-87ca-11ea-8a12-e3b7185bf951.gif" alt="covers" />
+<img src="https://user-images.githubusercontent.com/4838076/80311039-5f9b0480-87d5-11ea-8c15-d78ea6fde2de.gif" alt="covers" />
 </p>
 
 # Coverify
 
-Create your custom cover for your Spotify playlists, choose from images, colors, and fonts that express your favorite songs.
+Your Spotify playlist deserves something better than a standard boring cover image. 
+
+Coverify is a web tool to create yourself artwork, where you can apply different fonts, colors and a ton of images from Unsplash; and upload it directly on Spotify. 
+
+Spotify playlist looking good.
+
 
 - 🎧 Custom labels;
 - 📷 Custom background from Unsplash API;
