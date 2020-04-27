@@ -45,4 +45,8 @@ export const Caption: React.FC<{ gutter?: boolean }> = ({
 export const Select = styled.select`
   padding: 0 1.4em;
   color: var(--color-white);
+
+  option {
+    color: #000;
+  }
 `
