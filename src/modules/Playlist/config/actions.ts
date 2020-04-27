@@ -59,7 +59,7 @@ const useGetPlaylist = () => {
 
       dispatch({ type: types.PLAYLIST_SUCCESS, payload: filteredData })
     } catch (err) {
-      dispatch(dispatchError(err.response.status))
+      dispatch(dispatchError(err?.response?.status ?? 'general'))
     }
 
     return

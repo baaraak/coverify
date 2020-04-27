@@ -28,6 +28,7 @@ export default {
     logIn: 'Entrar com {{where}}',
     alert: {
       401: 'Desculpe, a sua sessão expirou.',
+      general: 'Algo de errado aconteceu, por favor tente novamente',
       coverUpdated: 'O capa da playlist foi atualizada com sucesso!',
       errorSignIn: 'Primeiro você precisa acessar ao {{where}}',
     },

@@ -28,6 +28,7 @@ export default {
     logIn: 'Log in with {{where}}',
     alert: {
       401: 'Sorry, but your session has expired.',
+      general: 'Something went wrong, please try again',
       coverUpdated: 'The playlist cover has been updated successfully!',
       errorSignIn: 'First you need to sign in on {{where}}',
     },
