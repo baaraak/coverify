@@ -22,20 +22,22 @@ export interface State {
 /**
  * Reducer
  */
-const INITIAL_STATE: State = {
+const getInitialState = (): State => ({
   data: undefined,
   token: persistor.get(),
   loading: false,
   errorMessage: undefined,
-}
+})
 
-const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
+const reducer = (state = getInitialState(), { type, payload }: Actions) => {
   switch (type) {
     case types.USER_LOADING:
       return { ...state, errorMessage: undefined, loading: true }
 
     case types.USER_ERROR:
-      return { ...INITIAL_STATE, errorMessage: payload }
+      persistor.remove()
+
+      return { ...getInitialState(), errorMessage: payload }
 
     // Sign in
     case types.USER_SIGN_SUCCESS:
@@ -62,7 +64,9 @@ const reducer = (state = INITIAL_STATE, { type, payload }: Actions) => {
 
     // End session
     case types.LOG_OUT:
-      return INITIAL_STATE
+      persistor.remove()
+
+      return getInitialState()
 
     default:
       return state

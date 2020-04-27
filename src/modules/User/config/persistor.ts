@@ -30,7 +30,7 @@ const persistor = {
       return undefined
     }
 
-    return globalWindow.localStorage.remove(KEY_NAME)
+    return globalWindow.localStorage.removeItem(KEY_NAME)
   },
 }
 
