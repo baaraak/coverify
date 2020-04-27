@@ -17,7 +17,7 @@ export default {
       color: 'Cor',
     },
     navigation: {
-      backgroundImage: 'Image de fundo',
+      backgroundImage: 'Imagem de fundo',
       myPlaylists: 'Minhas playlists',
       photoBy: 'Foto por',
       photoByOn: 'no',
