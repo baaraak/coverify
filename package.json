@@ -46,6 +46,11 @@
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@now/node": "1.5.1",
+    "@semantic-release/commit-analyzer": "8.0.1",
+    "@semantic-release/git": "9.0.0",
+    "@semantic-release/github": "7.0.5",
+    "@semantic-release/npm": "7.0.5",
+    "@semantic-release/release-notes-generator": "9.0.1",
     "@significa/eslint-config": "0.0.16",
     "@significa/prettier-config": "0.0.16",
     "@significa/tsconfig-config": "0.0.16",
@@ -58,6 +63,7 @@
     "husky": "4.2.5",
     "lint-staged": "10.2.0",
     "redux-devtools-extension": "2.13.8",
+    "semantic-release": "17.0.7",
     "tsconfig-paths-webpack-plugin": "3.2.0"
   }
 }
