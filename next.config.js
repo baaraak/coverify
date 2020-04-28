@@ -12,6 +12,9 @@ module.exports = withImages({
 
     return config
   },
+  experimental: {
+    reactRefresh: true,
+  },
   env: {
     SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
     SPOTIFY_URL: process.env.SPOTIFY_URL,

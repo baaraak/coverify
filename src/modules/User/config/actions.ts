@@ -60,11 +60,12 @@ const useGetInformationOfUser = () => {
       const userData = await spotifyService.getUserInformation()
       dispatch({ type: types.USER_INFO_SUCCESS, payload: userData })
     } catch (err) {
+      dependencies.destroy('spotify')
       dispatch(dispatchError(String(err?.response?.status ?? 'general')))
     }
 
     return
-  }, [dispatch, spotifyService])
+  }, [dependencies, dispatch, spotifyService])
 
   /**
    * Effect with dependencies
