@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion'
 import Head from 'next/head'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import styled, { CSSProperties } from 'styled-components'
 
 import { dispatchInitialAnimationOfMainText } from './config/actions'
+import * as actions from './config/actions'
 import { selectors } from './config/reducer'
 import {
   INITIAL_POSITION,
@@ -96,7 +97,20 @@ const Cover: React.FC<{ id?: string; style?: CSSProperties }> = ({
   const dispatch = useDispatch()
   const { coverSize, coverContentScale } = useCoverAnimation()
 
+  const refEditorTop = useRef<HTMLDivElement>(null)
+  const refEditorMiddle = useRef<HTMLDivElement>(null)
+
   const fontFamilyImport = fontFamily.replace(/ /, '+')
+
+  const handleChange = () => {
+    const contentTop = refEditorTop?.current?.innerHTML ?? ''
+    const contentMiddle = refEditorMiddle?.current?.innerHTML ?? ''
+
+    dispatch(actions.dispatchForeText(contentTop))
+    dispatch(actions.dispatchMainText(contentMiddle))
+
+    dispatch(dispatch)
+  }
 
   useEffect(() => {
     dispatch(dispatchInitialAnimationOfMainText())
@@ -125,13 +139,17 @@ const Cover: React.FC<{ id?: string; style?: CSSProperties }> = ({
       >
         <Content style={{ scale: coverContentScale }}>
           <TextareaTop
+            ref={refEditorTop}
+            onBlur={handleChange}
             contentEditable="true"
             suppressContentEditableWarning
             style={{ textAlign, fontFamily, color: colors.foreground }}
-          >
-            {foreText}
-          </TextareaTop>
+            dangerouslySetInnerHTML={{ __html: foreText }}
+          />
+
           <TextareaCenter
+            ref={refEditorMiddle}
+            onBlur={handleChange}
             contentEditable="true"
             suppressContentEditableWarning
             style={{
@@ -140,9 +158,8 @@ const Cover: React.FC<{ id?: string; style?: CSSProperties }> = ({
               fontSize,
               color: colors.main,
             }}
-          >
-            {mainText}
-          </TextareaCenter>
+            dangerouslySetInnerHTML={{ __html: mainText }}
+          />
 
           {/* Space necessary to align vertically */}
           <EmptySpace />

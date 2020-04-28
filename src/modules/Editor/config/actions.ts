@@ -125,6 +125,24 @@ const dispatchColorSchema = (color: State['colors']): Actions => ({
 })
 
 /**
+ * Update main text
+ */
+const dispatchMainText = (text: string): Actions => ({
+  type: types.EDITOR_UPDATE,
+  meta: 'mainText',
+  payload: text,
+})
+
+/**
+ * Update fore text
+ */
+const dispatchForeText = (text: string): Actions => ({
+  type: types.EDITOR_UPDATE,
+  meta: 'foreText',
+  payload: text,
+})
+
+/**
  * Animation on cover
  */
 const dispatchInitialAnimationOfMainText = (): ThunkResult<void> => (
@@ -132,11 +150,8 @@ const dispatchInitialAnimationOfMainText = (): ThunkResult<void> => (
 ) => {
   const { mainText } = INITIAL_STATE
 
-  const boilerplateOfDispatch = (value: string) =>
-    dispatch({ type: types.EDITOR_UPDATE, meta: 'mainText', payload: value })
-
   // Clean
-  boilerplateOfDispatch('')
+  dispatch(dispatchMainText(''))
 
   // Typing
   setTimeout(() => {
@@ -144,7 +159,7 @@ const dispatchInitialAnimationOfMainText = (): ThunkResult<void> => (
       const updatedText = `${acc}${text}`
 
       setTimeout(() => {
-        boilerplateOfDispatch(updatedText)
+        dispatch(dispatchMainText(updatedText))
       }, 100 * index)
 
       return updatedText
@@ -238,6 +253,8 @@ const useUpdateCoverOfPlaylist = () => {
 
 export {
   dispatchReset,
+  dispatchForeText,
+  dispatchMainText,
   dispatchBackground,
   dispatchPlaylistId,
   dispatchPlaylistName,
