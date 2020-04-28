@@ -8,7 +8,7 @@ export const APP_NAME = 'Coverify'
 export const AUTHOR = 'Danilo Woznica'
 export const DESCRIPTION = pkg.description
 export const SHORT_DESCRIPTION =
-  'Create your own custom cover art for Spotify playlists.'
+  'Create your own custom album cover for Spotify playlists.'
 export const URL = pkg.url
 
 export const COVER_ID = 'cover-wrapper'
