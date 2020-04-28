@@ -2,6 +2,8 @@ require('dotenv').config()
 const withImages = require('next-images')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
+const { version } = require('./package.json')
+
 module.exports = withImages({
   webpack(config) {
     if (config.resolve.plugins) {
@@ -12,6 +14,7 @@ module.exports = withImages({
 
     return config
   },
+  generateBuildId: async () => version,
   experimental: {
     reactRefresh: true,
   },

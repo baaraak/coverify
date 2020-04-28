@@ -2,13 +2,14 @@ import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
+import { version } from '../../../package.json'
 import logoSrc from './assets/logo.svg'
 import { Navigation } from './Navigation'
 import { Toggle } from './Toggle'
 import { TRANSITION } from 'common/animations'
 import { APP_NAME } from 'common/constants'
 import { HEADER_HEIGHT } from 'common/sizes'
-import { Container as BaseContainer } from 'common/UI'
+import { Container as BaseContainer, Text } from 'common/UI'
 
 const Wrapper = styled.div<{ open: boolean }>`
   height: ${HEADER_HEIGHT};
@@ -85,6 +86,16 @@ const LogoImage = styled.img`
   display: block;
 `
 
+const Flex = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const Version = styled(Text)`
+  margin-left: 1em;
+  margin-top: 0.7em;
+`
+
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false)
 
@@ -96,7 +107,12 @@ const Header = () => {
     <Wrapper open={showMenu}>
       <Background>
         <Container>
-          <LogoImage src={logoSrc} alt={APP_NAME} />
+          <Flex>
+            <LogoImage src={logoSrc} alt={APP_NAME} />
+            <Version color="white-light" size="small">
+              v{version}
+            </Version>
+          </Flex>
 
           <Toggle onClick={handleMenu} open={showMenu} />
 
