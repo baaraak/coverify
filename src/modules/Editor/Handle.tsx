@@ -103,7 +103,7 @@ const Handle: React.FC = () => {
   // Handles
   const handleUpdateCover = async () => {
     await scrollToAsync()
-    updatePlaylistCover()
+    await updatePlaylistCover()
 
     if (analyticsService) {
       analyticsService.logEvent('editor', 'update on spotify')
@@ -112,7 +112,7 @@ const Handle: React.FC = () => {
 
   const handleDownloadCover = async () => {
     await scrollToAsync()
-    downloadPlaylistCover()
+    await downloadPlaylistCover()
 
     if (analyticsService) {
       analyticsService.logEvent('editor', 'download cover')

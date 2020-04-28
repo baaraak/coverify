@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import Head from 'next/head'
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
-import styled from 'styled-components'
+import styled, { CSSProperties } from 'styled-components'
 
 import { dispatchInitialAnimationOfMainText } from './config/actions'
 import { selectors } from './config/reducer'
@@ -12,7 +12,6 @@ import {
   createTransition,
   useCoverAnimation,
 } from 'common/animations'
-import { COVER_ID } from 'common/constants'
 import { COVER_SIZE, MAIN_BREAKPOINT } from 'common/sizes'
 
 const ImageHandle = styled(motion.div)`
@@ -83,7 +82,10 @@ const EmptySpace = styled.div`
   height: var(--size-heading);
 `
 
-const Cover: React.FC = () => {
+const Cover: React.FC<{ id?: string; style?: CSSProperties }> = ({
+  id,
+  style,
+}) => {
   const {
     colors,
     fontFamily,
@@ -112,11 +114,12 @@ const Cover: React.FC = () => {
       </Head>
 
       <ImageHandle
-        id={COVER_ID}
+        id={id}
         initial={INITIAL_POSITION}
         animate={ANIMATE_POSITION}
         transition={createTransition(1)}
         style={{
+          ...style,
           width: coverSize,
           height: coverSize,
           backgroundImage: `url(${backgroundUrl})`,
