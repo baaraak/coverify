@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 
 import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
+import { MAIN_BREAKPOINT } from 'common/sizes'
 
 type Variant = 'normal' | 'outline'
 
@@ -31,9 +32,13 @@ const Button = styled(motion.button).attrs({
 
   border-radius: 1.25em;
   cursor: pointer;
-  padding: 0.625em 1.875em;
+  padding: 0.625em 1em;
   border-width: 1px;
   border-style: solid;
+
+  @media (min-width: ${MAIN_BREAKPOINT}) {
+    padding: 0.625em 1.875em;
+  }
 
   &:active {
     color: var(--color-white);
