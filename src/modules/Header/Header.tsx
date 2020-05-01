@@ -60,6 +60,7 @@ const MenuWrapper = styled.div`
     width: 100%;
     height: 120%;
     z-index: 2;
+    padding-bottom: calc(20% + 4.8em);
 
     flex-direction: column;
     justify-content: center;

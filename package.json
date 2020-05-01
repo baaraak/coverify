@@ -13,7 +13,7 @@
     "start": "next start",
     "validate": "yarn validate:lint && yarn validate:prettier && yarn validate:ts",
     "validate:lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "validate:prettier": "prettier \"src/**/*.+(ts|tsx|js|jsx|json|yml|yaml|md|mdx)\" --check",
+    "validate:prettier": "prettier \"src/**/*.+(ts|tsx|js|jsx|json|yml|yaml|md|mdx)\" --write",
     "validate:ts": "tsc"
   },
   "dependencies": {

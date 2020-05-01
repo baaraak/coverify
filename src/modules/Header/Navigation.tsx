@@ -8,7 +8,7 @@ import { DependenciesContext } from 'common/service/context'
 import { Text } from 'common/UI'
 
 const Menu = styled.nav`
-  flex: 0;
+  flex: none;
   display: flex;
   flex-direction: column;
 
