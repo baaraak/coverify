@@ -43,6 +43,11 @@ const Caption = styled(Text)`
 
 export const Title = styled(Text)`
   transform-origin: left;
+  font-size: ${({ theme }) => theme.fontSizes.title};
+
+  @media (min-width: ${MAIN_BREAKPOINT}) {
+    font-size: ${({ theme }) => theme.fontSizes.huge};
+  }
 `
 
 export const Description = styled(Text)`
@@ -150,7 +155,7 @@ const Handle: React.FC = () => {
           {isConnected ? i18n.t('editor.editing') : i18n.t('playlist')}
         </Caption>
 
-        <Title as={motion.h2} size="huge" weight="bold" style={{ scale }}>
+        <Title as={motion.h2} weight="bold" style={{ scale }}>
           {playlistNameTruncate}
         </Title>
 

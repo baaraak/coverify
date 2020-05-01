@@ -13,12 +13,20 @@ import { DependenciesContext } from 'common/service/context'
 import { MAIN_BREAKPOINT } from 'common/sizes'
 
 export const ColorsCol = styled.div`
-  flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
 
+  overflow: auto;
+  margin-right: -1rem;
+  margin-left: -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
   @media (min-width: ${MAIN_BREAKPOINT}) {
+    flex-wrap: wrap;
     width: 18em;
+    margin: 0;
+    padding: 0;
   }
 `
 
@@ -30,10 +38,14 @@ const ColorButton = styled(motion.button).attrs({
   overflow: hidden;
   margin-bottom: 0.5em;
 
+  min-width: calc((100vw - 2em) / 6 - 0.5em);
   width: calc((100vw - 2em) / 6 - 0.5em);
   height: calc((100vw - 2em) / 6 - 0.5em);
+  margin-right: 0.5em;
 
   @media (min-width: ${MAIN_BREAKPOINT}) {
+    margin-right: 0;
+    min-width: calc(12.5em / 4.6);
     width: calc(12.5em / 4.6);
     height: 2.5em;
   }

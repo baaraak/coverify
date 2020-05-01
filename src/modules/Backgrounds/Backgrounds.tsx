@@ -10,7 +10,9 @@ import { Loading } from './partials/Loading'
 import { Search } from './partials/Search'
 import i18n from 'common/i18n'
 import { DependenciesContext } from 'common/service/context'
+import { MAIN_BREAKPOINT } from 'common/sizes'
 import { useAlert } from 'common/UI'
+import { useWindowSize, emToPxInNumber } from 'common/utils'
 import { actions } from 'modules/Editor'
 
 const Backgrounds: React.FC = () => {
@@ -22,10 +24,13 @@ const Backgrounds: React.FC = () => {
   const errorMessage = useSelector(selectors.getErrorMessage)
   const data = useSelector(selectors.getData)
   const loading = useSelector(selectors.getLoading)
+  const { width } = useWindowSize()
 
   const dependencies = useContext(DependenciesContext)
   const unSplashService = dependencies.get('unsplash')
   const analyticsService = dependencies.get('analytics')
+
+  const gridColumnWidth = width > emToPxInNumber(MAIN_BREAKPOINT) ? 320 : 120
 
   // Effects
   useEffect(() => {
@@ -70,7 +75,7 @@ const Backgrounds: React.FC = () => {
       }
 
       return (
-        <Snuggle>
+        <Snuggle columnWidth={gridColumnWidth}>
           {data.map((element) => {
             return (
               <Item key={element.id} element={element} pickImage={pickImage} />

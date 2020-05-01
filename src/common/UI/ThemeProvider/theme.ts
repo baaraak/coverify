@@ -7,7 +7,13 @@ export type ColorVariant =
   | 'white-light'
   | 'white-lighter'
   | 'error'
-export type FontSizeVariant = 'small' | 'normal' | 'medium' | 'heading' | 'huge'
+export type FontSizeVariant =
+  | 'small'
+  | 'normal'
+  | 'medium'
+  | 'heading'
+  | 'title'
+  | 'huge'
 
 const FONT_SIZE_BASE = 16
 const pxToEm = (px: number): string => `${px / FONT_SIZE_BASE}em`
@@ -32,6 +38,7 @@ const theme = {
     normal: pxToEm(14),
     medium: pxToEm(16),
     heading: pxToEm(18),
+    title: pxToEm(34),
     huge: pxToEm(48),
   },
 }

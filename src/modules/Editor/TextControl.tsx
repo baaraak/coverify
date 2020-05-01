@@ -21,7 +21,7 @@ const Wrapper = styled(motion.div)`
   @media (min-width: ${MAIN_BREAKPOINT}) {
     align-self: center;
     position: absolute;
-    right: 0;
+    right: 1em;
   }
 `
 
