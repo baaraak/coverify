@@ -4,6 +4,7 @@ export default {
       codebase: 'Codebase',
       issues: 'Issues',
       share: 'Share to {{where}}',
+      roadmap: 'Roadmap',
     },
     editor: {
       editing: "You're editing",

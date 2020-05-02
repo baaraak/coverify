@@ -29,6 +29,10 @@ export const MENU: Array<{ text: string; href: string }> = [
     href: `${SHARE_GITHUB}/issues/`,
   },
   {
+    text: i18n.t('menu.roadmap'),
+    href: `${SHARE_GITHUB}//issues?q=is%3Aissue+is%3Aopen+label%3ARoadmap/`,
+  },
+  {
     text: i18n.t('menu.share', { where: i18n.t('twitter') }),
     href: SHARE_TWITTER,
   },

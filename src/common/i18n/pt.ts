@@ -4,6 +4,7 @@ export default {
       codebase: 'Código fonte',
       issues: 'Reportar  bug',
       share: 'Compartilhar no {{where}}',
+      roadmap: 'Roadmap',
     },
     editor: {
       editing: 'Você está editando',
