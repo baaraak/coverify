@@ -1,11 +1,13 @@
+import dynamic from 'next/dynamic'
 import React from 'react'
 import styled from 'styled-components'
 
 import i18n from 'common/i18n'
 import { COVER_SIZE_COMPACT, MAIN_BREAKPOINT } from 'common/sizes'
 import { Tabs, Container } from 'common/UI'
-import Backgrounds from 'modules/Backgrounds'
-import Playlist from 'modules/Playlist'
+
+const Backgrounds = dynamic(() => import('modules/Backgrounds'), { ssr: false })
+const Playlist = dynamic(() => import('modules/Playlist'), { ssr: false })
 
 const CustomTab = styled(Tabs)`
   position: sticky;
