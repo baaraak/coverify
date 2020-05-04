@@ -7,6 +7,7 @@ import penSrc from '../assets/pen.svg'
 import { PlaylistItem } from '../config/reducer'
 import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
 import i18n from 'common/i18n'
+import { MAIN_BREAKPOINT } from 'common/sizes'
 import { Text } from 'common/UI'
 
 export const Button = styled(motion.button)`
@@ -55,7 +56,18 @@ export const EditLayer = styled(motion.div)`
   img {
     display: inline-block;
     width: 2.5em;
-    margin-bottom: 1em;
+
+    @media (min-width: ${MAIN_BREAKPOINT}) {
+      margin-bottom: 1em;
+    }
+  }
+
+  ${Text} {
+    display: none;
+
+    @media (min-width: ${MAIN_BREAKPOINT}) {
+      display: block;
+    }
   }
 `
 
