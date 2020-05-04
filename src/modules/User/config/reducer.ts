@@ -24,9 +24,9 @@ export interface State {
  */
 const getInitialState = (): State => ({
   data: undefined,
-  token: persistor.get(),
-  loading: false,
   errorMessage: undefined,
+  loading: false,
+  token: persistor.get(),
 })
 
 const reducer = (state = getInitialState(), { type, payload }: Actions) => {
@@ -44,10 +44,10 @@ const reducer = (state = getInitialState(), { type, payload }: Actions) => {
       persistor.set(payload as string)
 
       return {
-        ...state,
         data: { ...state.data },
-        token: payload,
+        errorMessage: undefined,
         loading: false,
+        token: payload,
       }
 
     // Fetch user data
