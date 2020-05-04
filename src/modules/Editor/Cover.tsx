@@ -98,13 +98,18 @@ const Cover: React.FC<{ id?: string; style?: CSSProperties }> = ({
   const fontFamilyImport = fontFamily.replace(/ /, '+')
 
   const handleChange = () => {
-    const contentTop = refEditorTop?.current?.innerHTML ?? ''
-    const contentMiddle = refEditorMiddle?.current?.innerHTML ?? ''
+    const regexToRemoveAttrs = /<([a-z][a-z0-9]*)[^>]*?(\/?)>/gi
+    const contentTop = refEditorTop?.current?.innerHTML.replace(
+      regexToRemoveAttrs,
+      '<$1>'
+    )
+    const contentMiddle = refEditorMiddle?.current?.innerHTML.replace(
+      regexToRemoveAttrs,
+      '<$1>'
+    )
 
-    dispatch(actions.dispatchForeText(contentTop))
-    dispatch(actions.dispatchMainText(contentMiddle))
-
-    dispatch(dispatch)
+    dispatch(actions.dispatchForeText(contentTop ?? ''))
+    dispatch(actions.dispatchMainText(contentMiddle ?? ''))
   }
 
   useEffect(() => {
