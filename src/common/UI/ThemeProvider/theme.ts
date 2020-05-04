@@ -38,7 +38,7 @@ const theme = {
     normal: pxToEm(14),
     medium: pxToEm(16),
     heading: pxToEm(18),
-    title: pxToEm(34),
+    title: pxToEm(30),
     huge: pxToEm(48),
   },
 }
