@@ -23,6 +23,7 @@ export default {
       photoBy: 'Photo by',
       photoByOn: 'on',
     },
+    editingPlaylist: "You're now editing this playlist",
     playlist: 'Playlist',
     twitter: 'Twitter',
     spotify: 'Spotify',

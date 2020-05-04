@@ -6,6 +6,7 @@ import emptyArtwork from '../assets/empty-artwork.jpeg'
 import penSrc from '../assets/pen.svg'
 import { PlaylistItem } from '../config/reducer'
 import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
+import i18n from 'common/i18n'
 import { Text } from 'common/UI'
 
 export const Button = styled(motion.button)`
@@ -22,10 +23,6 @@ export const Name = styled(Text)`
 `
 
 export const Image = styled.div`
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05),
-    0 100px 80px rgba(0, 0, 0, 0.07);
   border-radius: 2px;
   width: 100%;
   padding-top: 100%;
@@ -45,12 +42,20 @@ export const EditLayer = styled(motion.div)`
   right: 0;
   left: 0;
   bottom: 0;
-  background: var(--color-black-light);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
+  text-align: center;
+
+  div {
+    margin: auto;
+    width: 60%;
+    line-height: 1.5;
+  }
 
   img {
+    display: inline-block;
     width: 2.5em;
-    margin: auto;
+    margin-bottom: 1em;
   }
 `
 
@@ -64,12 +69,17 @@ const Item: React.FC<{
       <Handle>
         {isSelected && (
           <EditLayer initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <motion.img
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              src={penSrc}
-              alt="edit"
-            />
+            <div>
+              <motion.img
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                src={penSrc}
+                alt="edit"
+              />
+              <Text color="white" size="medium">
+                {i18n.t('editingPlaylist')}
+              </Text>
+            </div>
           </EditLayer>
         )}
 
