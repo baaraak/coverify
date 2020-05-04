@@ -4,7 +4,7 @@ import { CSSProperties } from 'styled-components'
 import imagePlaceholderSrc from '../assets/image-placeholder.jpg'
 import { types } from './actionTypes'
 import { COLORS_SCHEMA } from './constants'
-import { APP_NAME } from 'common/constants'
+import { APP_NAME, URL } from 'common/constants'
 import i18n from 'common/i18n'
 
 /**
@@ -17,7 +17,7 @@ const INITIAL_STATE = {
   fontFamily: 'Montserrat',
   fontSize: 60,
   foreText: i18n.t('editor.foreText'),
-  backgroundUrl: imagePlaceholderSrc,
+  backgroundUrl: `${URL}/${imagePlaceholderSrc}`,
   mainText: i18n.t('editor.mainText'),
   playlistName: i18n.t('editor.playlistName', { appName: APP_NAME }),
   playlistId: '',
