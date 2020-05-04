@@ -15,6 +15,7 @@ import {
   selectors as userSelectors,
   actions as userActions,
 } from 'modules/User'
+import { useGetInformationOfUser } from 'modules/User/config/actions'
 import { persistor } from 'modules/User/config/persistor'
 
 const CustomContentLoader = styled(ContentLoader)`
@@ -64,6 +65,11 @@ const User: React.FC = () => {
       }
     }
   }, [alert, analyticsService, errorMessage])
+
+  /**
+   * Listener of service to get the data of user
+   */
+  useGetInformationOfUser()
 
   if (suspenseLoading) {
     return (

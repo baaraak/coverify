@@ -7,7 +7,6 @@ import {
   dispatchError,
   dispatchUserToken,
 } from './config/actions'
-import { useGetInformationOfUser } from './config/actions'
 import {
   SPOTIFY_CLIENT_ID,
   SPOTIFY_URL,
@@ -44,11 +43,6 @@ const UserLoginButton: React.FC = (props) => {
     dependencies.destroy('spotify')
     dispatch(dispatchError(response.message))
   }
-
-  /**
-   * Listener of service to get the data of user
-   */
-  useGetInformationOfUser()
 
   return (
     <DefaultButton
