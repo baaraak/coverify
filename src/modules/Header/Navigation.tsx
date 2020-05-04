@@ -13,8 +13,8 @@ const Menu = styled.nav`
   flex-direction: column;
 
   border-bottom: 1px solid var(--color-white-lighter);
-  padding-bottom: 4em;
-  margin-bottom: 4em;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
 
   @media (min-width: 60em) {
     flex-direction: row;
@@ -44,7 +44,7 @@ const MenuItem = styled(Text)`
     opacity: 1;
     text-align: center;
     width: 100%;
-    margin: 1em 0;
+    margin: 0.7em 0;
   }
 `
 
